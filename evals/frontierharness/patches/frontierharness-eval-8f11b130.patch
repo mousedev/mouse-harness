@@ -1,8 +1,8 @@
 diff --git a/skills/frontierharness-eval/scripts/providers.sh b/skills/frontierharness-eval/scripts/providers.sh
-index 7c7fd55..924d83e 100644
+index 7c7fd55..bfa71da 100644
 --- a/skills/frontierharness-eval/scripts/providers.sh
 +++ b/skills/frontierharness-eval/scripts/providers.sh
-@@ -79,3 +79,16 @@ apply_provider_egress() {
+@@ -79,3 +79,21 @@ apply_provider_egress() {
    runta egress set "$runtime" --mode allowlist --allow "$host" \
      || { echo "warning: could not set egress allowlist on $runtime" >&2; return 1; }
  }
@@ -16,8 +16,13 @@ index 7c7fd55..924d83e 100644
 +apply_provider_egress() {
 +  local runtime=$1 host=$2
 +  [ -n "$runtime" ] && [ -n "$host" ] || return 0
-+  runta egress set "$runtime" --mode denylist \
-+    || { echo "warning: could not set egress mode on $runtime" >&2; return 1; }
++  # Retried: the write can hit "runtime revision conflict" right after a restore.
++  for _ in 1 2 3 4 5 6; do
++    runta egress set "$runtime" --mode denylist >/dev/null 2>&1 && return 0
++    sleep 5
++  done
++  echo "warning: could not set egress mode on $runtime" >&2
++  return 1
 +}
 diff --git a/skills/frontierharness-eval/scripts/provision-golden-checkpoint.sh b/skills/frontierharness-eval/scripts/provision-golden-checkpoint.sh
 index 3bacf8f..297e7da 100755
@@ -88,10 +93,10 @@ index 3bacf8f..297e7da 100755
    runta rm "$RUNTIME"
  fi
 diff --git a/skills/frontierharness-eval/scripts/run-trials.sh b/skills/frontierharness-eval/scripts/run-trials.sh
-index e73f565..75731ed 100755
+index e73f565..548e0db 100755
 --- a/skills/frontierharness-eval/scripts/run-trials.sh
 +++ b/skills/frontierharness-eval/scripts/run-trials.sh
-@@ -214,13 +214,28 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -214,25 +214,47 @@ while IFS= read -r entry || [ -n "$entry" ]; do
  
    status=success
    CURRENT_RUNTIME=""
@@ -121,3 +126,45 @@ index e73f565..75731ed 100755
    CURRENT_RUNTIME=$runtime
  
    # `checkpoint restore` returns as soon as the restore is accepted, while the runtime is
+   # still provisioning. Until it finishes, exec fails with a 504 and secret rules with
+   # FAILED_PRECONDITION, so wait for a usable runtime rather than scoring the race.
++  # Mouse run, 2026-09-07: on runta 0.2.0 a restored runtime answers exec about
++  # 40 s in, while the 100 GiB disk restore is still in flight and the platform
++  # still reports "creating". Touching it then (egress, secret rule, the runner)
++  # gets it torn down. Wait for the reported status to reach "running" (about
++  # two minutes for this checkpoint), then confirm exec.
+   ready=0
+-  for _ in $(seq 1 60); do
+-    if runta exec "$runtime" -- sh -lc 'exit 0' >>"$trial_dir/restore.log" 2>&1; then
++  for _ in $(seq 1 120); do
++    st=$(runta inspect "$runtime" --json 2>/dev/null | jq -r '.runtime.status // empty')
++    echo "status: ${st:-unknown}" >>"$trial_dir/restore.log"
++    if [ "$st" = running ] && runta exec "$runtime" -- sh -lc 'exit 0' >>"$trial_dir/restore.log" 2>&1; then
+       ready=1
+       break
+     fi
+-    sleep 5
++    sleep 10
+   done
+   if [ "$ready" -ne 1 ]; then
+     echo "restored runtime never became ready for $entry" >&2
+@@ -252,9 +274,16 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+   # Injection rules live on the runtime, not in the checkpoint, so without this the
+   # harness sends the stub placeholder to the provider and every turn fails on auth.
+   if [ -n "$SECRET_NAME" ] && [ -n "$SECRET_HOST" ]; then
+-    if ! runta secret rule set "$runtime" --secret "$SECRET_NAME" --host "$SECRET_HOST" \
+-      --header Authorization --template 'Bearer ${secret}' \
+-      >>"$trial_dir/restore.log" 2>&1; then
++    # Mouse run, 2026-09-07: the rule write right after the egress write can fail
++    # with "runtime revision conflict" (optimistic concurrency); retry briefly.
++    rule_ok=0
++    for _ in 1 2 3 4 5 6; do
++      if runta secret rule set "$runtime" --secret "$SECRET_NAME" --host "$SECRET_HOST" \
++        --header Authorization --template 'Bearer ${secret}' \
++        >>"$trial_dir/restore.log" 2>&1; then rule_ok=1; break; fi
++      sleep 5
++    done
++    if [ "$rule_ok" -ne 1 ]; then
+       echo "credential rule failed for $entry" >&2
+       jq -n --arg id "$entry" --arg t "$task" --arg rt "$runtime" \
+         '{id:$id, title:$t, status:"infra_invalid", success:false,

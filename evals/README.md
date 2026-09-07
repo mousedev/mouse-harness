@@ -195,6 +195,13 @@ on 2026-09-07, and each is stated in the report:
   loop already does after a restore.
 - **Reuse an existing build runtime** of the same name rather than fail, because a
   create that returned before an earlier attempt died leaves one behind.
+- **Wait for a restored runtime to report `running` before touching it.** On runta
+  0.2.0 a restore answers `exec` about 40 s in while its 100 GiB disk is still being
+  restored and the platform still reports `creating`; egress or secret-rule writes
+  and the runner in that window get the runtime torn down (seen as revision
+  conflicts, "egress host not allowed", and trials failing in 4 s). The driver now
+  polls `runta inspect` for `running`, about two minutes, then confirms `exec`.
+  Retries were also added around the egress and secret-rule writes.
 - **Judge a restore by the CLI's accepted-request line.** `runta checkpoint restore`
   can exit non-zero on a websocket 504 after the restore was accepted, or report
   ALREADY_EXISTS for the runtime its own retry created; both left a fresh runtime
