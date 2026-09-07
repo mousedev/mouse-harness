@@ -6,7 +6,7 @@
 npm i -g --ignore-scripts @mousedev/harness opencode-ai
 ```
 
-Node 22 or newer. `opencode-ai` provides the `opencode` binary; OpenCode 1.14.22 is the version this release was run against. Set up a provider once with OpenCode's own auth (`opencode auth login`) or export the provider's key (`ANTHROPIC_API_KEY`, `OPENROUTER_API_KEY`, `FIREWORKS_API_KEY`, and so on).
+Node 22 or newer. `opencode-ai` provides the `opencode` binary; OpenCode 1.18.27 is the version this release was benchmarked on (1.14.22 is also exercised in CI). Set up a provider once with OpenCode's own auth (`opencode auth login`) or export the provider's key (`ANTHROPIC_API_KEY`, `OPENROUTER_API_KEY`, `FIREWORKS_API_KEY`, and so on).
 
 ## Check the setup
 

@@ -117,3 +117,14 @@ describe("OpencodeRunEngine", () => {
     ]);
   });
 });
+
+describe("OpencodeRunEngine title", () => {
+  it("keeps --title on continuation turns, as the benchmark run did", async () => {
+    const { e, errs } = engine("ok");
+    await e.open({ title: "t" });
+    await e.prompt("", "one", new AbortController().signal);
+    await e.prompt("ses_1", "two", new AbortController().signal);
+    expect(errs[0]).toContain("--title t -- one");
+    expect(errs[1]).toContain("--session ses_1 --title t -- two");
+  });
+});

@@ -135,7 +135,8 @@ export class OpencodeRunEngine implements Engine {
       model,
       ...(this.opts.skipPermissions === false ? [] : ["--dangerously-skip-permissions"]),
       ...(this.sessionId ? ["--session", this.sessionId] : []),
-      ...(this.title && !this.sessionId ? ["--title", this.title] : []),
+      // Passed on every turn, continuation included, as the benchmark run did.
+      ...(this.title ? ["--title", this.title] : []),
       ...(this.opts.extraArgs ?? []),
       "--",
       prompt,

@@ -82,7 +82,7 @@ class MouseAgent(OpenCode):
         return "[ -f ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh; node /mouse/mouse.mjs --version"
 
     def parse_version(self, stdout: str) -> str:
-        # "mouse/0.1.0 opencode/1.14.22": the leaderboard records the whole line.
+        # "mouse/0.1.0 opencode/1.18.27": the leaderboard records the whole line.
         lines = [l for l in stdout.strip().splitlines() if l.strip()]
         return lines[-1] if lines else "unknown"
 

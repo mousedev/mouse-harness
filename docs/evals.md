@@ -13,7 +13,7 @@ Both adapters upload `packages/cli/dist/mouse.mjs` (built with `pnpm bundle`) in
 
 ## The number, and the rules for using it
 
-Mouse scored 24/30 on FrontierHarness v1.0 (18/21 Terminal-Bench, 6/9 DeepSWE) with Kimi K3 via OpenRouter pinned to Fireworks, on OpenCode 1.14.22, on 2026-09-03. n=1. DeepSWE ran through the Harbor path, not Pier. FrontierHarness's published numbers for the same model are Codex 20/30 and stock OpenCode 15/30, on OpenCode 1.18.19; they are cited as their numbers.
+Mouse scored 24/30 on FrontierHarness v1.0 (18/21 Terminal-Bench, 6/9 DeepSWE) with Kimi K3 via OpenRouter pinned to Fireworks, on OpenCode 1.18.27 (opencode-ai@latest that day), on 2026-09-03. n=1. DeepSWE ran through the Harbor path, not Pier. FrontierHarness's published numbers for the same model are Codex 20/30 and stock OpenCode 15/30, on OpenCode 1.18.19; they are cited as their numbers.
 
 Before this project makes any comparative claim of its own:
 

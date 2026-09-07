@@ -9,7 +9,7 @@ The claim rules for anything measured here are in [docs/evals.md](../docs/evals.
 | Path | What |
 |---|---|
 | `harbor/mouse_agent.py` | `MouseAgent(OpenCode)` for Harbor 0.22: uploads the bundle, runs `mouse run --profile bench --yolo --format json`, reports `mouse/<ver> opencode/<ver>` as the agent version, attaches Mouse's trace summary to the trial metadata. |
-| `harbor/model_route.py` | Normalises the LiteLLM routes FrontierHarness passes (`fireworks_ai/...`) to OpenCode provider ids (`fireworks-ai/...`); pins `OPENCODE_VERSION = "1.14.22"`; provider hosts and key names. |
+| `harbor/model_route.py` | Normalises the LiteLLM routes FrontierHarness passes (`fireworks_ai/...`) to OpenCode provider ids (`fireworks-ai/...`); pins `OPENCODE_VERSION = "1.18.27"`; provider hosts and key names. |
 | `harbor/mouse_logs.py` | Parses one trial's `opencode.txt` and `mouse-harness.jsonl`: steps, tokens, token-weighted cache hit, outcome, and whether the harness crashed. No Harbor dependency. |
 | `pier/mouse_agent.py` | The same agent on Pier 0.3.1's base classes, with the provider host added to the task's network allowlist so the model is reachable from an `allow_internet = false` container. |
 | `fh/__init__.py` | The import shim `evals.fh:MouseAgent`: resolves to the Pier adapter inside Pier's environment and the Harbor adapter inside Harbor's. |
@@ -62,13 +62,13 @@ PYTHONPATH=. harbor run -p evals/tasks/python-statemachine-state-data-scoping \
 
 Several tasks at once: repeat `-p` per task directory and set `-n` for concurrency.
 
-Agent options (`--ak key=value`): `max_wall_sec` (Harbor default 780, Pier default 4800), `max_steps` (600), `non_progress_rounds` (3), `version` (the OpenCode version installed in the container, default 1.14.22). `MOUSE_TOOL_OUTPUT_PRUNE=1` in the host environment turns on the per-result output cap plugin.
+Agent options (`--ak key=value`): `max_wall_sec` (Harbor default 780, Pier default 4800), `max_steps` (600), `non_progress_rounds` (3), `version` (the OpenCode version installed in the container, default 1.18.27, the version the 2026-09-03 run used). `MOUSE_TOOL_OUTPUT_PRUNE=1` in the host environment turns on the per-result output cap plugin.
 
 Control run with stock OpenCode at the pinned version:
 
 ```bash
 harbor run -p evals/tasks/regex-log --agent opencode \
-  --model openrouter/moonshotai/kimi-k3 --ak version=1.14.22 --jobs-dir evals/jobs -y
+  --model openrouter/moonshotai/kimi-k3 --ak version=1.18.27 --jobs-dir evals/jobs -y
 ```
 
 ## Run one DeepSWE task through Pier
@@ -104,7 +104,7 @@ FrontierHarness will consider adding a harness to the public leaderboard once it
 | `--repo` / `--commit` | `https://github.com/mousedev/mouse-harness` at a pinned commit |
 | `--provider` | `fireworks` (the baselines' provider, so cost is comparable) |
 
-`evals.fh` resolves to the Pier adapter inside Pier's environment and the Harbor adapter inside Harbor's. Both adapters normalise the LiteLLM route their scripts pass (`fireworks_ai/...`) to OpenCode's provider id (`fireworks-ai/...`), pin OpenCode to 1.14.22, and raise to the runner only when the harness itself crashed.
+`evals.fh` resolves to the Pier adapter inside Pier's environment and the Harbor adapter inside Harbor's. Both adapters normalise the LiteLLM route their scripts pass (`fireworks_ai/...`) to OpenCode's provider id (`fireworks-ai/...`), pin OpenCode to 1.18.27, and raise to the runner only when the harness itself crashed.
 
 ### Known gaps in their skill, and how this handles them
 
@@ -144,7 +144,7 @@ After `smoke`, before spending the full budget:
 - `jobs/**/agent/mouse-harness.jsonl` exists and ends in `mouse.done`.
 - `jobs/**/agent/opencode.txt` has `step_finish` events with non-zero tokens. If every turn is an auth error, the credential rule or egress allowlist is wrong.
 - The DeepSWE trial's `verifier/reward.json` exists (the separate verifier ran).
-- `manifest.json` in the trial shows the expected commit, `harbor 0.22.0`, `pier 0.3.1`, and an agent version of the form `mouse/0.1.0 opencode/1.14.22`.
+- `manifest.json` in the trial shows the expected commit, `harbor 0.22.0`, `pier 0.3.1`, and an agent version of the form `mouse/0.1.0 opencode/1.18.27`.
 
 ### What to send FrontierHarness
 

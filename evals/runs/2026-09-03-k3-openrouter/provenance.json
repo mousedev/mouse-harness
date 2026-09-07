@@ -1,8 +1,8 @@
 {
-  "mouse_version_line": "mouse/0.1.0 opencode/1.14.22",
+  "mouse_version_line": "mouse/0.1.0 opencode/1.18.27",
   "harness_source": "getchannel/mouse (private) apps/relay/src/harness-cli + providers/mouse_cloud/harness as of 2026-09-03; extracted unchanged into this repo (see packages/opencode/test/golden.test.ts)",
-  "opencode_version": "1.14.22",
-  "opencode_sdk_version": "1.14.22",
+  "opencode_version": "1.18.27",
+  "opencode_sdk_version": "1.14.22 (types only; the container installed opencode-ai@latest, 1.18.27 on 2026-09-03)",
   "model": "Kimi K3",
   "model_route": "openrouter/moonshotai/kimi-k3 pinned to Fireworks",
   "harbor_version": "0.22.0",

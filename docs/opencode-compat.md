@@ -8,16 +8,25 @@ Mouse is not a fork of OpenCode. It drives the `opencode` binary as a child proc
 
 ```json
 {
-  "supported": ["1.14.22"],
+  "$comment": "OpenCode versions the Mouse harness has been run against. `supported` versions are exercised in CI (mouse doctor + mouse config --profile bench); `tested` carries what was verified on that version. Anything else prints a warning from `mouse doctor` and fails `--strict-compat`.",
+  "supported": [
+    "1.18.27",
+    "1.14.22"
+  ],
   "tested": {
-    "1.14.22": {
+    "1.18.27": {
       "benchmark": "FrontierHarness v1.0, Kimi K3 via OpenRouter pinned to Fireworks",
       "result": "24/30 (18/21 Terminal-Bench, 6/9 DeepSWE), n=1, 2026-09-03, Harbor path for both suites",
-      "notes": "The run the published number comes from. DeepSWE ran through Harbor, not Pier."
+      "notes": "The version the published number comes from: the adapter installed opencode-ai@latest, which was 1.18.27 on 2026-09-03. This is the version the adapters pin."
+    },
+    "1.14.22": {
+      "benchmark": "none",
+      "result": "CI compat job only: mouse doctor --strict-compat and a bench config write succeed",
+      "notes": "The version the hosted product's SDK pins. No benchmark run on it."
     }
   },
   "notes": {
-    "1.18.x": "FrontierHarness pinned 1.18.19 for its stock OpenCode control. Not yet run: ..."
+    "1.18.19": "FrontierHarness pinned 1.18.19 for its stock OpenCode control. Not run; 1.18.27 is the same minor line."
   }
 }
 ```
@@ -32,8 +41,8 @@ Mouse is not a fork of OpenCode. It drives the `opencode` binary as a child proc
 
 | Verdict | Printed as | Meaning |
 |---|---|---|
-| `supported` | `compat 1.14.22: supported` | The version is in `supported`. |
-| `untested` | `compat 1.18.19: untested (supported: 1.14.22)` | A version was found but is not in the manifest. Mouse will run; nothing is promised. |
+| `supported` | `compat 1.18.27: supported` | The version is in `supported`. |
+| `untested` | `compat 1.18.19: untested (supported: 1.18.27, 1.14.22)` | A version was found but is not in the manifest. Mouse will run; nothing is promised. |
 | `unknown` | `compat unknown` | The binary was not found or did not print a version. `doctor` exits 1. |
 
 `--strict-compat` makes an `untested` verdict exit 1 as well. Use it in CI and in benchmark provisioning so a silent engine upgrade fails loudly.

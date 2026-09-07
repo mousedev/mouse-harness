@@ -12,7 +12,9 @@ from __future__ import annotations
 
 # OpenCode engine version installed in every task container. Pinning it keeps
 # a reproduction on the same engine; ``--ak version=X`` still overrides.
-OPENCODE_VERSION = "1.14.22"
+# 1.18.27 is what opencode-ai@latest resolved to on 2026-09-03, the run
+# behind the published 24/30.
+OPENCODE_VERSION = "1.18.27"
 
 LITELLM_TO_OPENCODE = {
     "fireworks_ai": "fireworks-ai",

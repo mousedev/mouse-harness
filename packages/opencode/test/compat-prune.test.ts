@@ -7,6 +7,7 @@ import { MOUSE_VERSION, versionLine } from "../src/version.js";
 describe("compat", () => {
   it("ships a manifest whose supported versions are tested", () => {
     const m = loadCompatManifest();
+    expect(m.supported).toContain("1.18.27");
     expect(m.supported).toContain("1.14.22");
     for (const v of m.supported) expect(m.tested[v]).toBeDefined();
   });
