@@ -13,7 +13,8 @@ Run tasks locally, on a cloud machine, or in CI. Set time and step limits for un
 Requires Node.js 22+ and a model provider configured in OpenCode. This release was benchmarked on OpenCode 1.18.27; 1.14.22 is also exercised in CI.
 
 ```bash
-npm i -g --ignore-scripts @mousedev/harness opencode-ai@1.18.27
+npm i -g --ignore-scripts @mousedev/harness
+npm i -g opencode-ai@1.18.27   # OpenCode needs its postinstall to link the binary
 cd my-repo
 mouse run "Add rate limiting to /api/upload and cover it with tests" \
   --model openrouter/moonshotai/kimi-k3

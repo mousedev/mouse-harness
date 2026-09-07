@@ -2,12 +2,13 @@
 
 Mouse runs OpenCode in your repo and does not stop until the repo's own checks pass. This package is the `mouse` command: it loads `.mouse/policy.json`, detects the repository's checks, starts an OpenCode session with Mouse's configuration, and drives the completion loop from `@mousedev/harness-core` until the run is satisfied, stalled, out of budget, blocked, or aborted. The exit code encodes the outcome and a JSONL trace is written under `~/.mouse/runs/`. Nothing is written into the repository, and with the default `local` profile nothing is written under `~/.config/opencode` either.
 
-The package ships as a single bundled file (`dist/mouse.mjs`, built with `pnpm bundle`) that runs anywhere Node 22 does; the benchmark adapters upload that same file into task containers. OpenCode itself is installed separately (`npm i -g --ignore-scripts opencode-ai`); 1.18.27 is the benchmarked version and 1.14.22 is also exercised in CI. Built on OpenCode; Mouse is an independent project and is not affiliated with or endorsed by the OpenCode project or Anomaly.
+The package ships as a single bundled file (`dist/mouse.mjs`, built with `pnpm bundle`) that runs anywhere Node 22 does; the benchmark adapters upload that same file into task containers. OpenCode itself is installed separately (`npm i -g opencode-ai`; its postinstall links the binary, so do not pass --ignore-scripts to it); 1.18.27 is the benchmarked version and 1.14.22 is also exercised in CI. Built on OpenCode; Mouse is an independent project and is not affiliated with or endorsed by the OpenCode project or Anomaly.
 
 ## Install and run
 
 ```bash
-npm i -g --ignore-scripts @mousedev/harness opencode-ai
+npm i -g --ignore-scripts @mousedev/harness
+npm i -g opencode-ai@1.18.27
 cd my-repo
 mouse run "Add rate limiting to /api/upload and cover it with tests" --model provider/model
 ```

@@ -78,7 +78,8 @@ jobs:
       - run: pnpm bundle
       - name: Install opencode-ai@${{ matrix.opencode }}
         run: |
-          npm i -g --ignore-scripts "opencode-ai@${{ matrix.opencode }}"
+          # opencode-ai links its platform binary in postinstall; --ignore-scripts breaks it.
+          npm i -g "opencode-ai@${{ matrix.opencode }}"
           command -v opencode
           opencode --version
       - name: mouse doctor --strict-compat
