@@ -195,3 +195,6 @@ on 2026-09-07, and each is stated in the report:
   loop already does after a restore.
 - **Reuse an existing build runtime** of the same name rather than fail, because a
   create that returned before an earlier attempt died leaves one behind.
+- **Wait for the checkpoint to leave `creating`** before deleting the build runtime.
+  `runta checkpoint create` returns while the snapshot is still being taken; deleting
+  the source runtime at that point aborted the checkpoint, which then vanished.
