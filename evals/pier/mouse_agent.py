@@ -22,6 +22,7 @@ from pier.agents.installed.base import NonZeroAgentExitCodeError, with_prompt_te
 from pier.agents.installed.opencode import OpenCode
 from pier.environments.base import BaseEnvironment
 from pier.models.agent.context import AgentContext
+from pier.models.agent.install import AgentInstallSpec, InstallStep
 from pier.models.agent.network import NetworkAllowlist
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "harbor"))
@@ -67,8 +68,34 @@ class MouseAgent(OpenCode):
         lines = [l for l in stdout.strip().splitlines() if l.strip()]
         return lines[-1] if lines else "unknown"
 
+    def install_spec(self) -> AgentInstallSpec:
+        # Pier installs agents at image build time from this spec and then skips
+        # install(); the directories the harness writes to have to be part of
+        # the image. The bundle itself is uploaded at run time (see run()), so
+        # the build-time verification stays OpenCode's own.
+        spec = super().install_spec()
+        steps = [
+            *spec.steps,
+            InstallStep(
+                user="root",
+                run=f"mkdir -p {REMOTE_DIR} {LOG_DIR} && chmod 777 {REMOTE_DIR} {LOG_DIR}",
+            ),
+        ]
+        return AgentInstallSpec(
+            agent_name=spec.agent_name,
+            version=spec.version,
+            steps=steps,
+            verification_command=". ~/.nvm/nvm.sh; opencode --version",
+            cache_key=spec.cache_key,
+            metadata=spec.metadata,
+        )
+
     async def install(self, environment: BaseEnvironment) -> None:
+        # Only reached when the image was not built with install_spec().
         await super().install(environment)
+        await self._stage_bundle(environment)
+
+    async def _stage_bundle(self, environment: BaseEnvironment) -> None:
         if not BUNDLE.exists():
             raise FileNotFoundError(f"{BUNDLE} is missing; run `pnpm bundle`")
         await self.exec_as_root(
@@ -113,6 +140,7 @@ class MouseAgent(OpenCode):
         if not self.model_name or "/" not in self.model_name:
             raise ValueError("Model name must be in the format provider/model_name")
         env = self._mouse_env()
+        await self._stage_bundle(environment)
 
         config_command = self._build_register_config_command()
         if config_command:
