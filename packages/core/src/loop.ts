@@ -266,7 +266,8 @@ export async function runCompletionLoop(input: RunCompletionLoopInput): Promise<
     }
 
     const kind: ContinueKind = !changed ? "nochange" : failed.length > 0 ? "fix" : "audit";
-    if (budget.maxWallMs - elapsed < (budget.minRoundMs ?? MIN_ROUND_MS)) return finish("wall_clock");
+    if (budget.maxWallMs - elapsed < (budget.minRoundMs ?? MIN_ROUND_MS))
+      return finish("wall_clock");
 
     if (nonProgress >= 2 && input.escalate) {
       const next = await input.escalate(nonProgress);
