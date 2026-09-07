@@ -4,7 +4,7 @@ Mouse is not a fork of OpenCode. It drives the `opencode` binary as a child proc
 
 ## The manifest
 
-`packages/opencode/compat/opencode-compat.json`, loaded by `loadCompatManifest()`:
+`packages/opencode/src/compat/opencode-compat.json`, loaded by `loadCompatManifest()`:
 
 ```json
 {

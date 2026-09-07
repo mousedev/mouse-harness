@@ -4,7 +4,7 @@
 # and is nudged on every release: it checks out the tagged commit and prints
 # the commands from evals/README.md. It uploads nothing. Run the eval on a
 # machine with Docker and the provider keys, then record the result in
-# packages/opencode/compat/opencode-compat.json under `tested`.
+# packages/opencode/src/compat/opencode-compat.json under `tested`.
 name: full-eval
 
 on:

@@ -1,6 +1,4 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import manifest from "./compat/opencode-compat.json" with { type: "json" };
 
 export interface CompatManifest {
   supported: string[];
@@ -8,14 +6,9 @@ export interface CompatManifest {
   notes?: Record<string, string>;
 }
 
+/** The manifest ships inside the package, so the bundled CLI carries it too. */
 export function loadCompatManifest(): CompatManifest {
-  const file = path.join(
-    path.dirname(fileURLToPath(import.meta.url)),
-    "..",
-    "compat",
-    "opencode-compat.json",
-  );
-  return JSON.parse(readFileSync(file, "utf8")) as CompatManifest;
+  return manifest as CompatManifest;
 }
 
 export type CompatVerdict =

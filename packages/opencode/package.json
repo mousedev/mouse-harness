@@ -23,7 +23,6 @@
   },
   "files": [
     "dist",
-    "compat",
     "README.md"
   ],
   "sideEffects": false,

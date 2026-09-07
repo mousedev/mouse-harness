@@ -40,7 +40,7 @@ jobs:
       - name: Bundled CLI starts
         run: node packages/cli/dist/mouse.mjs --version
 
-  # Reads the matrix from packages/opencode/compat/opencode-compat.json so the
+  # Reads the matrix from packages/opencode/src/compat/opencode-compat.json so the
   # manifest stays the single source of truth for which OpenCode versions CI
   # exercises. Add a version there and the compat job picks it up.
   compat-matrix:
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - id: read
         run: |
-          versions="$(jq -c '.supported' packages/opencode/compat/opencode-compat.json)"
+          versions="$(jq -c '.supported' packages/opencode/src/compat/opencode-compat.json)"
           test "$(jq -r 'length' <<<"$versions")" -gt 0
           echo "versions=$versions" >> "$GITHUB_OUTPUT"
           echo "supported OpenCode versions: $versions"
