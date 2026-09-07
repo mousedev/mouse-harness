@@ -9,6 +9,12 @@
  *
  * Never update this snapshot to make a refactor pass. A changed byte in the
  * config or a prompt is a product change and a prompt-cache invalidation.
+ *
+ * Deliberate divergence, 2026-09-07: the three `bench / * / fireworks-ai/...`
+ * cases no longer carry `provider.fireworks-ai.options.setCacheKey`. Fireworks'
+ * API rejects the resulting `promptCacheKey` field with a 400 on every request,
+ * so a run served by Fireworks could not make a single model call. Every other
+ * case, including the OpenRouter route the 2026-09-03 run used, is unchanged.
  */
 import {
   buildAgentPrompt,

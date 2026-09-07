@@ -33,6 +33,16 @@ import type { Config } from "@opencode-ai/sdk";
  */
 export const SET_CACHE_KEY_PROVIDER_IDS = ["anthropic", "openrouter", "fireworks-ai"] as const;
 
+/**
+ * Providers whose API rejects the cache key outright when they serve the run.
+ * Fireworks' OpenAI-compatible endpoint answers 400 "Extra inputs are not
+ * permitted, field: 'promptCacheKey'" to every request that carries it (seen
+ * on the 2026-09-07 Runta run), and it caches prefixes on its own. The entry
+ * stays in the list for runs on other providers, where it is inert, so those
+ * configs keep the bytes the 2026-09-03 run used.
+ */
+export const NO_CACHE_KEY_WHEN_SERVING = ["fireworks-ai"] as const;
+
 export function providerCacheOptions(
   extra: readonly string[] = [],
 ): Record<string, { options: { setCacheKey: boolean } }> {
@@ -41,6 +51,19 @@ export function providerCacheOptions(
     out[id] = { options: { setCacheKey: true } };
   }
   return out;
+}
+
+/** Cache options for a run served by `modelProvider`, minus any entry that provider rejects. */
+export function runProviderCacheOptions(
+  modelProvider: string | undefined,
+): Record<string, { options: Record<string, unknown> }> {
+  const provider = providerCacheOptions(modelProvider ? [modelProvider] : []) as Record<
+    string,
+    { options: Record<string, unknown> }
+  >;
+  const skip: readonly string[] = NO_CACHE_KEY_WHEN_SERVING;
+  if (modelProvider && skip.includes(modelProvider)) delete provider[modelProvider];
+  return provider;
 }
 
 /** Bench compaction: auto at the window, prune stale tool outputs, 10k reserve. */
@@ -189,12 +212,9 @@ export function buildOpencodeConfig(input: OpencodeConfigInput): Config {
     bench.autoupdate = false;
     bench.share = "disabled";
     bench.compaction = { ...BENCH_COMPACTION };
-    const modelProvider = input.model?.includes("/") ? [input.model.split("/")[0]!] : [];
-    const provider = providerCacheOptions(modelProvider) as Record<
-      string,
-      { options: Record<string, unknown> }
-    >;
-    if (modelProvider[0] === "openrouter") {
+    const modelProvider = input.model?.includes("/") ? input.model.split("/")[0] : undefined;
+    const provider = runProviderCacheOptions(modelProvider);
+    if (modelProvider === "openrouter") {
       provider.openrouter!.options.extraBody = OPENROUTER_PIN_FIREWORKS;
     }
     bench.provider = provider as Config["provider"];
@@ -202,8 +222,8 @@ export function buildOpencodeConfig(input: OpencodeConfigInput): Config {
   } else if (profile === "local") {
     const local = config as Config & Record<string, unknown>;
     local.compaction = { ...BENCH_COMPACTION };
-    const modelProvider = input.model?.includes("/") ? [input.model.split("/")[0]!] : [];
-    local.provider = providerCacheOptions(modelProvider) as Config["provider"];
+    const modelProvider = input.model?.includes("/") ? input.model.split("/")[0] : undefined;
+    local.provider = runProviderCacheOptions(modelProvider) as Config["provider"];
   }
 
   return config;

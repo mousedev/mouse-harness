@@ -250,11 +250,6 @@ Finish with a short summary: what changed, what you ran, and what it showed. Ins
         "setCacheKey": true,
       },
     },
-    "fireworks-ai": {
-      "options": {
-        "setCacheKey": true,
-      },
-    },
     "openrouter": {
       "options": {
         "setCacheKey": true,
@@ -801,11 +796,6 @@ Finish with a short summary: what changed, what you ran, and what it showed. Ins
         "setCacheKey": true,
       },
     },
-    "fireworks-ai": {
-      "options": {
-        "setCacheKey": true,
-      },
-    },
     "openrouter": {
       "options": {
         "setCacheKey": true,
@@ -1348,11 +1338,6 @@ Finish with a short summary: what changed, what you ran, and what it showed. Ins
   },
   "provider": {
     "anthropic": {
-      "options": {
-        "setCacheKey": true,
-      },
-    },
-    "fireworks-ai": {
       "options": {
         "setCacheKey": true,
       },

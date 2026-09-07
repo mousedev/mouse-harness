@@ -42,9 +42,25 @@ describe("buildOpencodeConfig bench profile", () => {
     expect(bench.share).toBe("disabled");
     expect(bench.small_model).toBe(model);
     const provider = bench.provider as Record<string, { options: { setCacheKey: boolean } }>;
-    for (const id of SET_CACHE_KEY_PROVIDER_IDS) {
+    for (const id of SET_CACHE_KEY_PROVIDER_IDS.filter((x) => x !== "fireworks-ai")) {
       expect(provider[id]?.options.setCacheKey).toBe(true);
     }
+    // The run model is served by Fireworks here, so its entry is dropped (see below).
+    expect(provider["fireworks-ai"]).toBeUndefined();
+  });
+
+  it("sends no cache key to Fireworks when it serves the run, and keeps the inert entry otherwise", () => {
+    const fw = buildOpencodeConfig({ profile: "bench", model }) as Record<string, unknown>;
+    expect((fw.provider as Record<string, unknown>)["fireworks-ai"]).toBeUndefined();
+    expect((fw.provider as Record<string, unknown>).openrouter).toBeDefined();
+    const or = buildOpencodeConfig({
+      profile: "bench",
+      model: "openrouter/moonshotai/kimi-k3",
+    }) as Record<string, unknown>;
+    expect(
+      (or.provider as Record<string, { options: { setCacheKey: boolean } }>)["fireworks-ai"]
+        ?.options.setCacheKey,
+    ).toBe(true);
   });
 
   it("adds cache keys for the run model's provider even when it is not in the list", () => {
