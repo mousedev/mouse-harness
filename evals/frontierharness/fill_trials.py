@@ -152,8 +152,16 @@ def fill(trial_path: Path) -> dict[str, Any] | None:
         success = reward >= 1
         status = "success" if success else "failure"
 
+    # Harbor and Pier retry agent-level exceptions (their template passes -r), so a
+    # scored trial may be the second or third attempt. Record it.
+    attempts = 1
+    job_log = result_path.parent.parent / "job.log"
+    if job_log.exists():
+        attempts += sum(1 for line in job_log.read_text(errors="replace").splitlines() if "Retrying in" in line)
+
     updated = {
         **trial,
+        "attempts": attempts,
         "status": status,
         "success": success,
         "reward": reward,
