@@ -17,8 +17,9 @@ if ! command -v node >/dev/null || [ "$(node -p 'process.versions.node.split("."
   echo "install-mouse: installing Node $NODE_VERSION under ~/.local/node" >&2
   arch=$(uname -m); case "$arch" in x86_64) arch=x64 ;; aarch64|arm64) arch=arm64 ;; esac
   mkdir -p "$HOME/.local/node"
-  curl -fsSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$arch.tar.xz" \
-    | tar -xJ --strip-components=1 -C "$HOME/.local/node"
+  # gzip, not xz: the Runta runtime image has no xz binary.
+  curl -fsSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$arch.tar.gz" \
+    | tar -xz --strip-components=1 -C "$HOME/.local/node"
 fi
 command -v corepack >/dev/null && corepack enable --install-directory "$HOME/.local/bin" >/dev/null 2>&1 || true
 if ! command -v pnpm >/dev/null; then npm i -g --ignore-scripts pnpm@9.15.9 >/dev/null; fi
