@@ -1,0 +1,19 @@
+{
+  "harness": "mouse",
+  "harness_repo": "https://github.com/mousedev/mouse-harness",
+  "harness_commit": "pre-extraction (private monorepo getchannel/mouse, harness closure as of 2026-09-03; byte-identical prompts and config are asserted by packages/opencode/test/golden.test.ts)",
+  "model": "openrouter/moonshotai/kimi-k3",
+  "provider": "openrouter",
+  "provider_host": "openrouter.ai",
+  "provider_note": "OpenRouter routing pinned to Fireworks with fallbacks off (provider.order=[Fireworks], allow_fallbacks=false), so the weights and prefix cache match the baselines; OpenRouter's fee is included in cost.",
+  "checkpoint": null,
+  "runtime": "GCE e2-standard-8 (8 vCPU, 32 GiB), Ubuntu 24.04, Docker; not a Runta golden checkpoint",
+  "cpus": 8,
+  "memory_mib": 32768,
+  "disk_size_gib": 200,
+  "deep_swe_path": "Harbor (datacurve/* tasks run through Harbor with --ak max_wall_sec=4800), not Pier",
+  "harbor_version": "harbor 0.22.0",
+  "pier_version": "not used",
+  "opencode_version": "1.14.22",
+  "created_at": "2026-09-03T00:00:00Z"
+}

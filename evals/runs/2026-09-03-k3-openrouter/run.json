@@ -1,0 +1,8 @@
+{
+  "run_id": "2026-09-03-k3-openrouter",
+  "checkpoint": null,
+  "harness": "mouse",
+  "model": "openrouter/moonshotai/kimi-k3",
+  "provider": "openrouter",
+  "started_at": "2026-09-03T00:00:00Z"
+}

@@ -1,0 +1,39 @@
+# The full FrontierHarness set (21 Terminal-Bench + 9 DeepSWE tasks) takes
+# hours of Docker time and real model spend per run, so it is not run in CI.
+# This workflow exists so the manual path is discoverable from the Actions tab
+# and is nudged on every release: it checks out the tagged commit and prints
+# the commands from evals/README.md. It uploads nothing. Run the eval on a
+# machine with Docker and the provider keys, then record the result in
+# packages/opencode/compat/opencode-compat.json under `tested`.
+name: full-eval
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  instructions:
+    name: print the manual eval path
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Show how to run the full eval
+        run: |
+          {
+            echo "## Full eval for ${GITHUB_REF_NAME}"
+            echo
+            echo "Not run in CI (cost). Run it locally per evals/README.md:"
+            echo
+            echo '```'
+            if [ -f evals/README.md ]; then
+              # Print the fenced command blocks from the README.
+              awk '/^```/ { on = !on; next } on { print }' evals/README.md
+            else
+              echo "evals/README.md is missing; see evals/requirements.txt and evals/harbor/"
+            fi
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"

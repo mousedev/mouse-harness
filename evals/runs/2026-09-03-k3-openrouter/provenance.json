@@ -1,0 +1,14 @@
+{
+  "mouse_version_line": "mouse/0.1.0 opencode/1.14.22",
+  "harness_source": "getchannel/mouse (private) apps/relay/src/harness-cli + providers/mouse_cloud/harness as of 2026-09-03; extracted unchanged into this repo (see packages/opencode/test/golden.test.ts)",
+  "opencode_version": "1.14.22",
+  "opencode_sdk_version": "1.14.22",
+  "model": "Kimi K3",
+  "model_route": "openrouter/moonshotai/kimi-k3 pinned to Fireworks",
+  "harbor_version": "0.22.0",
+  "dataset": "FrontierHarness v1.0: terminal-bench@2.0 (21) + datacurve/deep-swe v1.1 images (9), run through Harbor",
+  "machine": "GCE e2-standard-8, 200 GB disk",
+  "date": "2026-09-03",
+  "n": 1,
+  "field_comparison": "frontier-harness-eval/eval results/eval-data.json at 8f11b130c30bbf76ca1f3edeea70abc773bd8d2c, fetched at report-build time; not vendored"
+}

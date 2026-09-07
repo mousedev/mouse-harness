@@ -1,0 +1,91 @@
+# Every push to main and every pull request: typecheck, test, lint, bundle,
+# then run the bundled CLI against each OpenCode version the compat manifest
+# lists as `supported`. Actions are pinned to commit SHAs (see the version
+# comment next to each `uses:`).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PNPM_VERSION: 9.15.9
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm lint
+      - run: pnpm bundle
+      - name: Bundled CLI starts
+        run: node packages/cli/dist/mouse.mjs --version
+
+  # Reads the matrix from packages/opencode/compat/opencode-compat.json so the
+  # manifest stays the single source of truth for which OpenCode versions CI
+  # exercises. Add a version there and the compat job picks it up.
+  compat-matrix:
+    name: compat matrix
+    runs-on: ubuntu-latest
+    outputs:
+      versions: ${{ steps.read.outputs.versions }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: read
+        run: |
+          versions="$(jq -c '.supported' packages/opencode/compat/opencode-compat.json)"
+          test "$(jq -r 'length' <<<"$versions")" -gt 0
+          echo "versions=$versions" >> "$GITHUB_OUTPUT"
+          echo "supported OpenCode versions: $versions"
+
+  compat:
+    name: compat opencode ${{ matrix.opencode }}
+    needs: [check, compat-matrix]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        opencode: ${{ fromJSON(needs.compat-matrix.outputs.versions) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm bundle
+      - name: Install opencode-ai@${{ matrix.opencode }}
+        run: |
+          npm i -g --ignore-scripts "opencode-ai@${{ matrix.opencode }}"
+          command -v opencode
+          opencode --version
+      - name: mouse doctor --strict-compat
+        run: node packages/cli/dist/mouse.mjs doctor --strict-compat --opencode-bin "$(which opencode)"
+      - name: mouse config --profile bench
+        run: |
+          rm -rf /tmp/cfg
+          node packages/cli/dist/mouse.mjs config --profile bench --model fireworks-ai/accounts/fireworks/models/kimi-k3 --out /tmp/cfg
+          test -f /tmp/cfg/opencode.json
+          jq . /tmp/cfg/opencode.json

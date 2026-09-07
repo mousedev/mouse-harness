@@ -1,0 +1,25 @@
+{
+  "id": "terminal-bench/sqlite-db-truncate",
+  "title": "sqlite-db-truncate",
+  "suite": "terminal-bench",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 257.49,
+  "cost_first_cold_usd": 0.3152271,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 21,
+  "cache_hit_rate_normalized": 0.8211726283186234,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 2,
+  "tokens": {
+    "input": 40300,
+    "output": 7277,
+    "cache_read": 185057,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

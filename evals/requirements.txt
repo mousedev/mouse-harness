@@ -1,0 +1,5 @@
+# Runners the evaluations use. Install as tools, not into a project venv:
+#   uv tool install harbor==0.22.0
+#   uv tool install datacurve-pier==0.3.1
+harbor==0.22.0
+datacurve-pier==0.3.1

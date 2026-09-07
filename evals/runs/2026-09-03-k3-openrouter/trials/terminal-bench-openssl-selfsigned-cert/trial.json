@@ -1,0 +1,25 @@
+{
+  "id": "terminal-bench/openssl-selfsigned-cert",
+  "title": "openssl-selfsigned-cert",
+  "suite": "terminal-bench",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 164.5,
+  "cost_first_cold_usd": 0.20164769999999996,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 13,
+  "cache_hit_rate_normalized": 0.7792646061347022,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 1,
+  "tokens": {
+    "input": 26360,
+    "output": 5230,
+    "cache_read": 93059,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

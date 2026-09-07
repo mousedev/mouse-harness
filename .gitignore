@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+evals/tasks/
+evals/jobs/
+evals/.env
+evals/frontierharness/field/
+__pycache__/
+*.pyc
+.mouse-local/

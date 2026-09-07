@@ -1,0 +1,25 @@
+{
+  "id": "terminal-bench/log-summary-date-ranges",
+  "title": "log-summary-date-ranges",
+  "suite": "terminal-bench",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 212.577,
+  "cost_first_cold_usd": 0.24662249999999997,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 21,
+  "cache_hit_rate_normalized": 0.8344745664541273,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 2,
+  "tokens": {
+    "input": 33722,
+    "output": 5183,
+    "cache_read": 170005,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

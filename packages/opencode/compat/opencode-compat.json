@@ -1,0 +1,14 @@
+{
+  "$comment": "OpenCode versions the Mouse harness has been run against. `supported` versions are exercised in CI (mouse doctor + mouse config --profile bench); `tested` carries the benchmark result recorded on that version. Anything else prints a warning from `mouse doctor` and fails `--strict-compat`.",
+  "supported": ["1.14.22"],
+  "tested": {
+    "1.14.22": {
+      "benchmark": "FrontierHarness v1.0, Kimi K3 via OpenRouter pinned to Fireworks",
+      "result": "24/30 (18/21 Terminal-Bench, 6/9 DeepSWE), n=1, 2026-09-03, Harbor path for both suites",
+      "notes": "The run the published number comes from. DeepSWE ran through Harbor, not Pier."
+    }
+  },
+  "notes": {
+    "1.18.x": "FrontierHarness pinned 1.18.19 for its stock OpenCode control. Not yet run: `permission` shape, `compaction` keys, and `run --format json` event shapes need checking before the compat job adds it."
+  }
+}

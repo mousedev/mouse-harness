@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use the Mouse harness in your work, please cite it as below."
+title: "Mouse harness"
+type: software
+authors:
+  - family-names: McGrath
+    given-names: Pete
+version: 0.1.0
+date-released: 2026-09-07
+repository-code: "https://github.com/mousedev/mouse-harness"
+license: MIT
+abstract: >-
+  Mouse runs OpenCode in a repository and does not stop until the repository's
+  own checks pass. A deterministic completion loop probes the workspace after
+  every turn, runs the detected or declared checks, scans for deleted
+  verification files, and requires a structured self-audit before a run is
+  considered satisfied.
+keywords:
+  - coding-agent
+  - harness
+  - opencode
+  - benchmark

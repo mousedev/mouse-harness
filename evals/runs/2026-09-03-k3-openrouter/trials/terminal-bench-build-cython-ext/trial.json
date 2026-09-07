@@ -1,0 +1,25 @@
+{
+  "id": "terminal-bench/build-cython-ext",
+  "title": "build-cython-ext",
+  "suite": "terminal-bench",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 788.663,
+  "cost_first_cold_usd": 0.9330830999999998,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 47,
+  "cache_hit_rate_normalized": 0.9641636179627343,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "wall_clock",
+  "rounds": 0,
+  "tokens": {
+    "input": 54708,
+    "output": 10950,
+    "cache_read": 1471897,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

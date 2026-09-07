@@ -1,0 +1,5 @@
+- [ ] `pnpm check` passes (typecheck, tests, lint).
+- [ ] Changes to the completion loop or prompts come with tests.
+- [ ] No new dependencies in `packages/core` (open an issue first if one is unavoidable).
+- [ ] Prompt changes include a before/after smoke-eval note (prompt bytes are cache-sensitive; no cosmetic edits).
+- [ ] `CHANGELOG.md` left alone; maintainers update it at release time.

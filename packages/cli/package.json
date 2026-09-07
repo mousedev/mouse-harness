@@ -1,0 +1,44 @@
+{
+  "name": "@mousedev/harness",
+  "version": "0.1.0",
+  "description": "Mouse runs OpenCode in your repo and does not stop until the repo's own checks pass.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mousedev/mouse-harness.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/mousedev/mouse-harness#readme",
+  "keywords": [
+    "opencode",
+    "coding-agent",
+    "harness",
+    "agent",
+    "benchmark"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "mouse": "./dist/mouse.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "bundle": "node scripts/bundle.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@mousedev/harness-core": "workspace:*",
+    "@mousedev/harness-opencode": "workspace:*"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}

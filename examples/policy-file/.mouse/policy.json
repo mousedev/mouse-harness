@@ -1,0 +1,22 @@
+{
+  "$docs": "https://github.com/mousedev/mouse-harness/blob/main/docs/config.md",
+  "version": 1,
+  "verify": {
+    "checks": { "typecheck": "pnpm typecheck", "test": "pnpm test -- --run" },
+    "timeoutSec": 600
+  },
+  "loop": {
+    "maxWallSec": 3600,
+    "maxSteps": 600,
+    "nonProgressRounds": 3,
+    "idleTimeoutSec": 600,
+    "minRoundSec": 60
+  },
+  "context": {
+    "prune": { "enabled": true, "thresholdChars": 8192, "headChars": 4096, "tailChars": 1024 }
+  },
+  "permissions": {
+    "bash": { "git push*": "deny", "rm -rf *": "deny", "curl *": "deny" }
+  },
+  "autonomy": { "note": "Unknown blocks like this one are preserved and ignored." }
+}

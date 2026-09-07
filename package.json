@@ -1,0 +1,23 @@
+{
+  "name": "mouse-harness-workspace",
+  "private": true,
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "pnpm typecheck && pnpm test && pnpm lint",
+    "typecheck": "pnpm -r --filter './packages/*' --filter './examples/*' run typecheck",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "bundle": "pnpm --filter @mousedev/harness bundle",
+    "release": "node scripts/release.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.12",
+    "@types/node": "22.19.17",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}

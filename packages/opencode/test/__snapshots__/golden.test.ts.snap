@@ -1,0 +1,2731 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`golden: buildMouseOpencodeConfig > bench / auto / anthropic/claude-sonnet-5 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "anthropic/claude-sonnet-5",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / auto / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "fireworks-ai/accounts/fireworks/models/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / auto / no model 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / auto / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "extraBody": {
+          "provider": {
+            "allow_fallbacks": false,
+            "order": [
+              "Fireworks",
+            ],
+          },
+        },
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "openrouter/moonshotai/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / bypass / anthropic/claude-sonnet-5 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "anthropic/claude-sonnet-5",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / bypass / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "fireworks-ai/accounts/fireworks/models/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / bypass / no model 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / bypass / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "extraBody": {
+          "provider": {
+            "allow_fallbacks": false,
+            "order": [
+              "Fireworks",
+            ],
+          },
+        },
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "openrouter/moonshotai/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / interactive / anthropic/claude-sonnet-5 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "anthropic/claude-sonnet-5",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / interactive / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "fireworks-ai/accounts/fireworks/models/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / interactive / no model 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > bench / interactive / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+      "prompt": "You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these.",
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "autoupdate": false,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000,
+  },
+  "provider": {
+    "anthropic": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "fireworks-ai": {
+      "options": {
+        "setCacheKey": true,
+      },
+    },
+    "openrouter": {
+      "options": {
+        "extraBody": {
+          "provider": {
+            "allow_fallbacks": false,
+            "order": [
+              "Fireworks",
+            ],
+          },
+        },
+        "setCacheKey": true,
+      },
+    },
+  },
+  "share": "disabled",
+  "small_model": "openrouter/moonshotai/kimi-k3",
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / auto / anthropic/claude-sonnet-5 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / auto / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / auto / no model 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / auto / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / bypass / anthropic/claude-sonnet-5 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / bypass / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / bypass / no model 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / bypass / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / interactive / anthropic/claude-sonnet-5 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / interactive / fireworks-ai/accounts/fireworks/models/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / interactive / no model 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product / interactive / openrouter/moonshotai/kimi-k3 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": "deny",
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": "allow",
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": "ask",
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: buildMouseOpencodeConfig > product with a user bash deny list 1`] = `
+{
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "deny",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "allow",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "debug": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "allow",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": "ask",
+        "webfetch": "deny",
+      },
+    },
+    "dream": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "deny",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": "deny",
+        "webfetch": "deny",
+      },
+    },
+    "overnight": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "allow",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": "allow",
+        "webfetch": "deny",
+      },
+    },
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "ask",
+          "git push*": "deny",
+          "rm -rf*": "deny",
+        },
+        "doom_loop": "allow",
+        "edit": {
+          "*": "deny",
+          ".mouse/plans/*.md": "allow",
+        },
+        "webfetch": "deny",
+      },
+    },
+  },
+  "tools": {
+    "skill": false,
+    "task": false,
+    "webfetch": false,
+    "websearch": false,
+  },
+}
+`;
+
+exports[`golden: prompts > DETECT_ECOSYSTEM_COMMAND 1`] = `"cd /workspace 2>/dev/null || exit 0; for f in pyproject.toml pytest.ini setup.cfg tox.ini uv.lock poetry.lock go.mod Cargo.toml; do [ -e "$f" ] && echo "F:$f"; done; { [ -d tests ] || [ -d test ]; } && echo "D:tests"; grep -qE '^test:' Makefile 2>/dev/null && echo 'M:test'; [ -f pnpm-lock.yaml ] && echo "PM:pnpm"; [ -f yarn.lock ] && echo "PM:yarn"; [ -f package.json ] && { echo "PKG_BEGIN"; cat package.json; echo; echo "PKG_END"; }; true"`;
+
+exports[`golden: prompts > buildAgentPrompt(ask) 1`] = `undefined`;
+
+exports[`golden: prompts > buildAgentPrompt(build) 1`] = `
+"You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these."
+`;
+
+exports[`golden: prompts > buildAgentPrompt(debug) 1`] = `undefined`;
+
+exports[`golden: prompts > buildAgentPrompt(dream) 1`] = `undefined`;
+
+exports[`golden: prompts > buildAgentPrompt(overnight) 1`] = `
+"You are Mouse, a coding agent working in a terminal.
+
+Persist until the task is fully handled end to end in this turn: explore, implement, run the repo's tests, and fix what fails. Only stop when you are sure the problem is solved. Never claim done without a check you actually ran. If a tool call fails, read the error and change approach; do not repeat the same call.
+
+Working style:
+- Inspect before acting: read the relevant code and existing tests before editing. Reproduce a bug before fixing it.
+- Fix the root cause. When you change a function, find every caller.
+- Do the whole ask. A feature that spans several modules is done only when every module and its tests are updated.
+- Prefer the simplest change that fully works: reuse what the repo has, add no dependency unless required, add no speculative abstractions.
+- Validate at trust boundaries; keep internal logic plain.
+- For multi-step work keep the todo list current, with exactly one item in progress.
+
+Tools:
+- Use rg for search. Batch independent reads and searches in one response.
+- Prefer read/edit/write for files; use bash to build, test, and run.
+- Do not re-read a file right after editing it; the edit tool fails loudly.
+- Pass an explicit timeout to bash for long commands such as test suites and builds. Run long-lived servers in the background.
+- Run the narrowest relevant test first, then the full suite before finishing. Never weaken, skip, or delete tests to make them pass.
+
+Finish with a short summary: what changed, what you ran, and what it showed. Instructions in AGENTS.md or CLAUDE.md in the repo take precedence over these."
+`;
+
+exports[`golden: prompts > buildAgentPrompt(plan) 1`] = `undefined`;
+
+exports[`golden: prompts > buildContinuePrompt(audit) 1`] = `
+"Before finishing, verify the task is complete. Re-read each requirement below and confirm it is implemented and checked in this workspace. If anything is missing, untested, or only partially done, do it now.
+
+You previously listed these as not done:
+- pickle survival
+
+## Requirements
+- Add a \`data\` keyword to State.
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+## Original task
+Add a \`data\` keyword to State.
+
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+When you are finished, end your reply with an audit of the original task, one line per requirement, in exactly this form:
+MOUSE_AUDIT
+- [done] <requirement>: <the file, test, or command output that proves it>
+- [todo] <requirement>: <what is still missing>
+END_MOUSE_AUDIT
+Mark a requirement done only with evidence you produced in this workspace."
+`;
+
+exports[`golden: prompts > buildContinuePrompt(fix) 1`] = `
+"Verification failed after your changes.
+
+Check \`test\` (\`pnpm test\`) exited 1:
+\`\`\`
+FAILED tests/test_x.py::test_y - assert 1 == 2
+\`\`\`
+
+Check \`typecheck\` (\`pnpm typecheck\`) timed out:
+\`\`\`
+
+\`\`\`
+
+Continue working on the task. Do not stop until these checks pass and every requirement below is done. Never weaken, skip, or delete tests to make them pass.
+
+## Requirements
+- Add a \`data\` keyword to State.
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+## Original task
+Add a \`data\` keyword to State.
+
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+When you are finished, end your reply with an audit of the original task, one line per requirement, in exactly this form:
+MOUSE_AUDIT
+- [done] <requirement>: <the file, test, or command output that proves it>
+- [todo] <requirement>: <what is still missing>
+END_MOUSE_AUDIT
+Mark a requirement done only with evidence you produced in this workspace."
+`;
+
+exports[`golden: prompts > buildContinuePrompt(nochange) 1`] = `
+"No files in the workspace have changed, so the task is not done. Read the task again, then implement it here. If the task only requires producing files or output, produce them now.
+
+## Requirements
+- Add a \`data\` keyword to State.
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+## Original task
+Add a \`data\` keyword to State.
+
+- On entry, data initializes from the defaults.
+- get_state_data(state) returns the active dict.
+- Data survives pickle.
+
+When you are finished, end your reply with an audit of the original task, one line per requirement, in exactly this form:
+MOUSE_AUDIT
+- [done] <requirement>: <the file, test, or command output that proves it>
+- [todo] <requirement>: <what is still missing>
+END_MOUSE_AUDIT
+Mark a requirement done only with evidence you produced in this workspace."
+`;

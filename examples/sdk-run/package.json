@@ -1,0 +1,16 @@
+{
+  "name": "example-sdk-run",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mousedev/harness-core": "workspace:*",
+    "@mousedev/harness-opencode": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.17",
+    "typescript": "5.9.3"
+  }
+}

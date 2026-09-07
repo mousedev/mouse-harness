@@ -1,0 +1,9 @@
+datacurve/anko-typed-variable-bindings
+datacurve/arktype-json-schema-refs-dependencies
+datacurve/expr-try-catch-errors
+datacurve/fastapi-deprecation-response-headers
+datacurve/httpx-multipart-response-parsing
+datacurve/katex-multicolumn-array-spans
+datacurve/meriyah-explicit-resource-declarations
+datacurve/python-statemachine-state-data-scoping
+datacurve/scc-bounded-memory-spilling

@@ -1,0 +1,25 @@
+{
+  "id": "terminal-bench/regex-log",
+  "title": "regex-log",
+  "suite": "terminal-bench",
+  "status": "success",
+  "success": true,
+  "duration_seconds": 470.483,
+  "cost_first_cold_usd": 0.5094468000000001,
+  "cost_source": "opencode_step_cost (OpenRouter-reported)",
+  "turns": 21,
+  "cache_hit_rate_normalized": 0.876945727842394,
+  "exit_code": null,
+  "runtime": "gce:mouse-bench",
+  "checkpoint": null,
+  "harness_outcome": "satisfied",
+  "rounds": 2,
+  "tokens": {
+    "input": 37527,
+    "output": 11060,
+    "cache_read": 267436,
+    "cache_write": 0
+  },
+  "included_in_efficiency": true,
+  "evidence": "raw Harbor job directories are on the stopped GCE VM disk (/opt/mouse/bench/jobs); not published"
+}

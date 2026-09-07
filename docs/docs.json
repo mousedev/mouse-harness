@@ -1,0 +1,12 @@
+[
+  { "title": "Overview", "path": "index.md" },
+  { "title": "Quickstart", "path": "quickstart.md" },
+  { "title": "The completion loop", "path": "loop.md" },
+  { "title": "Configuration", "path": "config.md" },
+  { "title": "Permissions policy", "path": "policy.md" },
+  { "title": "MOUSE_AUDIT protocol", "path": "audit-protocol.md" },
+  { "title": "Trace format", "path": "trace.md" },
+  { "title": "OpenCode compatibility", "path": "opencode-compat.md" },
+  { "title": "Evals", "path": "evals.md" },
+  { "title": "Security", "path": "security.md" }
+]

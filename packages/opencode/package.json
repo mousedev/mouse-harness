@@ -1,0 +1,53 @@
+{
+  "name": "@mousedev/harness-opencode",
+  "version": "0.1.0",
+  "description": "OpenCode engine adapter for the Mouse harness: engine config, the `opencode run` engine, compat manifest, and the tool-output prune plugin.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mousedev/mouse-harness.git",
+    "directory": "packages/opencode"
+  },
+  "homepage": "https://github.com/mousedev/mouse-harness#readme",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "compat",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@mousedev/harness-core": "workspace:*",
+    "@opencode-ai/sdk": "1.14.22"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  }
+}

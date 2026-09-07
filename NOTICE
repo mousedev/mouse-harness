@@ -1,0 +1,49 @@
+Mouse harness
+Copyright (c) 2026 Pete McGrath and Mouse contributors
+Licensed under the MIT License (see LICENSE).
+
+Mouse is an independent project and is not affiliated with or endorsed by the
+OpenCode project or Anomaly. This file lists the upstream work Mouse builds on.
+
+--------------------------------------------------------------------------------
+
+OpenCode
+https://github.com/anomalyco/opencode
+
+Mouse runs OpenCode as its engine. The `@mousedev/harness-opencode` package
+depends on the `@opencode-ai/sdk` package for its configuration types and
+drives the `opencode` binary as a child process. No OpenCode source code is
+copied into this repository. OpenCode is distributed under the MIT License:
+
+MIT License
+
+Copyright (c) 2025 opencode
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+LongHorizon-Harness
+arXiv:2608.01964
+
+The Manage, Execute, Audit primitives in `packages/core/src/mea.ts` (task
+state kept outside the executor, advanced only by environment-verified
+evidence, with a bounded subtask contract per round) follow the design
+described in the LongHorizon-Harness paper. The implementation is Mouse's own;
+the paper is cited as the source of the approach.
