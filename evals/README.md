@@ -173,3 +173,25 @@ Task images need 15-20 GB of Docker disk and a full run takes hours, so a throwa
 ## Cost
 
 At Kimi K3 list prices ($3/M fresh input, $0.30/M cached, $15/M output) one full 30-task run lands around $100-150. Three runs, as the claim rules require before any comparison, are roughly $300-450.
+
+## Deviations from the FrontierHarness scripts
+
+The run uses `frontier-harness-eval/eval` at commit `8f11b130` with one patch,
+`frontierharness/patches/frontierharness-eval-8f11b130.patch`, applied in the
+checkout (`git apply`). Each hunk is a fix their scripts needed against runta 0.2.0
+on 2026-09-07, and each is stated in the report:
+
+- **Egress open instead of an allowlist.** Their `apply_provider_egress` restricts
+  the runtime to the model host plus astral.sh before the build starts, which blocks
+  apt, GitHub, PyPI, nodejs.org, npm, and the Docker registries the build and the
+  in-container OpenCode install need. Provisioning died at step 3. The patch sets
+  denylist mode with no entries; the key is still injected only for the model host
+  by the per-runtime secret rule.
+- **Key stub exposed via a login-shell profile.** runta 0.2.0 does not expose the
+  secret stub in the runtime environment, and the agent needs a value in
+  `FIREWORKS_API_KEY` to treat the provider as configured. The patch writes
+  `/etc/profile.d/fh-secret-stub.sh` before the checkpoint so every restore has it.
+- **Wait for the build runtime to be exec-ready** after `runta run`, as their trial
+  loop already does after a restore.
+- **Reuse an existing build runtime** of the same name rather than fail, because a
+  create that returned before an earlier attempt died leaves one behind.

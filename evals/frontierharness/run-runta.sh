@@ -22,6 +22,7 @@
 # Optional:
 #   PROVIDER      fireworks (default; matches the baselines) | openrouter | moonshot | together
 #   CHECKPOINT    fh-golden-mouse-v1
+#   RUNTIME       fh-build (name of the throwaway build runtime; deleted after the checkpoint)
 #   RUN_ID        <today>-mouse
 #   DEEP_SWE_REF  datacurve-ai/deep-swe ref; benchmark.json says v1.1, which is
 #                 not a tag in that repo, so this pins the main commit that
@@ -35,6 +36,7 @@ MOUSE=$(cd "$(dirname "$0")/../.." && pwd)
 : "${FH_EVAL:?set FH_EVAL to a checkout of frontier-harness-eval/eval}"
 PROVIDER=${PROVIDER:-fireworks}
 CHECKPOINT=${CHECKPOINT:-fh-golden-mouse-v1}
+RUNTIME=${RUNTIME:-fh-build}
 RUN_ID=${RUN_ID:-$(date +%F)-mouse}
 DEEP_SWE_REF=${DEEP_SWE_REF:-0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea}
 OUT=${OUT:-runs}
@@ -70,7 +72,7 @@ case "$cmd" in
     : "${REPO:?set REPO to the public harness repo URL}"
     : "${COMMIT:?set COMMIT to the commit to pin}"
     "$FH/provision-golden-checkpoint.sh" \
-      --runtime fh-build --checkpoint "$CHECKPOINT" \
+      --runtime "$RUNTIME" --checkpoint "$CHECKPOINT" \
       --harness "$HARNESS" --provider "$PROVIDER" \
       --repo "$REPO" --commit "$COMMIT" \
       --cpus 4 --memory 8192 --disk-size-gib 100 \
