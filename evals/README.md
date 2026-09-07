@@ -195,6 +195,11 @@ on 2026-09-07, and each is stated in the report:
   loop already does after a restore.
 - **Reuse an existing build runtime** of the same name rather than fail, because a
   create that returned before an earlier attempt died leaves one behind.
+- **Judge a restore by the CLI's accepted-request line.** `runta checkpoint restore`
+  can exit non-zero on a websocket 504 after the restore was accepted, or report
+  ALREADY_EXISTS for the runtime its own retry created; both left a fresh runtime
+  behind while the trial was scored `infra_invalid`. The driver now reads the runtime
+  name from the request line (long names are hashed by their script) and continues.
 - **Wait for the checkpoint to leave `creating`** before deleting the build runtime.
   `runta checkpoint create` returns while the snapshot is still being taken; deleting
   the source runtime at that point aborted the checkpoint, which then vanished.

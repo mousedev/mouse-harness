@@ -87,3 +87,37 @@ index 3bacf8f..297e7da 100755
  if [ "$KEEP_RUNTIME" -eq 0 ]; then
    runta rm "$RUNTIME"
  fi
+diff --git a/skills/frontierharness-eval/scripts/run-trials.sh b/skills/frontierharness-eval/scripts/run-trials.sh
+index e73f565..75731ed 100755
+--- a/skills/frontierharness-eval/scripts/run-trials.sh
++++ b/skills/frontierharness-eval/scripts/run-trials.sh
+@@ -214,13 +214,28 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+ 
+   status=success
+   CURRENT_RUNTIME=""
+-  if ! runta checkpoint restore "$CHECKPOINT" "$runtime" >"$trial_dir/restore.log" 2>&1; then
++  # Mouse run, 2026-09-07: runta 0.2.0 prints the accepted request, then can exit
++  # non-zero on a websocket 504 while the runtime is already being created, and it
++  # may substitute its own runtime name (long names). Judge the restore on the
++  # "restore requested as runtime '<name>'" line and adopt whatever name it reports.
++  runta checkpoint restore "$CHECKPOINT" "$runtime" >"$trial_dir/restore.log" 2>&1 || true
++  requested=$(sed -n "s/.*restore requested as runtime '\([^']*\)'.*/\1/p" "$trial_dir/restore.log" | head -1)
++  # The CLI retries internally after a 504 and then reports ALREADY_EXISTS for the
++  # runtime its first attempt created; that runtime is the fresh restore we asked for.
++  if [ -z "$requested" ] && grep -q "ALREADY_EXISTS" "$trial_dir/restore.log" && runta inspect "$runtime" >/dev/null 2>&1; then
++    requested=$runtime
++  fi
++  if [ -z "$requested" ]; then
+     echo "restore failed for $entry" >&2
+     jq -n --arg id "$entry" --arg t "$task" \
+       '{id:$id, title:$t, status:"infra_invalid", success:false, error:"checkpoint restore failed"}' \
+       > "$trial_dir/trial.json"
+     continue
+   fi
++  if [ "$requested" != "$runtime" ]; then
++    echo "runta named the restored runtime $requested (asked for $runtime)" >&2
++    runtime=$requested
++  fi
+   CURRENT_RUNTIME=$runtime
+ 
+   # `checkpoint restore` returns as soon as the restore is accepted, while the runtime is
