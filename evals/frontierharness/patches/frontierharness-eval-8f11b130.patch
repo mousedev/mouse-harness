@@ -1,3 +1,64 @@
+diff --git a/skills/frontierharness-eval/scripts/pier-trust-patch.py b/skills/frontierharness-eval/scripts/pier-trust-patch.py
+new file mode 100644
+index 0000000..c5eab33
+--- /dev/null
++++ b/skills/frontierharness-eval/scripts/pier-trust-patch.py
+@@ -0,0 +1,55 @@
++#!/usr/bin/env python3
++"""Build-time trust for Pier images behind the Runta egress proxy.
++
++Mouse FrontierHarness run, 2026-09-07. Pier generates both Dockerfiles in code
++(the task image is FROM the prebuilt image plus Pier's agent install steps; the
++egress proxy is written by write_docker_proxy_compose). Their RUN steps fetch
++over https through Runta's intercepting proxy, which the runtime-only compose
++overlay cannot reach. This patches Pier's generators to emit the proxy CA and an
++apt config (retries, no HTTP pipelining) right after FROM, both embedded as
++base64 so no build-context files are needed. Idempotent.
++"""
++import base64, glob, pathlib, sys
++
++CA_PATH = "/usr/local/share/ca-certificates/runta-egress.crt"
++APT_CONF = b'Acquire::Retries "10";\nAcquire::http::Pipeline-Depth "0";\nAcquire::http::Timeout "60";\n'
++
++ca_b64 = base64.b64encode(pathlib.Path(CA_PATH).read_bytes()).decode()
++apt_b64 = base64.b64encode(APT_CONF).decode()
++files = glob.glob("/root/.local/share/uv/tools/datacurve-pier/lib/python*/site-packages/pier/environments/agent_setup.py")
++if not files:
++    sys.exit("pier agent_setup.py not found")
++p = pathlib.Path(files[0]); s = p.read_text()
++if "runta_trust_lines" in s:
++    print("pier agent_setup.py already patched"); sys.exit(0)
++
++helper = f'''
++
++
++# Added by the FrontierHarness trial driver (Mouse run, 2026-09-07): build-time
++# trust for the Runta egress proxy, plus apt retries, in every generated image.
++_RUNTA_CA_B64 = "{ca_b64}"
++_RUNTA_APT_B64 = "{apt_b64}"
++
++
++def runta_trust_lines() -> list[str]:
++    ca = "{CA_PATH}"
++    return [
++        "USER root",
++        "RUN mkdir -p /usr/local/share/ca-certificates /etc/apt/apt.conf.d"
++        " && echo " + _RUNTA_CA_B64 + " | base64 -d > " + ca
++        + " && echo " + _RUNTA_APT_B64 + " | base64 -d > /etc/apt/apt.conf.d/80-retries"
++        + " && ((command -v update-ca-certificates >/dev/null 2>&1 && update-ca-certificates >/dev/null 2>&1)"
++        + " || ([ -f /etc/ssl/certs/ca-certificates.crt ] && cat " + ca + " >> /etc/ssl/certs/ca-certificates.crt) || true)",
++        "ENV NODE_EXTRA_CA_CERTS=" + ca + " SSL_CERT_FILE=" + ca + " CURL_CA_BUNDLE=" + ca
++        + " REQUESTS_CA_BUNDLE=" + ca + " GIT_SSL_CAINFO=" + ca + " PIP_CERT=" + ca + " UV_NATIVE_TLS=1",
++    ]
++'''
++a1 = "    fingerprint = install.fingerprint()\n"
++a2 = '                "FROM ubuntu:24.04",\n'
++if a1 not in s or a2 not in s:
++    sys.exit("pier agent_setup.py anchors not found")
++s = s.replace(a1, "    dockerfile.extend(runta_trust_lines())\n" + a1, 1)
++s = s.replace(a2, a2 + "                *runta_trust_lines(),\n", 1)
++p.write_text(s + helper)
++print("pier agent_setup.py patched for build-time trust")
 diff --git a/skills/frontierharness-eval/scripts/providers.sh b/skills/frontierharness-eval/scripts/providers.sh
 index 7c7fd55..bfa71da 100644
 --- a/skills/frontierharness-eval/scripts/providers.sh
@@ -93,7 +154,7 @@ index 3bacf8f..297e7da 100755
    runta rm "$RUNTIME"
  fi
 diff --git a/skills/frontierharness-eval/scripts/run-trials.sh b/skills/frontierharness-eval/scripts/run-trials.sh
-index e73f565..faf0ae3 100755
+index e73f565..29f03e4 100755
 --- a/skills/frontierharness-eval/scripts/run-trials.sh
 +++ b/skills/frontierharness-eval/scripts/run-trials.sh
 @@ -138,7 +138,7 @@ default_cmd() {
@@ -157,7 +218,7 @@ index e73f565..faf0ae3 100755
    done
    if [ "$ready" -ne 1 ]; then
      echo "restored runtime never became ready for $entry" >&2
-@@ -245,6 +267,41 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -245,6 +267,46 @@ while IFS= read -r entry || [ -n "$entry" ]; do
      continue
    fi
  
@@ -176,6 +237,7 @@ index e73f565..faf0ae3 100755
 +  # interception, and secret injection all sit at the VM's network edge and are
 +  # unaffected; verified by builds and https fetches from containers.
 +  runta exec "$runtime" -- sh -lc 'set -e
++    printf "Acquire::Retries \"10\";\nAcquire::http::Pipeline-Depth \"0\";\nAcquire::http::Timeout \"60\";\nAcquire::Queue-Mode \"access\";\n" > /work/apt-retries.conf
 +    python3 - <<PY
 +import json; p = "/etc/docker/daemon.json"
 +try: d = json.load(open(p))
@@ -191,15 +253,19 @@ index e73f565..faf0ae3 100755
 +    for _ in $(seq 1 24); do docker info >/dev/null 2>&1 && break; sleep 5; done
 +    docker info | grep -q "Default Runtime: plainrunc"
 +    timeout 60 docker run --rm docker.io/alexgshaw/regex-log:20251031 sh -c "echo container-start-ok"
-+    printf "Acquire::Retries \"10\";\nAcquire::http::Pipeline-Depth \"0\";\nAcquire::http::Timeout \"60\";\nAcquire::Queue-Mode \"access\";\n" > /work/apt-retries.conf
 +    grep -q apt-retries.conf /work/runta-ca-overlay.yaml || sed -i "s|^\(\s*\)- /usr/local/share/ca-certificates/runta-egress.crt:.*|&\n\1- /work/apt-retries.conf:/etc/apt/apt.conf.d/80-retries:ro|" /work/runta-ca-overlay.yaml
 +    grep -c apt-retries /work/runta-ca-overlay.yaml' >>"$trial_dir/restore.log" 2>&1 \
 +    || echo "warning: post-restore docker restart / apt overlay failed for $entry" >&2
 +
++  # Build-time trust for Pier's generated images (see pier-trust-patch.py).
++  runta cp "$(dirname "$0")/pier-trust-patch.py" "$runtime:/work/pier-trust-patch.py" >>"$trial_dir/restore.log" 2>&1 || true
++  runta exec "$runtime" -- python3 /work/pier-trust-patch.py >>"$trial_dir/restore.log" 2>&1 \
++    || echo "warning: pier trust patch failed for $entry" >&2
++
    if [ -n "$SECRET_HOST" ]; then
      apply_provider_egress "$runtime" "$SECRET_HOST" >>"$trial_dir/restore.log" 2>&1 || true
    fi
-@@ -252,9 +309,16 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -252,9 +314,16 @@ while IFS= read -r entry || [ -n "$entry" ]; do
    # Injection rules live on the runtime, not in the checkpoint, so without this the
    # harness sends the stub placeholder to the provider and every turn fails on auth.
    if [ -n "$SECRET_NAME" ] && [ -n "$SECRET_HOST" ]; then

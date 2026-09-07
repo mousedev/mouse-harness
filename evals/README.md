@@ -206,6 +206,13 @@ on 2026-09-07, and each is stated in the report:
   containerd and docker unit PATHs, restarts both daemons, and checks a container
   starts. The egress proxy, TLS interception, and secret injection sit at the VM's
   network edge and are unaffected; builds and https fetches from containers were verified.
+- **Build-time trust for Pier's generated images.** Pier writes both Dockerfiles in
+  code (the task image is `FROM` the prebuilt image plus Pier's agent install steps; the
+  egress proxy is generated too), and their `RUN` steps fetch over https through the
+  intercepting proxy, which the runtime-only overlay cannot reach. The driver copies
+  `patches/pier-trust-patch.py` to each restored runtime; it patches Pier's
+  `agent_setup.py` to emit the proxy CA and the apt config (both embedded as base64)
+  right after `FROM`. The patch is part of the recorded diff.
 - **Harden apt inside task containers.** The egress proxy returns intermittent
   `502 Bad Gateway` on plain-HTTP fetches from `archive.ubuntu.com`, which killed the
   OpenCode adapter's `apt-get install` five attempts running. The driver mounts an apt
