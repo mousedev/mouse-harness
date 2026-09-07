@@ -195,6 +195,22 @@ on 2026-09-07, and each is stated in the report:
   loop already does after a restore.
 - **Reuse an existing build runtime** of the same name rather than fail, because a
   create that returned before an earlier attempt died leaves one behind.
+- **Point Docker at plain runc on every runtime.** Runta 0.2.0 symlinks its runc
+  wrapper (`/usr/local/sbin/runc` to `/opt/runta/runta-runc`) ahead of the real runc on
+  the daemons' PATH. The wrapper's injected init (`/run/runta/runta-container-init`) never
+  handed off to the container command on any runtime created on 2026-09-07, fresh or
+  restored: `docker run`, `docker wait`, and every `RUN` step of a build hung, while
+  `exec` into a running container worked (which is why Harbor's Terminal-Bench flow got
+  as far as apt and Pier's egress-proxy build never finished). The driver writes a
+  `plainrunc` runtime into `/etc/docker/daemon.json`, drops the wrapper from the
+  containerd and docker unit PATHs, restarts both daemons, and checks a container
+  starts. The egress proxy, TLS interception, and secret injection sit at the VM's
+  network edge and are unaffected; builds and https fetches from containers were verified.
+- **Harden apt inside task containers.** The egress proxy returns intermittent
+  `502 Bad Gateway` on plain-HTTP fetches from `archive.ubuntu.com`, which killed the
+  OpenCode adapter's `apt-get install` five attempts running. The driver mounts an apt
+  config (no HTTP pipelining, ten retries, serial queue) into task containers through the
+  CA overlay, and the Terminal-Bench template retries agent-level exceptions four times.
 - **Wait for a restored runtime to report `running` before touching it.** On runta
   0.2.0 a restore answers `exec` about 40 s in while its 100 GiB disk is still being
   restored and the platform still reports `creating`; egress or secret-rule writes
