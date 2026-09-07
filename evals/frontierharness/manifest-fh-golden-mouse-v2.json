@@ -1,0 +1,21 @@
+{
+  "harness": "evals.fh:MouseAgent",
+  "harness_repo": "https://github.com/mousedev/mouse-harness",
+  "harness_commit": "755ce8774138ba883296dfae56f4e417c64a59bc",
+  "harness_describe": "755ce87",
+  "model": "fireworks_ai/accounts/fireworks/models/kimi-k3",
+  "provider": "fireworks",
+  "provider_host": "api.fireworks.ai",
+  "checkpoint": "fh-golden-mouse-v2",
+  "cpus": 4,
+  "memory_mib": 8192,
+  "disk_size_gib": 100,
+  "deep_swe_commit": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+  "deep_swe_ref": "0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea",
+  "harbor_pin": "harbor==0.22.0",
+  "pier_pin": "datacurve-pier==0.3.1",
+  "harbor_version": "0.22.0",
+  "pier_version": "0.3.1",
+  "python_version": "Python 3.12.3",
+  "created_at": "2026-09-07T11:23:20Z"
+}

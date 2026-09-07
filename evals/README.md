@@ -206,6 +206,13 @@ on 2026-09-07, and each is stated in the report:
   containerd and docker unit PATHs, restarts both daemons, and checks a container
   starts. The egress proxy, TLS interception, and secret injection sit at the VM's
   network edge and are unaffected; builds and https fetches from containers were verified.
+- **Retry rejected restores, and a standing-runtime fallback.** During a control-plane
+  outage on 2026-09-07 (11:47 to 11:57 UTC) every call failed, first with
+  "checkpoint access snapshot is missing" and then "not authorized", which would have
+  marked twenty tasks `infra_invalid` in a row; the driver now retries a rejected restore
+  six times a minute apart. When the platform refuses checkpoint operations outright,
+  `REUSE_RUNTIME=<name>` runs every task on one provisioned runtime instead of a fresh
+  restore per task; each task still gets a fresh container, and the report must state it.
 - **Build-time trust for Pier's generated images.** Pier writes both Dockerfiles in
   code (the task image is `FROM` the prebuilt image plus Pier's agent install steps; the
   egress proxy is generated too), and their `RUN` steps fetch over https through the

@@ -154,9 +154,18 @@ index 3bacf8f..297e7da 100755
    runta rm "$RUNTIME"
  fi
 diff --git a/skills/frontierharness-eval/scripts/run-trials.sh b/skills/frontierharness-eval/scripts/run-trials.sh
-index e73f565..29f03e4 100755
+index e73f565..6f1ac0c 100755
 --- a/skills/frontierharness-eval/scripts/run-trials.sh
 +++ b/skills/frontierharness-eval/scripts/run-trials.sh
+@@ -95,7 +95,7 @@ TASK_LIST=$(mktemp)
+ CURRENT_RUNTIME=""
+ cleanup() {
+   rm -f "$TASK_LIST"
+-  if [ -n "$CURRENT_RUNTIME" ]; then
++  if [ -n "$CURRENT_RUNTIME" ] && [ -z "${REUSE_RUNTIME:-}" ]; then
+     runta rm "$CURRENT_RUNTIME" >/dev/null 2>&1 || true
+   fi
+ }
 @@ -138,7 +138,7 @@ default_cmd() {
        # -r 2 retries agent-level exceptions. A well-behaved adapter raises only when its
        # harness crashed, never when the agent merely failed the task, so retries buy back
@@ -166,7 +175,7 @@ index e73f565..29f03e4 100755
      datacurve)
        echo "pier run -p /work/deep-swe/tasks/{task} --agent {harness} --model {model} --output-dir {jobs}" ;;
      *)
-@@ -214,25 +214,47 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -214,25 +214,68 @@ while IFS= read -r entry || [ -n "$entry" ]; do
  
    status=success
    CURRENT_RUNTIME=""
@@ -175,8 +184,29 @@ index e73f565..29f03e4 100755
 +  # non-zero on a websocket 504 while the runtime is already being created, and it
 +  # may substitute its own runtime name (long names). Judge the restore on the
 +  # "restore requested as runtime '<name>'" line and adopt whatever name it reports.
-+  runta checkpoint restore "$CHECKPOINT" "$runtime" >"$trial_dir/restore.log" 2>&1 || true
-+  requested=$(sed -n "s/.*restore requested as runtime '\([^']*\)'.*/\1/p" "$trial_dir/restore.log" | head -1)
++  # Mouse run, 2026-09-07: the control plane had a ~10 minute window where every
++  # call failed (FAILED_PRECONDITION "checkpoint access snapshot is missing",
++  # then "not authorized"), which would have marked 20 tasks infra_invalid in a
++  # row. Retry a rejected restore a few times before giving up on the task.
++  : > "$trial_dir/restore.log"
++  requested=""
++  # Mouse run, 2026-09-07: REUSE_RUNTIME=<name> runs every task on one standing
++  # runtime instead of a fresh restore per task, for when the platform refuses
++  # checkpoint operations. Each task still gets a fresh container and the runner
++  # cleans up between trials. Stated as a relaxation in the report.
++  if [ -n "${REUSE_RUNTIME:-}" ]; then
++    requested=$REUSE_RUNTIME
++    echo "reusing standing runtime $REUSE_RUNTIME" >>"$trial_dir/restore.log"
++  fi
++  for attempt in 1 2 3 4 5 6; do
++    [ -n "$requested" ] && break
++    runta checkpoint restore "$CHECKPOINT" "$runtime" >>"$trial_dir/restore.log" 2>&1 || true
++    requested=$(sed -n "s/.*restore requested as runtime '\([^']*\)'.*/\1/p" "$trial_dir/restore.log" | head -1)
++    [ -n "$requested" ] && break
++    if grep -q "ALREADY_EXISTS" "$trial_dir/restore.log" && runta inspect "$runtime" >/dev/null 2>&1; then break; fi
++    echo "restore attempt $attempt rejected; retrying in 60s" >>"$trial_dir/restore.log"
++    sleep 60
++  done
 +  # The CLI retries internally after a 504 and then reports ALREADY_EXISTS for the
 +  # runtime its first attempt created; that runtime is the fresh restore we asked for.
 +  if [ -z "$requested" ] && grep -q "ALREADY_EXISTS" "$trial_dir/restore.log" && runta inspect "$runtime" >/dev/null 2>&1; then
@@ -218,7 +248,7 @@ index e73f565..29f03e4 100755
    done
    if [ "$ready" -ne 1 ]; then
      echo "restored runtime never became ready for $entry" >&2
-@@ -245,6 +267,46 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -245,6 +288,46 @@ while IFS= read -r entry || [ -n "$entry" ]; do
      continue
    fi
  
@@ -265,7 +295,7 @@ index e73f565..29f03e4 100755
    if [ -n "$SECRET_HOST" ]; then
      apply_provider_egress "$runtime" "$SECRET_HOST" >>"$trial_dir/restore.log" 2>&1 || true
    fi
-@@ -252,9 +314,16 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+@@ -252,9 +335,16 @@ while IFS= read -r entry || [ -n "$entry" ]; do
    # Injection rules live on the runtime, not in the checkpoint, so without this the
    # harness sends the stub placeholder to the provider and every turn fails on auth.
    if [ -n "$SECRET_NAME" ] && [ -n "$SECRET_HOST" ]; then
@@ -285,3 +315,16 @@ index e73f565..29f03e4 100755
        echo "credential rule failed for $entry" >&2
        jq -n --arg id "$entry" --arg t "$task" --arg rt "$runtime" \
          '{id:$id, title:$t, status:"infra_invalid", success:false,
+@@ -282,7 +372,11 @@ while IFS= read -r entry || [ -n "$entry" ]; do
+   runta cp "$runtime:$jobs_dir" "$trial_dir/jobs" >/dev/null 2>&1 \
+     || echo "no job artifacts collected for $entry" >&2
+   runta cp "$runtime:/work/manifest.json" "$trial_dir/manifest.json" >/dev/null 2>&1 || true
+-  runta rm "$runtime" >/dev/null 2>&1 || echo "failed to delete runtime $runtime" >&2
++  if [ -n "${REUSE_RUNTIME:-}" ]; then
++    runta exec "$runtime" -- sh -lc 'docker ps -aq | xargs -r docker rm -f >/dev/null 2>&1; docker network prune -f >/dev/null 2>&1; rm -rf /work/jobs/*; true' >/dev/null 2>&1 || true
++  else
++    runta rm "$runtime" >/dev/null 2>&1 || echo "failed to delete runtime $runtime" >&2
++  fi
+   CURRENT_RUNTIME=""
+ 
+   reward=$(extract "$trial_dir/jobs" '.resolved // .is_resolved // .reward // .passed // empty')
