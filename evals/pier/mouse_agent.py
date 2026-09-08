@@ -39,6 +39,9 @@ HARNESS_LOG = f"{LOG_DIR}/mouse-harness.jsonl"
 
 PASSTHROUGH_ENV = ("MOUSE_TOOL_OUTPUT_PRUNE",)
 
+# apt retries for the OpenCode install step inside task containers.
+APT_CONF = 'Acquire::Retries \\"10\\";\\nAcquire::http::Pipeline-Depth \\"0\\";\\nAcquire::http::Timeout \\"60\\";\\n'
+
 # DeepSWE tasks allow the agent 5400 s; the loop keeps a reserve.
 MOUSE_KWARGS: dict[str, int] = {"max_wall_sec": 4800, "max_steps": 600, "non_progress_rounds": 3}
 
@@ -75,6 +78,10 @@ class MouseAgent(OpenCode):
         # the build-time verification stays OpenCode's own.
         spec = super().install_spec()
         steps = [
+            InstallStep(
+                user="root",
+                run="mkdir -p /etc/apt/apt.conf.d && printf '" + APT_CONF + "' > /etc/apt/apt.conf.d/80-retries",
+            ),
             *spec.steps,
             InstallStep(
                 user="root",

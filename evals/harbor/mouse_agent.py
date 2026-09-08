@@ -48,6 +48,9 @@ DEEPSWE_WALL_SEC = 4800
 
 PASSTHROUGH_ENV = (*PROVIDER_KEYS.values(), "MOUSE_TOOL_OUTPUT_PRUNE")
 
+# apt retries for the OpenCode install step inside task containers.
+APT_CONF = 'Acquire::Retries \\"10\\";\\nAcquire::http::Pipeline-Depth \\"0\\";\\nAcquire::http::Timeout \\"60\\";\\n'
+
 # --ak key=value options this agent understands, with defaults.
 MOUSE_KWARGS: dict[str, int] = {
     "max_wall_sec": TB_WALL_SEC,
@@ -88,6 +91,14 @@ class MouseAgent(OpenCode):
 
     @override
     async def install(self, environment: BaseEnvironment) -> None:
+        # The base install runs apt-get; behind an intercepting proxy that returns
+        # the odd 502 on plain-HTTP fetches, retries and no pipelining make it hold.
+        await self.exec_as_root(
+            environment,
+            command=(
+                "mkdir -p /etc/apt/apt.conf.d && printf '" + APT_CONF + "' > /etc/apt/apt.conf.d/80-retries"
+            ),
+        )
         await super().install(environment)
         if not BUNDLE.exists():
             raise FileNotFoundError(
