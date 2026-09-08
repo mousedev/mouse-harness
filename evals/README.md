@@ -174,12 +174,15 @@ Task images need 15-20 GB of Docker disk and a full run takes hours, so a throwa
 
 At Kimi K3 list prices ($3/M fresh input, $0.30/M cached, $15/M output) one full 30-task run lands around $100-150. Three runs, as the claim rules require before any comparison, are roughly $300-450.
 
-## Deviations from the FrontierHarness scripts
+## History: deviations needed before frontier-harness-eval/eval#11
 
-The run uses `frontier-harness-eval/eval` at commit `8f11b130` with one patch,
-`frontierharness/patches/frontierharness-eval-8f11b130.patch`, applied in the
-checkout (`git apply`). Each hunk is a fix their scripts needed against runta 0.2.0
-on 2026-09-07, and each is stated in the report:
+[frontier-harness-eval/eval#11](https://github.com/frontier-harness-eval/eval/pull/11)
+(merged 2026-09-08) fixed most of what follows upstream; from commit `e837a70` their
+scripts run unmodified with `--harness mouse`, and what remains is done by
+`install-mouse.sh` (runner registration, build-time trust for Pier images, the key
+stub, apt retries). Kept for the record: the patch
+`frontierharness/patches/frontierharness-eval-8f11b130.patch` we ran against commit
+`8f11b130` on 2026-09-07, each hunk a fix their scripts needed then:
 
 - **Egress open instead of an allowlist.** Their `apply_provider_egress` restricts
   the runtime to the model host plus astral.sh before the build starts, which blocks

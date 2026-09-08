@@ -24,9 +24,6 @@
 #   CHECKPOINT    fh-golden-mouse-v1
 #   RUNTIME       fh-build (name of the throwaway build runtime; deleted after the checkpoint)
 #   RUN_ID        <today>-mouse
-#   DEEP_SWE_REF  datacurve-ai/deep-swe ref; benchmark.json says v1.1, which is
-#                 not a tag in that repo, so this pins the main commit that
-#                 carries the v1.1 task images (0b9fabbb, 2026-08-26).
 #   OUT           runs (relative to FH_EVAL)
 set -euo pipefail
 
@@ -38,10 +35,9 @@ PROVIDER=${PROVIDER:-fireworks}
 CHECKPOINT=${CHECKPOINT:-fh-golden-mouse-v1}
 RUNTIME=${RUNTIME:-fh-build}
 RUN_ID=${RUN_ID:-$(date +%F)-mouse}
-DEEP_SWE_REF=${DEEP_SWE_REF:-0b9fabbb63b9104d678fe965e1632f2dd9eaa2ea}
 OUT=${OUT:-runs}
-HARNESS="evals.fh:MouseAgent"
-PIER_CMD='pier run -p /work/deep-swe/tasks/{task} --agent-import-path {harness} --model {model} --jobs-dir {jobs} -y'
+HARNESS="mouse"
+export FH_TRANSPORT_ATTEMPTS=${FH_TRANSPORT_ATTEMPTS:-48} FH_RETRY_DELAY=${FH_RETRY_DELAY:-5}
 
 cd "$FH_EVAL"
 FH=skills/frontierharness-eval/scripts
@@ -62,7 +58,7 @@ run_split() {
   if [ -s "$dc" ]; then
     echo "== $(wc -l < "$dc" | tr -d ' ') DeepSWE task(s) through Pier" >&2
     "$FH/run-trials.sh" --checkpoint "$CHECKPOINT" --harness "$HARNESS" --provider "$PROVIDER" \
-      --run-id "$RUN_ID" --tasks "$dc" --out "$OUT" --cmd "$PIER_CMD"
+      --run-id "$RUN_ID" --tasks "$dc" --out "$OUT"
   fi
   rm -f "$tb" "$dc"
 }
@@ -75,14 +71,12 @@ case "$cmd" in
       --runtime "$RUNTIME" --checkpoint "$CHECKPOINT" \
       --harness "$HARNESS" --provider "$PROVIDER" \
       --repo "$REPO" --commit "$COMMIT" \
-      --cpus 4 --memory 8192 --disk-size-gib 100 \
-      --prepull-tasks tasks --deep-swe-ref "$DEEP_SWE_REF" \
+      --cpus 4 --memory 8192 --disk-size-gib 50 --keep-runtime \
       --install-script "$MOUSE/install-mouse.sh"
     cp "manifest-${CHECKPOINT}.json" "$MOUSE/evals/frontierharness/" 2>/dev/null || true
     ;;
   smoke)
     run_split "$MOUSE/evals/frontierharness/smoke-tasks.txt"
-    python3 "$MOUSE/evals/frontierharness/fill_trials.py" "$OUT/$RUN_ID"
     echo "Spot-check before the full run: jq . $OUT/$RUN_ID/trials/*/trial.json" >&2
     ;;
   trials)
@@ -93,7 +87,8 @@ case "$cmd" in
     run_split "$1"
     ;;
   score)
-    python3 "$MOUSE/evals/frontierharness/fill_trials.py" "$OUT/$RUN_ID"
+    # Their run-trials.sh already scores each trial from the runner's result.json
+    # (calculate-cost.py); fill_trials.py is only for the pre-#11 scripts.
     node "$FH/normalize-results.mjs" --run "$OUT/$RUN_ID" --label "Mouse"
     node "$FH/generate-chart.mjs" --run "$OUT/$RUN_ID"
     node "$FH/build-report.mjs" --run "$OUT/$RUN_ID"
