@@ -1,0 +1,28 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-a94f42cb8232380e' (status: creating).
+20251031: Pulling from alexgshaw/constraints-scheduling
+4b3ffd8ccb52: Pulling fs layer
+20929a28fe1e: Pulling fs layer
+9040135e24f8: Pulling fs layer
+dacaa4c4b456: Pulling fs layer
+9040135e24f8: Download complete
+20929a28fe1e: Download complete
+4b3ffd8ccb52: Download complete
+dacaa4c4b456: Download complete
+9040135e24f8: Pull complete
+4b3ffd8ccb52: Pull complete
+20929a28fe1e: Pull complete
+dacaa4c4b456: Pull complete
+Digest: sha256:567ce5a189f8d11ac461790876e934cc7af38391baf89a78f95f4dafc1fec3b0
+Status: Downloaded newer image for alexgshaw/constraints-scheduling:20251031
+docker.io/alexgshaw/constraints-scheduling:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-a94f42cb8232380e ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-a94f42cb8232380e ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

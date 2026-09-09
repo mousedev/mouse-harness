@@ -1,0 +1,24 @@
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:04:12 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 4m 12s
+Results written to 
+/work/jobs/terminal-bench-openssl-selfsigned-cert/2026-09-09__13-38-07/result.js
+on
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-openssl-selfsigned-cert`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-openssl-selfsigned-cert/2026-09-09__13-38-07`
+

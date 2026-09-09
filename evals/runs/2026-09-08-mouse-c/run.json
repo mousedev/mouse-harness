@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-09-08-mouse-c",
+  "checkpoint": "fh-golden-mouse-v3",
+  "harness": "mouse",
+  "model": "fireworks_ai/accounts/fireworks/models/kimi-k3",
+  "provider": "fireworks",
+  "cmd_template": "",
+  "timeout_seconds": 5400,
+  "started_at": "2026-09-08T20:04:55Z",
+  "egress_policy": {
+    "mode": "allowlist",
+    "scope": "runtime",
+    "allowed_hosts": [
+      "*.astral.sh",
+      "*.cloudfront.net",
+      "*.debian.org",
+      "*.docker.com",
+      "*.docker.io",
+      "*.ecr.aws",
+      "*.github.com",
+      "*.githubusercontent.com",
+      "*.nodejs.org",
+      "*.npmjs.org",
+      "*.pythonhosted.org",
+      "*.pytorch.org",
+      "*.supabase.co",
+      "*.ubuntu.com",
+      "api.fireworks.ai",
+      "astral.sh",
+      "deb.nodesource.com",
+      "docker.io",
+      "github.com",
+      "nodejs.org",
+      "pypi.org"
+    ]
+  },
+  "methodology_comparable": false,
+  "methodology_notes": [
+    "The runtime allowlist permits agents and verifiers to download packages and benchmark sources, subject to runner-level isolation. The published baselines did not record their applied egress policy; a matched control run with the same policy and environment is required before claiming comparability."
+  ]
+}

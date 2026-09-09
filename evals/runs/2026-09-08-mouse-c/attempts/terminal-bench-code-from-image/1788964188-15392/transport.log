@@ -1,0 +1,10 @@
+error: connection failed: http error: error sending request for url (https://api.runta.com/v2/runtimes?limit=100)
+  hint: is runta-api reachable? check --endpoint / RUNTA_ENDPOINT
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+error: connection failed: http error: error sending request for url (https://api.runta.com/v2/runtimes/01a08487-11d6-7e61-bc07-3fbe4c69058e)
+  hint: is runta-api reachable? check --endpoint / RUNTA_ENDPOINT
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-2026-09-08-mouse-c-terminal-bench-code-from-image:/work/fh-trials/terminal-bench-code-from-image/worker.sh (upload)
+Copied fh-2026-09-08-mouse-c-terminal-bench-code-from-image:/work/fh-trials/terminal-bench-code-from-image/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-code-from-image/evidence.tar.gz.part (download)
+Runtime 'fh-2026-09-08-mouse-c-terminal-bench-code-from-image' delete requested.

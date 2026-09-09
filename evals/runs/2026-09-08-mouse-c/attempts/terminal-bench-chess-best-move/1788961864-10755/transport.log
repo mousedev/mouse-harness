@@ -1,0 +1,10 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-2026-09-08-mouse-c-terminal-bench-chess-best-move:/work/fh-trials/terminal-bench-chess-best-move/worker.sh (upload)
+Failed to start transient service unit: Unit fh-terminal-bench-chess-best-move.service was already loaded or has a fragment file.
+Failed to start transient service unit: Unit fh-terminal-bench-chess-best-move.service was already loaded or has a fragment file.
+Failed to start transient service unit: Unit fh-terminal-bench-chess-best-move.service was already loaded or has a fragment file.
+Terminated: 15
+Copied fh-2026-09-08-mouse-c-terminal-bench-chess-best-move:/work/fh-trials/terminal-bench-chess-best-move/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-chess-best-move/evidence.tar.gz.part (download)
+Runtime 'fh-2026-09-08-mouse-c-terminal-bench-chess-best-move' delete requested.

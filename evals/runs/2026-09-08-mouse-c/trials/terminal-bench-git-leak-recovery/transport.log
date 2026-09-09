@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-9bf8317be8691e48:/work/fh-trials/terminal-bench-git-leak-recovery/worker.sh (upload)
+Copied fh-9bf8317be8691e48:/work/fh-trials/terminal-bench-git-leak-recovery/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-git-leak-recovery/evidence.tar.gz.part (download)
+Runtime 'fh-9bf8317be8691e48' delete requested.

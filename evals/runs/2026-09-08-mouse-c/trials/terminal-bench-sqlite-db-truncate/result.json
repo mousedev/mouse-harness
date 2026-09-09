@@ -1,0 +1,136 @@
+{
+    "id": "4a961752-3fdc-4a31-8a31-0930e05783e8",
+    "task_name": "sqlite-db-truncate",
+    "trial_name": "sqlite-db-truncate__wTcjS4E",
+    "trial_uri": "file:///work/jobs/terminal-bench-sqlite-db-truncate/2026-09-09__13-43-21/sqlite-db-truncate__wTcjS4E",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/terminal-bench-2.git",
+        "git_commit_id": "69671fbaac6d67a7ef0dfec016cc38a64ef7a77c",
+        "path": "sqlite-db-truncate"
+    },
+    "source": "terminal-bench",
+    "task_checksum": "2346f11dbe5b7bad30e9a9bcb27e5276a73f324d62c452d898e4ce0e472583b1",
+    "config": {
+        "task": {
+            "path": "sqlite-db-truncate",
+            "git_url": "https://github.com/laude-institute/terminal-bench-2.git",
+            "git_commit_id": "69671fbaac6d67a7ef0dfec016cc38a64ef7a77c",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "terminal-bench"
+        },
+        "trial_name": "sqlite-db-truncate__wTcjS4E",
+        "trials_dir": "/work/jobs/terminal-bench-sqlite-db-truncate/2026-09-09__13-43-21",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mouse",
+            "import_path": null,
+            "model_name": "fireworks_ai/accounts/fireworks/models/kimi-k3",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [
+                "/work/runta-ca-overlay.yaml"
+            ],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "b3759309-bcfa-4048-9999-a94360ff5667",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "mouse",
+        "version": "1.18.27",
+        "model_info": {
+            "name": "accounts/fireworks/models/kimi-k3",
+            "provider": "fireworks-ai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 189959,
+        "n_cache_tokens": 170901,
+        "n_output_tokens": 4462,
+        "cost_usd": 0.3018693,
+        "rollout_details": null,
+        "metadata": {
+            "mouse": {
+                "steps": 14,
+                "tokens": {
+                    "input": 19058,
+                    "output": 4462,
+                    "cache_read": 170901,
+                    "cache_write": 0,
+                    "cost": 0.3018693
+                },
+                "cache_hit_weighted": 0.8996730873504283,
+                "outcome": "satisfied",
+                "rounds": 1,
+                "elapsed_ms": 274281
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-09-09T13:43:24.984094Z",
+    "finished_at": "2026-09-09T13:49:45.537150Z",
+    "environment_setup": {
+        "started_at": "2026-09-09T13:43:24.994652Z",
+        "finished_at": "2026-09-09T13:43:35.010086Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-09-09T13:43:35.010131Z",
+        "finished_at": "2026-09-09T13:44:52.221365Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-09-09T13:44:52.221485Z",
+        "finished_at": "2026-09-09T13:49:26.748921Z"
+    },
+    "verifier": {
+        "started_at": "2026-09-09T13:49:26.916583Z",
+        "finished_at": "2026-09-09T13:49:34.148592Z"
+    },
+    "step_results": null
+}

@@ -1,0 +1,43 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-49d2ea343708df34' (status: creating).
+20251031: Pulling from alexgshaw/sanitize-git-repo
+b1badc6e5066: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+7e88bf276da0: Pulling fs layer
+d55dfff74d98: Pulling fs layer
+e97853488aa5: Pulling fs layer
+607df89562e8: Pulling fs layer
+cc1961159cf2: Pulling fs layer
+f6a76dba383b: Pulling fs layer
+63ff33ad641b: Pulling fs layer
+e97853488aa5: Download complete
+7e88bf276da0: Download complete
+b1badc6e5066: Download complete
+7e88bf276da0: Pull complete
+b1badc6e5066: Pull complete
+4f4fb700ef54: Download complete
+607df89562e8: Download complete
+63ff33ad641b: Download complete
+cc1961159cf2: Download complete
+f6a76dba383b: Download complete
+d55dfff74d98: Download complete
+e97853488aa5: Pull complete
+63ff33ad641b: Pull complete
+d55dfff74d98: Pull complete
+607df89562e8: Pull complete
+cc1961159cf2: Pull complete
+4f4fb700ef54: Pull complete
+f6a76dba383b: Pull complete
+Digest: sha256:4b5234da5bb0d67f3b0bf8db40a2883c07a5219f62b64c2bf9ff1ac84cd0f672
+Status: Downloaded newer image for alexgshaw/sanitize-git-repo:20251031
+docker.io/alexgshaw/sanitize-git-repo:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-49d2ea343708df34 ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-49d2ea343708df34 ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

@@ -1,0 +1,23 @@
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:06:23 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 6m 23s
+Results written to 
+/work/jobs/terminal-bench-sanitize-git-repo/2026-09-09__13-07-17/result.json
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-sanitize-git-repo`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-sanitize-git-repo/2026-09-09__13-07-17`
+

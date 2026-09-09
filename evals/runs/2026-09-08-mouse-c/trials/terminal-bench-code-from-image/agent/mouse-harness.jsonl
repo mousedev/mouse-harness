@@ -1,0 +1,6 @@
+{"ts":1788964322458,"type":"mouse.start","v":1,"version":"0.1.0","model":"fireworks-ai/accounts/fireworks/models/kimi-k3","workspace":"/app","profile":"bench","runStartSha":null,"maxWallSec":780,"configFile":"/root/.config/opencode/opencode.json"}
+{"ts":1788964351731,"type":"mouse.attempt","attempt":1,"steps":4,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f796abeb4ffex4VTkv1y1jNMF9"}
+{"ts":1788964351731,"type":"mouse.turn","steps":4,"tokens":{"input":10154,"output":428,"cacheRead":11312,"cacheWrite":0,"cost":0.0462906},"sessionId":"ses_f796abeb4ffex4VTkv1y1jNMF9"}
+{"ts":1788964373779,"type":"mouse.attempt","attempt":1,"steps":2,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f796abeb4ffex4VTkv1y1jNMF9"}
+{"ts":1788964373884,"type":"mouse.round","round":1,"kind":"audit","checksFailed":[],"changed":true,"audit":null,"progressed":false,"stepsAfter":6,"elapsedMs":51942,"model":"fireworks-ai/accounts/fireworks/models/kimi-k3"}
+{"ts":1788964374015,"type":"mouse.done","outcome":"satisfied","rounds":1,"totalSteps":6,"tokens":{"input":11120,"output":865,"cacheRead":23987,"cacheWrite":0,"cost":0.0610461},"elapsedMs":52073,"sessionId":"ses_f796abeb4ffex4VTkv1y1jNMF9"}

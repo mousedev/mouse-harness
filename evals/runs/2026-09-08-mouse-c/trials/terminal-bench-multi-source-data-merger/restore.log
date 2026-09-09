@@ -1,0 +1,40 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-794c2641416c76f9' (status: creating).
+20251031: Pulling from alexgshaw/multi-source-data-merger
+eed93e57e79f: Pulling fs layer
+e73850a50582: Pulling fs layer
+38513bd72563: Pulling fs layer
+216effbc0807: Pulling fs layer
+d37114942cef: Pulling fs layer
+a9ffe18d7fdb: Pulling fs layer
+e03ee4aed2eb: Pulling fs layer
+19fb8589da02: Pulling fs layer
+e73850a50582: Download complete
+d37114942cef: Download complete
+216effbc0807: Download complete
+eed93e57e79f: Download complete
+38513bd72563: Download complete
+a9ffe18d7fdb: Download complete
+38513bd72563: Pull complete
+a9ffe18d7fdb: Pull complete
+e73850a50582: Pull complete
+19fb8589da02: Download complete
+19fb8589da02: Pull complete
+d37114942cef: Pull complete
+e03ee4aed2eb: Download complete
+216effbc0807: Pull complete
+eed93e57e79f: Pull complete
+e03ee4aed2eb: Pull complete
+Digest: sha256:8b32782078ff7383a1b4e5d3cecca8ce287e30f50bb4c0e5db009a18064e666e
+Status: Downloaded newer image for alexgshaw/multi-source-data-merger:20251031
+docker.io/alexgshaw/multi-source-data-merger:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-794c2641416c76f9 ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-794c2641416c76f9 ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

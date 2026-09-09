@@ -1,0 +1,19 @@
+{
+  "id": "terminal-bench/modernize-scientific-stack",
+  "title": "modernize-scientific-stack",
+  "suite": "terminal-bench",
+  "status": "infra_invalid",
+  "success": false,
+  "duration_seconds": 4,
+  "cost_first_cold_usd": null,
+  "turns": null,
+  "cache_hit_rate_normalized": null,
+  "exit_code": 1,
+  "runtime": "fh-a93ca139a96daa22",
+  "checkpoint": "fh-golden-mouse-v3",
+  "harness_exception": null,
+  "included_in_efficiency": false,
+  "cost_usd": null,
+  "cost_source": "unavailable",
+  "cost_unavailable_reason": "missing_or_ambiguous_trial_result"
+}

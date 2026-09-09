@@ -1,4 +1,8 @@
-# Live run: 2026-09-08-mouse-c (checkpoint fh-golden-mouse-v3, harness commit 315e2b8)
+# Run 2026-09-08-mouse-c: COMPLETE 2026-09-09 14:33Z, 25/30 (83.3%), $2.79 per pass
+
+Final report and submission package: `evals/runs/2026-09-08-mouse-c/` (SUBMISSION.md, report/, NOTES.md). Full evidence tarball on Pete's Mac: `~/fh-eval/fh-run-2026-09-08-mouse-c-full.tar.gz` (69 MB).
+
+# (history) Live run: 2026-09-08-mouse-c (checkpoint fh-golden-mouse-v3, harness commit 315e2b8)
 
 Runs fully detached on this Mac (own session, survives Claude restarts); no Claude session is needed.
 Eval checkout: `~/fh-eval` (frontier-harness-eval/eval at e837a70 plus three allowlist hosts, see issue #12).

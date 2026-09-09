@@ -1,0 +1,25 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py' (status: creating).
+20251031: Pulling from alexgshaw/polyglot-c-py
+4b3ffd8ccb52: Pulling fs layer
+e6212ba761b9: Pulling fs layer
+9040135e24f8: Pulling fs layer
+9040135e24f8: Download complete
+4b3ffd8ccb52: Download complete
+9040135e24f8: Pull complete
+4b3ffd8ccb52: Pull complete
+e6212ba761b9: Download complete
+e6212ba761b9: Pull complete
+Digest: sha256:0f1c3b7816d70cf5551573fd6aeef76893f2ae3000be2419997b6871b5d987ed
+Status: Downloaded newer image for alexgshaw/polyglot-c-py:20251031
+docker.io/alexgshaw/polyglot-c-py:20251031
+╭───┬────────────────────────────────────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME                                            ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪════════════════════════════════════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴────────────────────────────────────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭────────────────────────────────────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME                                            ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞════════════════════════════════════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py ┆ off        ┆ off ┆ off            ┆ off      │
+╰────────────────────────────────────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

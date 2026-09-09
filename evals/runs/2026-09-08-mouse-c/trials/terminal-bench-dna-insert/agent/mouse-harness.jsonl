@@ -1,0 +1,4 @@
+{"ts":1788957406807,"type":"mouse.start","v":1,"version":"0.1.0","model":"fireworks-ai/accounts/fireworks/models/kimi-k3","workspace":"/app","profile":"bench","runStartSha":null,"maxWallSec":780,"configFile":"/root/.config/opencode/opencode.json"}
+{"ts":1788958172766,"type":"mouse.attempt","attempt":1,"steps":23,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f79d444b4ffesaFRfHMg1TuhhB"}
+{"ts":1788958172766,"type":"mouse.turn","steps":23,"tokens":{"input":50270,"output":7749,"cacheRead":457384,"cacheWrite":0,"cost":0.8306802},"sessionId":"ses_f79d444b4ffesaFRfHMg1TuhhB"}
+{"ts":1788958172774,"type":"mouse.done","outcome":"wall_clock","rounds":0,"totalSteps":23,"tokens":{"input":50270,"output":7749,"cacheRead":457384,"cacheWrite":0,"cost":0.8306802},"elapsedMs":765980,"sessionId":"ses_f79d444b4ffesaFRfHMg1TuhhB"}

@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-44c77300a695d046:/work/fh-trials/terminal-bench-merge-diff-arc-agi-task/worker.sh (upload)
+Copied fh-44c77300a695d046:/work/fh-trials/terminal-bench-merge-diff-arc-agi-task/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-merge-diff-arc-agi-task/evidence.tar.gz.part (download)
+Runtime 'fh-44c77300a695d046' delete requested.

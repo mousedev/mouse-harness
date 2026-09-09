@@ -1,0 +1,24 @@
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:02:34 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 8m 32s
+Results written to 
+/work/jobs/terminal-bench-merge-diff-arc-agi-task/2026-09-09__12-42-03/result.js
+on
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-merge-diff-arc-agi-task`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-merge-diff-arc-agi-task/2026-09-09__12-42-03`
+

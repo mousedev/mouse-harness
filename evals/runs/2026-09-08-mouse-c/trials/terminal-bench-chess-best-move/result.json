@@ -1,0 +1,39 @@
+{
+    "id": "bcc26514-9e17-41c8-8872-a5e2fffef667",
+    "started_at": "2026-09-09T13:52:07.692490",
+    "updated_at": "2026-09-09T14:00:19.398251",
+    "finished_at": "2026-09-09T14:00:19.398251",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__terminal-bench": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "chess-best-move__sP6n5GX"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 425747,
+        "n_cache_tokens": 399579,
+        "n_output_tokens": 5243,
+        "cost_usd": 0.3731577
+    }
+}

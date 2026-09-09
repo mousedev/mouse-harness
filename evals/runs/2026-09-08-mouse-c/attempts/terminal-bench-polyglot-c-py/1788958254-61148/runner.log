@@ -1,0 +1,22 @@
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:35 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      0 │          1 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception                 ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ NonZeroAgentExitCodeError │     1 │
+└───────────────────────────┴───────┘
+
+Job Info
+Total runtime: 5m 23s
+Results written to 
+/work/jobs/terminal-bench-polyglot-c-py/2026-09-09__02-34-18/result.json
+Inspect results by running `harbor view /work/jobs/terminal-bench-polyglot-c-py`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-polyglot-c-py/2026-09-09__02-34-18`
+

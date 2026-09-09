@@ -1,0 +1,32 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-2026-09-08-mouse-c-terminal-bench-extract-elf' (status: creating).
+error: websocket error: HTTP error: 504 Gateway Timeout
+20251031: Pulling from alexgshaw/extract-elf
+4b3ffd8ccb52: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+6bcd540b5d24: Pulling fs layer
+8e96d75cb011: Pulling fs layer
+a8bae8ccd625: Pulling fs layer
+a8bae8ccd625: Download complete
+4b3ffd8ccb52: Download complete
+4f4fb700ef54: Download complete
+4b3ffd8ccb52: Pull complete
+6bcd540b5d24: Download complete
+8e96d75cb011: Download complete
+8e96d75cb011: Pull complete
+6bcd540b5d24: Pull complete
+a8bae8ccd625: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:6932e4cb318464307eacd497ef8dc617eaf551b6a90231f815ec0b911895cfed
+Status: Downloaded newer image for alexgshaw/extract-elf:20251031
+docker.io/alexgshaw/extract-elf:20251031
+╭───┬──────────────────────────────────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME                                          ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪══════════════════════════════════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-2026-09-08-mouse-c-terminal-bench-extract-elf ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴──────────────────────────────────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭──────────────────────────────────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME                                          ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞══════════════════════════════════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-2026-09-08-mouse-c-terminal-bench-extract-elf ┆ off        ┆ off ┆ off            ┆ off      │
+╰──────────────────────────────────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-b759894fd4007e55:/work/fh-trials/terminal-bench-log-summary-date-ranges/worker.sh (upload)
+Copied fh-b759894fd4007e55:/work/fh-trials/terminal-bench-log-summary-date-ranges/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-log-summary-date-ranges/evidence.tar.gz.part (download)
+Runtime 'fh-b759894fd4007e55' delete requested.

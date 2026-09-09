@@ -1,0 +1,54 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-2026-09-08-mouse-c-terminal-bench-chess-best-move' (status: creating).
+error: connection failed: http error: error sending request for url (https://api.runta.com/v2/runtimes?limit=100)
+  hint: is runta-api reachable? check --endpoint / RUNTA_ENDPOINT
+20251031: Pulling from alexgshaw/chess-best-move
+4b3ffd8ccb52: Pulling fs layer
+84d2affda6c8: Pulling fs layer
+64370410d5ca: Pulling fs layer
+6ada36832d15: Pulling fs layer
+79e41a00ade0: Pulling fs layer
+b2cc7717b0b6: Pulling fs layer
+9fcf91c5d8f3: Pulling fs layer
+58eb935af274: Pulling fs layer
+c38c7b25e3de: Pulling fs layer
+9040135e24f8: Pulling fs layer
+a77d67507195: Pulling fs layer
+d8f12b6818bd: Pulling fs layer
+84d2affda6c8: Download complete
+9040135e24f8: Download complete
+4b3ffd8ccb52: Download complete
+6ada36832d15: Download complete
+9040135e24f8: Pull complete
+4b3ffd8ccb52: Pull complete
+58eb935af274: Download complete
+d8f12b6818bd: Download complete
+9fcf91c5d8f3: Download complete
+64370410d5ca: Download complete
+a77d67507195: Download complete
+79e41a00ade0: Download complete
+b2cc7717b0b6: Download complete
+c38c7b25e3de: Download complete
+64370410d5ca: Pull complete
+a77d67507195: Pull complete
+d8f12b6818bd: Pull complete
+c38c7b25e3de: Pull complete
+84d2affda6c8: Pull complete
+6ada36832d15: Pull complete
+58eb935af274: Pull complete
+9fcf91c5d8f3: Pull complete
+79e41a00ade0: Pull complete
+b2cc7717b0b6: Pull complete
+Digest: sha256:bb447f94d9e2a8ed879f85c85a514b213b7418f9fe11fd7b2428a0b0e436e647
+Status: Downloaded newer image for alexgshaw/chess-best-move:20251031
+docker.io/alexgshaw/chess-best-move:20251031
+╭───┬──────────────────────────────────────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME                                              ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪══════════════════════════════════════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-2026-09-08-mouse-c-terminal-bench-chess-best-move ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴──────────────────────────────────────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭──────────────────────────────────────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME                                              ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞══════════════════════════════════════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-2026-09-08-mouse-c-terminal-bench-chess-best-move ┆ off        ┆ off ┆ off            ┆ off      │
+╰──────────────────────────────────────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

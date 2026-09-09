@@ -1,0 +1,29 @@
+diff --git a/skills/frontierharness-eval/scripts/providers.sh b/skills/frontierharness-eval/scripts/providers.sh
+index 8e3d049..6475b8d 100644
+--- a/skills/frontierharness-eval/scripts/providers.sh
++++ b/skills/frontierharness-eval/scripts/providers.sh
+@@ -85,7 +85,10 @@ provider_egress_policy() {
+     pypi.org '*.pythonhosted.org' '*.npmjs.org' \
+     '*.ubuntu.com' \
+     '*.debian.org' '*.pytorch.org' \
+-    '*.ecr.aws' '*.cloudfront.net'
++    '*.ecr.aws' '*.cloudfront.net' \
++    nodejs.org '*.nodejs.org' \
++    docker.io '*.docker.io' '*.docker.com' \
++    deb.nodesource.com
+ }
+ 
+ # Never fall back to provider-only egress: that turns setup failures into reward 0.
+diff --git a/skills/frontierharness-eval/scripts/usage_details.py b/skills/frontierharness-eval/scripts/usage_details.py
+index 94b4dd5..72e2809 100644
+--- a/skills/frontierharness-eval/scripts/usage_details.py
++++ b/skills/frontierharness-eval/scripts/usage_details.py
+@@ -208,6 +208,8 @@ REGISTRY: dict[str, tuple[str, Any]] = {
+     "codex": ("sessions/**/*.jsonl", _codex),
+     "claude-code": ("sessions/projects/*/*.jsonl", _claude_code),
+     "opencode": ("opencode.txt", _opencode),
++    # Mouse wraps OpenCode and tees its `--format json` event stream to opencode.txt.
++    "mouse": ("opencode.txt", _opencode),
+     "pi-responses": ("pi.txt", _pi_style),
+     "oh-my-pi": ("omp.txt", _pi_style),
+     "exo": ("exo-events.json", _exo),

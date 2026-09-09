@@ -1,0 +1,30 @@
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:46 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          1 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+└────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception                 ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ NonZeroAgentExitCodeError │     1 │
+└───────────────────────────┴───────┘
+
+Job Info
+Total runtime: 4m 45s
+Results written to 
+/work/jobs/terminal-bench-log-summary-date-ranges/2026-09-09__02-29-52/result.js
+on
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-log-summary-date-ranges`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-log-summary-date-ranges/2026-09-09__02-29-52`
+

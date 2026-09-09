@@ -1,0 +1,31 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-2026-09-08-mouse-c-terminal-bench-db-wal-recovery' (status: creating).
+20251031: Pulling from alexgshaw/db-wal-recovery
+31ab2b12569d: Pulling fs layer
+516306c0434b: Pulling fs layer
+7a195517a906: Pulling fs layer
+99b12d263519: Pulling fs layer
+4b3ffd8ccb52: Pulling fs layer
+516306c0434b: Download complete
+31ab2b12569d: Download complete
+4b3ffd8ccb52: Download complete
+7a195517a906: Download complete
+4b3ffd8ccb52: Pull complete
+99b12d263519: Download complete
+516306c0434b: Pull complete
+31ab2b12569d: Pull complete
+7a195517a906: Pull complete
+99b12d263519: Pull complete
+Digest: sha256:0e33ea5ec823975d1bd6c3778395c9f94251dd88f571146057bff6adb7e4594e
+Status: Downloaded newer image for alexgshaw/db-wal-recovery:20251031
+docker.io/alexgshaw/db-wal-recovery:20251031
+╭───┬──────────────────────────────────────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME                                              ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪══════════════════════════════════════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-2026-09-08-mouse-c-terminal-bench-db-wal-recovery ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴──────────────────────────────────────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭──────────────────────────────────────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME                                              ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞══════════════════════════════════════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-2026-09-08-mouse-c-terminal-bench-db-wal-recovery ┆ off        ┆ off ┆ off            ┆ off      │
+╰──────────────────────────────────────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

@@ -1,0 +1,29 @@
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:16:45 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          1 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Exception         ┃ Count ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ AgentTimeoutError │     1 │
+└───────────────────┴───────┘
+
+Job Info
+Total runtime: 16m 45s
+Results written to 
+/work/jobs/terminal-bench-largest-eigenval/2026-09-09__12-43-55/result.json
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-largest-eigenval`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-largest-eigenval/2026-09-09__12-43-55`
+

@@ -1,0 +1,23 @@
+  1/1 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:06:20 0:00:00
+terminal-bench • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 1.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 6m 20s
+Results written to 
+/work/jobs/terminal-bench-sqlite-db-truncate/2026-09-09__13-43-21/result.json
+Inspect results by running `harbor view 
+/work/jobs/terminal-bench-sqlite-db-truncate`
+Share results by running `harbor upload 
+/work/jobs/terminal-bench-sqlite-db-truncate/2026-09-09__13-43-21`
+

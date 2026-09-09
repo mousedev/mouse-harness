@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Mouse on FrontierHarness Eval</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { color-scheme: dark; --bg: #000; --text: #ededed; --muted: #929292; --line: #282828; --accent: #f47b35; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+  main { max-width: 1160px; margin: auto; padding: 28px 24px 48px; }
+  .brand { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; color: var(--accent); font-weight: 650; letter-spacing: .02em; }
+  .brand span, .eyebrow { font: 11px/1.5 "SFMono-Regular", Consolas, monospace; color: var(--muted); }
+  .brand span { border: 1px solid var(--line); padding: 4px 9px; }
+  h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; font-weight: 550; letter-spacing: -.035em; margin: 8px 0 18px; overflow-wrap: anywhere; }
+  h2 { font-size: 20px; margin: 0 0 20px; font-weight: 500; letter-spacing: -.02em; }
+  p.lede { color: var(--muted); max-width: 850px; margin: 0 0 30px; overflow-wrap: anywhere; }
+  strong { color: var(--text); font-weight: 550; }
+  .chart { margin: 24px -24px; overflow-x: auto; }
+  svg { width: 100%; min-width: 760px; height: auto; display: block; }
+  nav { display: flex; gap: 26px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow-x: auto; }
+  nav a { color: var(--muted); white-space: nowrap; font-size: 13px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); margin: 32px 0 48px; }
+  .metric { padding: 0 20px; border-left: 1px solid var(--line); }
+  .metric:first-child { padding-left: 0; border: 0; }
+  .metric span { display: block; color: var(--muted); font: 11px/1.5 "SFMono-Regular", Consolas, monospace; }
+  .metric strong { display: block; font-size: 28px; margin: 5px 0; font-variant-numeric: tabular-nums; }
+  section { margin-top: 48px; scroll-margin-top: 24px; }
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 13px 12px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font: 11px/1.5 "SFMono-Regular", Consolas, monospace; white-space: nowrap; }
+  td:not(:nth-child(2)), code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; }
+  tr.candidate { background: #f47b350d; }
+  tr.candidate td { color: var(--accent); }
+  tr.exclusive-solve { background: #ff7a1214; }
+  tr.exclusive-solve td { border-bottom-color: #ff7a1240; }
+  tr.exclusive-solve td:first-child { border-left: 3px solid var(--accent); }
+  .solve-badge, tr.exclusive-solve .solve-time { color: var(--accent); font-weight: 650; }
+  tbody tr:hover { background: #ffffff06; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  @media (max-width: 640px) { main { padding: 20px 16px 32px; } .brand { margin-bottom: 28px; } .chart { margin-inline: -16px; } .metrics { grid-template-columns: repeat(2, 1fr); gap: 24px 0; } .metric:nth-child(3) { padding-left: 0; border: 0; } nav { gap: 20px; } th, td { padding: 10px; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<main>
+  <div class="brand">FrontierHarness Eval <span>HARNESS REPORT</span></div>
+  <div class="eyebrow">CANDIDATE EVALUATION</div>
+  <h1>Mouse on FrontierHarness Eval</h1>
+  <div class="chart"><svg xmlns="http://www.w3.org/2000/svg" width="1344" height="660" viewBox="0 0 1344 660" role="img" aria-label="Mouse versus FrontierHarness baselines: pass rate and median cost per task">
+<rect width="1344" height="660" fill="#000"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif}.legend,.axis,.point-value,.grid text,.note{font-family:Menlo,Consolas,monospace}
+.legend{font-size:11px;fill:#b5b5b5}.grid line{stroke:#333;stroke-dasharray:4 2;stroke-width:1}.grid text{fill:#ccc;font-size:15px}
+.point-name{font-size:14px}.point-value{fill:#bcbcbc;font-size:12px}.axis{fill:#ccc;font-size:15px}.note{fill:#aaa;font-size:11px}
+</style>
+<circle cx="48" cy="25" r="4.7" fill="#9385ff" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="59" y="29">Codex</text><polygon points="115,20.3 119.7,29.7 110.3,29.7" fill="#70b6ee" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="126" y="29">DSH Creator</text><polygon points="226.4,20.3 231.1,25 226.4,29.7 221.70000000000002,25" fill="#f0a57f" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="237.4" y="29">Claude Code</text><rect x="333.1" y="20.3" width="9.4" height="9.4" fill="#f0f0f0" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="348.8" y="29">Pi</text><polygon points="382.6,20.3 387.3,25 382.6,29.7 377.90000000000003,25" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="393.6" y="29">DSH PTC</text><rect x="459.70000000000005" y="20.3" width="9.4" height="9.4" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="475.40000000000003" y="29">DSH Standard</text><polygon points="583.2,20.3 587.9000000000001,25 583.2,29.7 578.5,25" fill="#f2a777" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="594.2" y="29">Oh My Pi</text><circle cx="672.4000000000001" cy="25" r="4.7" fill="#83d7c5" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="683.4000000000001" y="29">Kimi Code</text><circle cx="769.0000000000001" cy="25" r="4.7" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="780.0000000000001" y="29">DSH Minimal</text><polygon points="875.7,25 878.0500000000001,20.3 882.7500000000001,20.3 885.1000000000001,25 882.7500000000001,29.7 878.0500000000001,29.7" fill="#d3d3d3" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="891.4000000000001" y="29">Exo Harness</text><rect x="987.1" y="20.3" width="9.4" height="9.4" fill="#a978e7" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="1002.8000000000001" y="29">OpenCode</text><polygon points="1081,20.3 1085.7,29.7 1076.3,29.7" fill="#a3a3a3" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="1092" y="29">Hermes</text><polygon points="48,42 50.116026908252906,47.08753882025019 55.60845213036123,47.52786404500042 51.423803458662555,51.11246117974981 52.70228201833979,56.47213595499958 48,53.6 43.29771798166021,56.47213595499958 44.576196541337445,51.11246117974981 40.39154786963877,47.52786404500042 45.883973091747094,47.08753882025019" fill="#ff7a12" stroke="#c4c4c4" stroke-width="1.1"/><text class="legend" x="59" y="54">Third-party harness</text>
+<g class="grid"><line x1="169.31106394792465" y1="96" x2="169.31106394792465" y2="556"/><text x="169.31106394792465" y="583" text-anchor="middle">$1</text><line x1="419.70863715578446" y1="96" x2="419.70863715578446" y2="556"/><text x="419.70863715578446" y="583" text-anchor="middle">$2</text><line x1="750.7162240708694" y1="96" x2="750.7162240708694" y2="556"/><text x="750.7162240708694" y="583" text-anchor="middle">$5</text><line x1="1001.1137972787291" y1="96" x2="1001.1137972787291" y2="556"/><text x="1001.1137972787291" y="583" text-anchor="middle">$10</text><line x1="1251.511370486589" y1="96" x2="1251.511370486589" y2="556"/><text x="1251.511370486589" y="583" text-anchor="middle">$20</text><line x1="102" y1="524.2758620689656" x2="1302" y2="524.2758620689656"/><text x="89" y="529.2758620689656" text-anchor="end">50.0%</text><line x1="102" y1="392.09195402298843" x2="1302" y2="392.09195402298843"/><text x="89" y="397.09195402298843" text-anchor="end">55.6%</text><line x1="102" y1="259.90804597701157" x2="1302" y2="259.90804597701157"/><text x="89" y="264.90804597701157" text-anchor="end">61.1%</text><line x1="102" y1="127.72413793103443" x2="1302" y2="127.72413793103443"/><text x="89" y="132.72413793103442" text-anchor="end">66.7%</text></g>
+<path d="M 102 96 V 556 H 1302" fill="none" stroke="#ccc" stroke-width="1.2"/>
+<polyline points="185.27119168123966,444.96551724137936 490.50000307823274,286.34482758620686 598.9558933320541,207.03448275862064 618.5811918713681,127.72413793103443" fill="none" stroke="#ff7a12" stroke-width="2.2"/>
+<text class="point-name" x="631.5811918713681" y="124.72413793103443" fill="#9385ff" text-anchor="start"><tspan x="631.5811918713681">Codex</tspan><tspan class="point-value" x="631.5811918713681" dy="18">66.7% · $3.47</tspan></text><text class="point-name" x="611.9558933320541" y="204.03448275862064" fill="#70b6ee" text-anchor="start"><tspan x="611.9558933320541">DSH Creator</tspan><tspan class="point-value" x="611.9558933320541" dy="18">63.3% · $3.28</tspan></text><text class="point-name" x="1207.1477123360307" y="204.03448275862064" fill="#f0a57f" text-anchor="end"><tspan x="1207.1477123360307">Claude Code</tspan><tspan class="point-value" x="1207.1477123360307" dy="18">63.3% · $18.34</tspan></text><text class="point-name" x="503.50000307823274" y="283.34482758620686" fill="#f0f0f0" text-anchor="start"><tspan x="503.50000307823274">Pi</tspan><tspan class="point-value" x="503.50000307823274" dy="18">60.0% · $2.43</tspan></text><text class="point-name" x="731.8193812391304" y="283.34482758620686" fill="#75b8ed" text-anchor="start"><tspan x="731.8193812391304">DSH PTC</tspan><tspan class="point-value" x="731.8193812391304" dy="18">60.0% · $4.58</tspan></text><text class="point-name" x="630.5997433690056" y="252.34482758620686" fill="#75b8ed" text-anchor="start"><tspan x="630.5997433690056">DSH Standard</tspan><tspan class="point-value" x="630.5997433690056" dy="18">60.0% · $3.46</tspan></text><text class="point-name" x="744.8474766417389" y="362.65517241379314" fill="#f2a777" text-anchor="start"><tspan x="744.8474766417389">Oh My Pi</tspan><tspan class="point-value" x="744.8474766417389" dy="18">56.7% · $4.75</tspan></text><text class="point-name" x="623.7393917710066" y="362.65517241379314" fill="#83d7c5" text-anchor="end"><tspan x="623.7393917710066">Kimi Code</tspan><tspan class="point-value" x="623.7393917710066" dy="18">56.7% · $3.65</tspan></text><text class="point-name" x="742.7413624970105" y="420.65517241379314" fill="#75b8ed" text-anchor="start"><tspan x="742.7413624970105">DSH Minimal</tspan><tspan class="point-value" x="742.7413624970105" dy="18">56.7% · $4.72</tspan></text><text class="point-name" x="198.27119168123966" y="441.96551724137936" fill="#d3d3d3" text-anchor="start"><tspan x="198.27119168123966">Exo Harness</tspan><tspan class="point-value" x="198.27119168123966" dy="18">53.3% · $1.05</tspan></text><text class="point-name" x="607.4679827990412" y="521.2758620689656" fill="#a978e7" text-anchor="start"><tspan x="607.4679827990412">OpenCode</tspan><tspan class="point-value" x="607.4679827990412" dy="18">50.0% · $3.24</tspan></text><text class="point-name" x="541.470661222776" y="521.2758620689656" fill="#a3a3a3" text-anchor="end"><tspan x="541.470661222776">Hermes</tspan><tspan class="point-value" x="541.470661222776" dy="18">50.0% · $2.90</tspan></text><circle cx="618.5811918713681" cy="127.72413793103443" r="6.5" fill="#9385ff" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="598.9558933320541,200.53448275862064 605.4558933320541,213.53448275862064 592.4558933320541,213.53448275862064" fill="#70b6ee" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="1220.1477123360307,200.53448275862064 1226.6477123360307,207.03448275862064 1220.1477123360307,213.53448275862064 1213.6477123360307,207.03448275862064" fill="#f0a57f" stroke="#c4c4c4" stroke-width="1.1"/><rect x="484.00000307823274" y="279.84482758620686" width="13" height="13" fill="#f0f0f0" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="718.8193812391304,279.84482758620686 725.3193812391304,286.34482758620686 718.8193812391304,292.84482758620686 712.3193812391304,286.34482758620686" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><rect x="611.0997433690056" y="279.84482758620686" width="13" height="13" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="731.8474766417389,359.15517241379314 738.3474766417389,365.65517241379314 731.8474766417389,372.15517241379314 725.3474766417389,365.65517241379314" fill="#f2a777" stroke="#c4c4c4" stroke-width="1.1"/><circle cx="636.7393917710066" cy="365.65517241379314" r="6.5" fill="#83d7c5" stroke="#c4c4c4" stroke-width="1.1"/><circle cx="729.7413624970105" cy="365.65517241379314" r="6.5" fill="#75b8ed" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="178.77119168123966,444.96551724137936 182.02119168123966,438.46551724137936 188.52119168123966,438.46551724137936 191.77119168123966,444.96551724137936 188.52119168123966,451.46551724137936 182.02119168123966,451.46551724137936" fill="#d3d3d3" stroke="#c4c4c4" stroke-width="1.1"/><rect x="587.9679827990412" y="517.7758620689656" width="13" height="13" fill="#a978e7" stroke="#c4c4c4" stroke-width="1.1"/><polygon points="554.470661222776,517.7758620689656 560.970661222776,530.7758620689656 547.970661222776,530.7758620689656" fill="#a3a3a3" stroke="#c4c4c4" stroke-width="1.1"/>
+<text class="axis" x="702" y="613" text-anchor="middle">Median cost per task</text>
+<text class="axis" transform="translate(49 326) rotate(-90)" text-anchor="middle">Pass rate</text>
+<polygon points="49,634 51.116026908252906,639.0875388202502 56.60845213036123,639.5278640450005 52.423803458662555,643.1124611797499 53.70228201833979,648.4721359549995 49,645.6 44.29771798166021,648.4721359549995 45.576196541337445,643.1124611797499 41.39154786963877,639.5278640450005 46.883973091747094,639.0875388202502" fill="#ff7a12" stroke="#c4c4c4" stroke-width="1.1"/><text class="note" x="65" y="646">Mouse: 83.3% · $2.79 · 30/30 tasks scored. Methodology differs; excluded from plot; not ranked.</text>
+</svg>
+  </div>
+  <nav aria-label="Report sections"><a href="#result">Result</a><a href="#comparison">Comparison</a><a href="#tasks">Task results</a></nav>
+  <div class="metrics" id="result">
+    <div class="metric"><span>Pass rate</span><strong>83.3%</strong><span>25 / 30 scored tasks</span></div>
+    <div class="metric"><span>Cost per pass</span><strong>$2.79</strong><span>$69.76 total / 25 passes</span></div>
+    <div class="metric"><span>Median successful runtime</span><strong>6m 24s</strong><span>Full runner wall time</span></div>
+    <div class="metric"><span>Median cache hit rate</span><strong>90.6%</strong><span>25/25 successes measured</span></div>
+  </div>
+  <section id="comparison"><h2>Comparison</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>#</th><th>Harness</th><th>Pass rate</th><th>Median cost per task</th><th>Cache, median</th><th>Median time</th></tr>
+    <tr><td>1</td><td>Codex</td><td>66.7%</td><td>$3.47</td><td>88.0%</td><td>6m 43s</td></tr>
+    <tr><td>2</td><td>Claude Code</td><td>63.3%</td><td>$18.34</td><td>67.8%</td><td>9m 38s</td></tr>
+    <tr><td>3</td><td>DSH Creator</td><td>63.3%</td><td>$3.28</td><td>84.3%</td><td>6m 44s</td></tr>
+    <tr><td>4</td><td>DSH PTC</td><td>60.0%</td><td>$4.58</td><td>87.2%</td><td>7m 44s</td></tr>
+    <tr><td>5</td><td>DSH Standard</td><td>60.0%</td><td>$3.46</td><td>86.5%</td><td>6m 17s</td></tr>
+    <tr><td>6</td><td>Pi</td><td>60.0%</td><td>$2.43</td><td>79.4%</td><td>7m 33s</td></tr>
+    <tr><td>7</td><td>DSH Minimal</td><td>56.7%</td><td>$4.72</td><td>84.6%</td><td>5m 41s</td></tr>
+    <tr><td>8</td><td>Kimi Code</td><td>56.7%</td><td>$3.65</td><td>88.0%</td><td>7m 56s</td></tr>
+    <tr><td>9</td><td>Oh My Pi</td><td>56.7%</td><td>$4.75</td><td>82.2%</td><td>6m 46s</td></tr>
+    <tr><td>10</td><td>Exo Harness</td><td>53.3%</td><td>$1.05</td><td>70.3%</td><td>6m 17s</td></tr>
+    <tr><td>11</td><td>Hermes</td><td>50.0%</td><td>$2.90</td><td>85.9%</td><td>6m 58s</td></tr>
+    <tr><td>12</td><td>OpenCode</td><td>50.0%</td><td>$3.24</td><td>78.4%</td><td>6m 27s</td></tr>
+    <tr class="candidate"><td>—</td><td>Mouse</td><td>83.3%</td><td>$2.79</td><td>90.6%</td><td>6m 24s</td></tr>
+  </table>
+  </div></section>
+  <section id="tasks"><h2>Task results</h2>
+  <div class="table-scroll">
+  <table>
+    <tr><th>Task</th><th>Result</th><th>Cost</th><th>Time</th><th>Turns</th><th>Cache hit rate</th></tr>
+    <tr><td><code>datacurve/anko-typed-variable-bindings</code></td><td>success</td><td>$2.62</td><td class="solve-time">26m 23s</td><td>70</td><td>96.3%</td></tr>
+    <tr><td><code>datacurve/arktype-json-schema-refs-dependencies</code></td><td>success</td><td>$10.91</td><td class="solve-time">81m 26s</td><td>249</td><td>98.7%</td></tr>
+    <tr><td><code>datacurve/expr-try-catch-errors</code></td><td>success</td><td>$5.68</td><td class="solve-time">41m 20s</td><td>133</td><td>98.8%</td></tr>
+    <tr><td><code>datacurve/fastapi-deprecation-response-headers</code></td><td>success</td><td>$5.60</td><td class="solve-time">60m 13s</td><td>126</td><td>98.6%</td></tr>
+    <tr><td><code>datacurve/httpx-multipart-response-parsing</code></td><td>success</td><td>$4.49</td><td class="solve-time">47m 54s</td><td>124</td><td>98.7%</td></tr>
+    <tr><td><code>datacurve/katex-multicolumn-array-spans</code></td><td>success</td><td>$3.75</td><td class="solve-time">42m 50s</td><td>108</td><td>98.5%</td></tr>
+    <tr><td><code>datacurve/meriyah-explicit-resource-declarations</code></td><td>failure</td><td>$13.67</td><td class="solve-time">90m 0s</td><td>236</td><td>98.7%</td></tr>
+    <tr><td><code>datacurve/python-statemachine-state-data-scoping</code></td><td>success</td><td>$12.94</td><td class="solve-time">88m 56s</td><td>216</td><td>98.7%</td></tr>
+    <tr class="exclusive-solve"><td><code>datacurve/scc-bounded-memory-spilling</code></td><td><span class="solve-badge">★ Solved · 0/12 baselines passed</span></td><td>$4.88</td><td class="solve-time">41m 6s</td><td>119</td><td>98.8%</td></tr>
+    <tr><td><code>terminal-bench/build-cython-ext</code></td><td>success</td><td>$0.75</td><td class="solve-time">11m 44s</td><td>52</td><td>96.8%</td></tr>
+    <tr><td><code>terminal-bench/chess-best-move</code></td><td>success</td><td>$0.28</td><td class="solve-time">8m 12s</td><td>32</td><td>93.9%</td></tr>
+    <tr><td><code>terminal-bench/code-from-image</code></td><td>success</td><td>$0.05</td><td class="solve-time">2m 40s</td><td>6</td><td>68.3%</td></tr>
+    <tr><td><code>terminal-bench/constraints-scheduling</code></td><td>success</td><td>$0.12</td><td class="solve-time">5m 28s</td><td>8</td><td>82.3%</td></tr>
+    <tr><td><code>terminal-bench/db-wal-recovery</code></td><td>success</td><td>$0.11</td><td class="solve-time">5m 46s</td><td>11</td><td>86.8%</td></tr>
+    <tr><td><code>terminal-bench/dna-insert</code></td><td>failure</td><td>$0.40</td><td class="solve-time">15m 57s</td><td>23</td><td>90.1%</td></tr>
+    <tr><td><code>terminal-bench/extract-elf</code></td><td>failure</td><td>$0.55</td><td class="solve-time">13m 6s</td><td>25</td><td>93.5%</td></tr>
+    <tr><td><code>terminal-bench/gcode-to-text</code></td><td>failure</td><td>$0.69</td><td class="solve-time">13m 44s</td><td>21</td><td>88.9%</td></tr>
+    <tr><td><code>terminal-bench/git-leak-recovery</code></td><td>success</td><td>$0.10</td><td class="solve-time">5m 5s</td><td>13</td><td>88.6%</td></tr>
+    <tr class="exclusive-solve"><td><code>terminal-bench/kv-store-grpc</code></td><td><span class="solve-badge">★ Solved · 0/12 baselines passed</span></td><td>$0.13</td><td class="solve-time">4m 38s</td><td>16</td><td>89.6%</td></tr>
+    <tr class="exclusive-solve"><td><code>terminal-bench/largest-eigenval</code></td><td><span class="solve-badge">★ Solved · 0/12 baselines passed</span></td><td>$0.27</td><td class="solve-time">16m 45s</td><td>16</td><td>89.3%</td></tr>
+    <tr><td><code>terminal-bench/log-summary-date-ranges</code></td><td>success</td><td>$0.14</td><td class="solve-time">4m 6s</td><td>14</td><td>90.0%</td></tr>
+    <tr><td><code>terminal-bench/merge-diff-arc-agi-task</code></td><td>success</td><td>$0.18</td><td class="solve-time">5m 58s</td><td>18</td><td>90.8%</td></tr>
+    <tr><td><code>terminal-bench/modernize-scientific-stack</code></td><td>success</td><td>$0.14</td><td class="solve-time">4m 9s</td><td>14</td><td>89.8%</td></tr>
+    <tr><td><code>terminal-bench/multi-source-data-merger</code></td><td>success</td><td>$0.12</td><td class="solve-time">4m 9s</td><td>8</td><td>80.1%</td></tr>
+    <tr><td><code>terminal-bench/openssl-selfsigned-cert</code></td><td>success</td><td>$0.12</td><td class="solve-time">4m 12s</td><td>16</td><td>90.3%</td></tr>
+    <tr><td><code>terminal-bench/polyglot-c-py</code></td><td>failure</td><td>$0.21</td><td class="solve-time">8m 17s</td><td>17</td><td>92.8%</td></tr>
+    <tr><td><code>terminal-bench/regex-log</code></td><td>success</td><td>$0.16</td><td class="solve-time">7m 42s</td><td>10</td><td>85.8%</td></tr>
+    <tr><td><code>terminal-bench/sanitize-git-repo</code></td><td>success</td><td>$0.42</td><td class="solve-time">6m 24s</td><td>29</td><td>94.7%</td></tr>
+    <tr><td><code>terminal-bench/sqlite-db-truncate</code></td><td>success</td><td>$0.18</td><td class="solve-time">6m 21s</td><td>14</td><td>90.0%</td></tr>
+    <tr><td><code>terminal-bench/vulnerable-secret</code></td><td>success</td><td>$0.13</td><td class="solve-time">3m 56s</td><td>16</td><td>90.6%</td></tr>
+  </table>
+  </div></section>
+  <footer>Baseline data and methodology: <a href="https://frontierharness.org/">FrontierHarness Eval</a></footer>
+</main>
+</html>

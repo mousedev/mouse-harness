@@ -1,0 +1,37 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-04bd2787bc5c3337' (status: creating).
+20251031: Pulling from alexgshaw/build-cython-ext
+b1badc6e5066: Pulling fs layer
+80fcd3e2399e: Pulling fs layer
+e97853488aa5: Pulling fs layer
+63ff33ad641b: Pulling fs layer
+1076d6a31df3: Pulling fs layer
+7e88bf276da0: Pulling fs layer
+d55dfff74d98: Pulling fs layer
+e97853488aa5: Download complete
+63ff33ad641b: Download complete
+7e88bf276da0: Download complete
+b1badc6e5066: Download complete
+b1badc6e5066: Pull complete
+7e88bf276da0: Pull complete
+80fcd3e2399e: Download complete
+d55dfff74d98: Download complete
+d55dfff74d98: Pull complete
+1076d6a31df3: Download complete
+e97853488aa5: Pull complete
+63ff33ad641b: Pull complete
+1076d6a31df3: Pull complete
+80fcd3e2399e: Pull complete
+Digest: sha256:3612a38fadb89a96f74a1a951fb0b0af734198fd160571eeaba6401593234594
+Status: Downloaded newer image for alexgshaw/build-cython-ext:20251031
+docker.io/alexgshaw/build-cython-ext:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-04bd2787bc5c3337 ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-04bd2787bc5c3337 ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

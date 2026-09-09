@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-40424b451b5e243c:/work/fh-trials/terminal-bench-vulnerable-secret/worker.sh (upload)
+Copied fh-40424b451b5e243c:/work/fh-trials/terminal-bench-vulnerable-secret/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-vulnerable-secret/evidence.tar.gz.part (download)
+Runtime 'fh-40424b451b5e243c' delete requested.

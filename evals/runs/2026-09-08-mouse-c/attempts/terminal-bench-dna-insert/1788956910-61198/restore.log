@@ -1,0 +1,25 @@
+Checkpoint 'fh-golden-mouse-v3' restore requested as runtime 'fh-2026-09-08-mouse-c-terminal-bench-dna-insert' (status: creating).
+20251031: Pulling from alexgshaw/dna-insert
+f4f5c7323e80: Pulling fs layer
+4b3ffd8ccb52: Pulling fs layer
+9040135e24f8: Pulling fs layer
+9040135e24f8: Download complete
+f4f5c7323e80: Download complete
+4b3ffd8ccb52: Download complete
+9040135e24f8: Pull complete
+f4f5c7323e80: Pull complete
+4b3ffd8ccb52: Pull complete
+Digest: sha256:4dd8760694e355de85ecf03605cb487ccdb33322f6afad513d2920829baa33b2
+Status: Downloaded newer image for alexgshaw/dna-insert:20251031
+docker.io/alexgshaw/dna-insert:20251031
+╭───┬─────────────────────────────────────────────────┬───────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬──────────────╮
+│ # ┆ RUNTIME                                         ┆ MODE      ┆ ALLOWED HOSTS                                                                                                                                                                                                                                                                                                     ┆ DENIED HOSTS │
+╞═══╪═════════════════════════════════════════════════╪═══════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╪══════════════╡
+│ 1 ┆ fh-2026-09-08-mouse-c-terminal-bench-dna-insert ┆ allowlist ┆ *.astral.sh, *.cloudfront.net, *.debian.org, *.docker.com, *.docker.io, *.ecr.aws, *.github.com, *.githubusercontent.com, *.nodejs.org, *.npmjs.org, *.pythonhosted.org, *.pytorch.org, *.supabase.co, *.ubuntu.com, api.fireworks.ai, astral.sh, deb.nodesource.com, docker.io, github.com, nodejs.org, pypi.org ┆ -            │
+╰───┴─────────────────────────────────────────────────┴───────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────╯
+╭─────────────────────────────────────────────────┬────────────┬─────┬────────────────┬──────────╮
+│ RUNTIME                                         ┆ JSON ARRAY ┆ LOG ┆ SEARCH RESULTS ┆ GIT DIFF │
+╞═════════════════════════════════════════════════╪════════════╪═════╪════════════════╪══════════╡
+│ fh-2026-09-08-mouse-c-terminal-bench-dna-insert ┆ off        ┆ off ┆ off            ┆ off      │
+╰─────────────────────────────────────────────────┴────────────┴─────┴────────────────┴──────────╯
+FIREWORKS_API_KEY  header Authorization on api.fireworks.ai

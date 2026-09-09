@@ -1,0 +1,6 @@
+/usr/bin/flock
+/usr/bin/setsid
+/usr/bin/timeout
+Copied /Users/REDACTED/fh-eval/skills/frontierharness-eval/scripts/trial-worker.sh to fh-2026-09-08-mouse-c-terminal-bench-dna-insert:/work/fh-trials/terminal-bench-dna-insert/worker.sh (upload)
+Copied fh-2026-09-08-mouse-c-terminal-bench-dna-insert:/work/fh-trials/terminal-bench-dna-insert/evidence.tar.gz to runs/2026-09-08-mouse-c/trials/terminal-bench-dna-insert/evidence.tar.gz.part (download)
+Runtime 'fh-2026-09-08-mouse-c-terminal-bench-dna-insert' delete requested.

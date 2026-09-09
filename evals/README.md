@@ -243,3 +243,5 @@ stub, apt retries). Kept for the record: the patch
 - **Wait for the checkpoint to leave `creating`** before deleting the build runtime.
   `runta checkpoint create` returns while the snapshot is still being taken; deleting
   the source runtime at that point aborted the checkpoint, which then vanished.
+
+- **2026-09-09**: Runta run `2026-09-08-mouse-c` under the unmodified upstream FH scripts (eval e837a70, checkpoint `fh-golden-mouse-v3`, harness 315e2b8): 25/30 (83.3%), $2.79 effective cost per pass, 90.6% median cache hit. Package in `evals/runs/2026-09-08-mouse-c/`.

