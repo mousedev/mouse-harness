@@ -42,7 +42,6 @@ function world(opts: {
     checks: async () => state.checks,
     tampering: async () => state.tampering,
     fingerprint: async () => state.fingerprint,
-    headSha: async () => "abcdef0123456789",
   };
   return { state, probe };
 }
@@ -258,9 +257,7 @@ describe("runCompletionLoop", () => {
     );
     const r = await runCompletionLoop(input);
     expect(r.outcome).toBe("blocked");
-    expect(events.some((e) => e.type === "notice" && /modified or deleted/.test(e.message))).toBe(
-      true,
-    );
+    expect(events.some((e) => e.type === "notice" && /were deleted/.test(e.message))).toBe(true);
   });
 
   it("an audit round that edits nothing but reports everything done is satisfied, not stalled", async () => {

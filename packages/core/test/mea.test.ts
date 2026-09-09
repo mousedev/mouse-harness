@@ -46,13 +46,11 @@ describe("auditFromSandboxProbe", () => {
     const audit = auditFromSandboxProbe({
       state,
       contractTargets: targets,
-      hasNewCommit: false,
-      headSha: "abc123",
-      testExitCode: null,
+      workspaceChanged: false,
     });
     expect(audit.completion).toBe("incomplete");
     expect(audit.unmetRequirementIds).toEqual(targets);
-    expect(audit.gaps).toContain("No new commit this round.");
+    expect(audit.gaps).toContain("Workspace unchanged since the run started.");
   });
 
   it("refuses completion when any declared check fails", () => {
@@ -60,9 +58,7 @@ describe("auditFromSandboxProbe", () => {
     const audit = auditFromSandboxProbe({
       state,
       contractTargets: targets,
-      hasNewCommit: true,
-      headSha: "abc1234",
-      testExitCode: null,
+      workspaceChanged: true,
       checks: [
         { name: "build", pass: true, exitCode: 0 },
         { name: "test", pass: false, exitCode: 1 },
@@ -79,16 +75,14 @@ describe("auditFromSandboxProbe", () => {
     const audit = auditFromSandboxProbe({
       state,
       contractTargets: targets,
-      hasNewCommit: true,
-      headSha: "abc1234",
-      testExitCode: null,
+      workspaceChanged: true,
       checks: [
         { name: "build", pass: true, exitCode: 0 },
         { name: "test", pass: true, exitCode: 0 },
       ],
     });
     expect(audit.completion).toBe("complete");
-    expect(audit.summary).toBe("Sandbox audit: commit verified; build, test passed.");
+    expect(audit.summary).toBe("Sandbox audit: workspace changed; build, test passed.");
     expect(applyAudit(state, audit).requirements[0]!.status).toBe("completed");
   });
 
@@ -97,9 +91,7 @@ describe("auditFromSandboxProbe", () => {
     const audit = auditFromSandboxProbe({
       state,
       contractTargets: targets,
-      hasNewCommit: true,
-      headSha: "abc1234",
-      testExitCode: null,
+      workspaceChanged: true,
       checks: [{ name: "test", pass: true, exitCode: 0 }],
       tampering: ["src/__tests__/billing.test.ts"],
     });

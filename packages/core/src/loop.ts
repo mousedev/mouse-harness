@@ -32,11 +32,10 @@ export interface CheckResult {
 export interface CompletionProbe {
   /** Run the repo's declared or detected checks. Empty when none exist. */
   checks(): Promise<CheckResult[]>;
-  /** Files whose change would let the run grade its own homework. */
+  /** Test, spec, and workflow files deleted since the run started. */
   tampering(): Promise<string[]>;
   /** Stable digest of the workspace state; any edit changes it. */
   fingerprint(): Promise<string>;
-  headSha(): Promise<string | null>;
 }
 
 export interface CompletionBudget {
@@ -242,7 +241,7 @@ export async function runCompletionLoop(input: RunCompletionLoopInput): Promise<
     if (tampering.length > 0) {
       await onEvent({
         type: "notice",
-        message: `Verification files were modified or deleted: ${tampering.slice(0, 5).join(", ")}`,
+        message: `Verification files were deleted: ${tampering.slice(0, 5).join(", ")}`,
         level: "warn",
       });
       return finish("blocked");
@@ -251,9 +250,7 @@ export async function runCompletionLoop(input: RunCompletionLoopInput): Promise<
     const audit = auditFromSandboxProbe({
       state,
       contractTargets: targets,
-      hasNewCommit: changed,
-      headSha: await probe.headSha(),
-      testExitCode: null,
+      workspaceChanged: changed,
       checks,
       tampering,
     });

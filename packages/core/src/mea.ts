@@ -135,34 +135,24 @@ export function applyAudit(state: TaskState, audit: AuditReport): TaskState {
 }
 
 /**
- * Overnight/sandbox auditor: a commit landed, every declared check passed,
- * and nothing that grades the work was touched. `checks` come from the repo's
- * proof contract (`proof.ts`); `tampering` lists files whose change would let
- * the run grade its own homework. The legacy `testExitCode` stays honoured
- * for callers that still probe a bare `npm test`.
+ * One round of probe evidence as an audit report: the workspace changed,
+ * every declared check passed, and nothing that grades the work was deleted.
+ * `checks` are the repository's detected or declared checks; `tampering`
+ * lists verification files deleted since the run started.
  */
 export function auditFromSandboxProbe(input: {
   state: TaskState;
   contractTargets: string[];
-  hasNewCommit: boolean;
-  headSha: string | null;
-  testExitCode: number | null;
+  workspaceChanged: boolean;
   checks?: ReadonlyArray<{ name: string; pass: boolean; exitCode: number | null }>;
   tampering?: readonly string[];
 }): AuditReport {
-  const facts: AuditReport["facts"] = [];
-  if (input.headSha) {
-    facts.push({
-      text: `HEAD=${input.headSha.slice(0, 12)}; newCommit=${input.hasNewCommit}`,
-      evidenceRef: "git_head",
-    });
-  }
-  if (input.testExitCode != null) {
-    facts.push({
-      text: `test_exit=${input.testExitCode}`,
-      evidenceRef: "tests",
-    });
-  }
+  const facts: AuditReport["facts"] = [
+    {
+      text: `workspace ${input.workspaceChanged ? "changed" : "unchanged"} since the run started`,
+      evidenceRef: "fingerprint",
+    },
+  ];
   const checks = input.checks ?? [];
   for (const c of checks) {
     facts.push({
@@ -179,10 +169,9 @@ export function auditFromSandboxProbe(input: {
   }
 
   const integrity: AuditIntegrity = tampering.length > 0 ? "violation" : "clean";
-  const testsOk = input.testExitCode == null || input.testExitCode === 0;
   const failedChecks = checks.filter((c) => !c.pass).map((c) => c.name);
   const checksOk = failedChecks.length === 0;
-  const passes = input.hasNewCommit && testsOk && checksOk && integrity === "clean";
+  const passes = input.workspaceChanged && checksOk && integrity === "clean";
 
   const completedRequirementIds: string[] = [];
   const unmetRequirementIds: string[] = [];
@@ -192,14 +181,13 @@ export function auditFromSandboxProbe(input: {
     if (passes) completedRequirementIds.push(id);
     else {
       unmetRequirementIds.push(id);
-      if (!input.hasNewCommit) gaps.push("No new commit this round.");
-      if (!testsOk) gaps.push(`Tests failed (exit ${input.testExitCode}).`);
+      if (!input.workspaceChanged) gaps.push("Workspace unchanged since the run started.");
       if (!checksOk) gaps.push(`Checks failed: ${failedChecks.join(", ")}.`);
-      if (integrity !== "clean") gaps.push("Verification files were modified or deleted.");
+      if (integrity !== "clean") gaps.push("Verification files were deleted.");
     }
   }
 
-  // Also advance matching heuristic requirements when commit+checks hold.
+  // Also advance matching heuristic requirements when change+checks hold.
   if (passes) {
     for (const r of input.state.requirements) {
       if (r.status === "pending" && /commit|hard gates|build|tests/i.test(r.text)) {
@@ -226,8 +214,8 @@ export function auditFromSandboxProbe(input: {
     summary:
       completion === "complete"
         ? passedNames.length > 0
-          ? `Sandbox audit: commit verified; ${passedNames.join(", ")} passed.`
-          : "Sandbox audit: commit verified; tests clean."
+          ? `Sandbox audit: workspace changed; ${passedNames.join(", ")} passed.`
+          : "Sandbox audit: workspace changed; no checks to run."
         : `Sandbox audit incomplete: ${[...new Set(gaps)].join(" ") || "criteria unmet"}`,
   };
 }

@@ -61,8 +61,5 @@ export function makeProbe(o: ProbeOptions): CompletionProbe {
       );
       return r.stdout;
     },
-    async headSha() {
-      return o.runStartSha;
-    },
   };
 }
