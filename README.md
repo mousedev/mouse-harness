@@ -1,104 +1,128 @@
-# Mouse
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/mouse-logo-horizontal-white.svg">
+    <img src="docs/assets/mouse-logo-horizontal-black.svg" alt="Mouse" width="360">
+  </picture>
+</p>
 
-An open source harness for long-running coding agents.
+<p align="center">
+  An open source harness for long-running coding agents.<br>
+  Mouse runs OpenCode in your repository and keeps going until the repository's own checks pass.
+</p>
 
-Mouse runs OpenCode in your repository and checks the work after each turn. When a check fails, it sends the output back to the agent to fix. Once the checks pass, the agent reviews the original requirements and reports what it completed, with evidence for each item.
+<p align="center">
+  <a href="https://github.com/mousedev/mouse-harness/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/mousedev/mouse-harness/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-black.svg"></a>
+  <img alt="Node 22+" src="https://img.shields.io/badge/node-%3E%3D22-black.svg">
+  <a href="https://www.mouse.dev"><img alt="mouse.dev" src="https://img.shields.io/badge/web-mouse.dev-f54e00.svg"></a>
+</p>
 
-Run tasks locally, on a cloud machine, or in CI. Set time and step limits for unattended runs, or use the core packages to build your own workflow.
+[Benchmark](#frontierharness-eval) · [Install](#install) · [How it works](#how-it-works) · [Commands](#commands) · [Packages](#packages) · [Docs](docs/index.md)
 
-[Quick start](#quick-start) · [How it works](#how-it-works) · [Commands](#commands) · [Benchmarks](#benchmarks) · [Docs](#docs)
+## FrontierHarness Eval
 
-## Quick start
+Mouse passed 25 of the 30 tasks on [FrontierHarness Eval](https://frontierharness.org/) with Kimi K3, run under the benchmark's own scripts on 2026-09-08.
 
-Requires Node.js 22+ and a model provider configured in OpenCode. This release was benchmarked on OpenCode 1.18.27; 1.14.22 is also exercised in CI.
+![Pass rate against cost per pass for Mouse and the twelve published FrontierHarness configurations](evals/runs/2026-09-08-mouse-c/report/chart.svg)
+
+| Harness | Pass rate | Cost per pass | Cache hit, median | Time per task, median |
+|---|---|---|---|---|
+| **Mouse 0.1.0** | **83.3%** (25/30) | **$2.79** | 90.6% | 6m 24s |
+| Codex | 66.7% (20/30) | $3.47 | 88.0% | 6m 43s |
+| Claude Code | 63.3% (19/30) | $18.34 | 67.8% | 9m 38s |
+| DSH Creator | 63.3% (19/30) | $3.28 | 84.3% | 6m 44s |
+| Pi | 60.0% (18/30) | $2.43 | 79.4% | 7m 33s |
+| OpenCode | 50.0% (15/30) | $3.24 | 78.4% | 6m 27s |
+
+The other rows are FrontierHarness's published numbers. All thirteen used the same model, Kimi K3, so the differences come from the harness. Cost per pass is the figure the leaderboard labels "median cost per task": total spend divided by passes.
+
+How the Mouse run was made:
+
+- FrontierHarness's own `run-trials.sh`, unmodified, at eval commit `e837a70`, on a golden checkpoint with a fresh restore for every task. Terminal-Bench through Harbor 0.22.0, DeepSWE through Pier 0.3.1.
+- Harness commit [`315e2b8`](https://github.com/mousedev/mouse-harness/tree/315e2b8) on OpenCode 1.18.27. Kimi K3 served by Fireworks, the same provider as the baselines.
+- All 30 trials valid, no infrastructure failures counted as passes or failures. Three of the passes (`scc-bounded-memory-spilling`, `kv-store-grpc`, `largest-eigenval`) are tasks none of the twelve published configurations solved.
+- Total spend $69.76.
+
+Mouse is not on the leaderboard yet. FrontierHarness adds a harness after reproducing the result in their environment, and the run has been submitted for that in [frontier-harness-eval/eval#12](https://github.com/frontier-harness-eval/eval/issues/12). The complete run, with every trajectory, verifier verdict, retained failed attempt, and the exact command lines, is in [`evals/runs/2026-09-08-mouse-c/`](evals/runs/2026-09-08-mouse-c/); [SUBMISSION.md](evals/runs/2026-09-08-mouse-c/SUBMISSION.md) lists every deviation from the pristine scripts. An earlier self-run on 2026-09-03 scored 24/30 through Harbor alone; it is kept under [`evals/runs/2026-09-03-k3-openrouter/`](evals/runs/2026-09-03-k3-openrouter/).
+
+The rules this project follows when quoting a number are in [docs/evals.md](docs/evals.md). The runbook for reproducing a run is [evals/README.md](evals/README.md).
+
+## Install
+
+Mouse needs Node 22 and the `opencode` binary with a model provider configured. OpenCode 1.18.27 is the version the benchmark ran on; 1.14.22 is also exercised in CI.
+
+From source, today:
+
+```bash
+git clone https://github.com/mousedev/mouse-harness && cd mouse-harness
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm bundle                                    # -> packages/cli/dist/mouse.mjs, one file
+npm i -g opencode-ai@1.18.27                   # OpenCode's postinstall links its binary; do not pass --ignore-scripts
+alias mouse="node $PWD/packages/cli/dist/mouse.mjs"
+```
+
+From npm, once 0.1.1 is published:
 
 ```bash
 npm i -g --ignore-scripts @mousedev/harness
-npm i -g opencode-ai@1.18.27   # OpenCode needs its postinstall to link the binary
-cd my-repo
-mouse run "Add rate limiting to /api/upload and cover it with tests" \
-  --model openrouter/moonshotai/kimi-k3
+npm i -g opencode-ai@1.18.27
 ```
 
-Choose an OpenCode model ID with `--model`, or set it once in your environment:
+Then, in a repository:
 
 ```bash
-export MOUSE_MODEL="openrouter/moonshotai/kimi-k3"
-mouse run "Add rate limiting to /api/upload and cover it with tests"
+mouse doctor --model openrouter/moonshotai/kimi-k3
+mouse run "Add rate limiting to /api/upload and cover it with tests" --model openrouter/moonshotai/kimi-k3
 ```
 
-Mouse detects checks from the repository. No Mouse configuration file is required. Run `mouse doctor` to inspect the installed engine and workspace.
-
-See the [quickstart](docs/quickstart.md) for setup details and [OpenCode compatibility](docs/opencode-compat.md) for version support.
+`doctor` shows where it found OpenCode, whether the provider key is set, and which checks Mouse detected. Any OpenCode model id works with `--model`; `MOUSE_MODEL` in the environment sets it once. The [quickstart](docs/quickstart.md) walks through a first run and what the output means.
 
 ## How it works
 
-Mouse sends your task to OpenCode's build agent with a system prompt, then runs a completion loop in the same session:
+An engine's own loop ends the moment the model's finish reason is not a tool call. On a long task the model says "done" after a plausible first pass, and that single fact costs the run. Mouse sends your task to OpenCode's build agent, then stays in the same session and runs a completion loop after every turn:
 
-1. **Inspect the changes.** Mouse fingerprints the workspace using `git status` and a diff against the starting commit. If nothing changed, it asks the agent to continue the task.
-2. **Run the checks.** When files change, Mouse runs the repository's checks. Failed output goes back to the agent with instructions to fix the failure and preserve the tests.
-3. **Check for deleted tests.** Deleting a test, spec, or workflow file relative to the starting commit blocks the run. Mouse enforces this in code.
-4. **Review the requirements.** After checks pass, the agent reviews every requirement and returns a `MOUSE_AUDIT` block. Each item must be marked `done` with evidence or `todo`. Unfinished items send the agent through another round.
+1. **Inspect the changes.** The workspace is fingerprinted with `git status` and a diff against the starting commit. If nothing changed, the model is told so and asked to continue.
+2. **Run the checks.** When files changed, the repository's checks run. Failing output goes back to the model with the instruction to fix the failure and leave the tests alone.
+3. **Scan for deleted tests.** Deleting a test, spec, or workflow file that existed at the starting commit ends the run as `blocked`. The loop enforces this in code, not in the prompt.
+4. **Audit the requirements.** Once the checks pass, the model is asked to go back over the original task and end its reply with a `MOUSE_AUDIT` block, one line per requirement, each marked `done` with the evidence or `todo`. Any `todo` sends it round again.
 
-A run succeeds when the workspace has changed, no checks fail, and the audit marks every requirement complete. It also stops if progress stalls, a time or step limit is reached, a deletion blocks the run, or you press Ctrl-C.
+A run is `satisfied` when the workspace changed, no check failed, and the audit has no `todo` items. It stops early when progress stalls for a configurable number of rounds, when the wall clock or step budget runs out, when the deletion scan trips, or on Ctrl-C. Every stop reason has its own exit code.
 
-Each run writes a JSONL trace under `~/.mouse/runs/--<path-to-repo>--/`. Run traces are stored outside the repository.
+Two things worth knowing before you trust the number above:
+
+- The loop believes checks, not the model. The `MOUSE_AUDIT` block is the model's declaration that it has nothing left; it is only honoured once the checks agree. In a repository with no detectable checks, `satisfied` rests on the workspace change and that declaration alone, and the trace records it (`checksRun: []`). Declare checks in `.mouse/policy.json` to close the gap.
+- The prompt and the continue prompts are frozen bytes. They are pinned by a golden test that refuses to update to make a refactor pass, because a changed byte invalidates every user's provider cache and changes the benchmark. The same bytes serve the `local` and `bench` profiles.
+
+Each run writes a JSONL trace under `~/.mouse/runs/`, outside the repository. Nothing is written into your repository, and with the default `local` profile nothing is written under `~/.config/opencode` either.
 
 [Completion loop](docs/loop.md) · [Audit protocol](docs/audit-protocol.md) · [Trace format](docs/trace.md)
 
 ### Repository checks
 
-Mouse detects checks for these ecosystems:
+Mouse detects checks from the repository's manifests. No Mouse configuration file is needed.
 
 | Repository | Checks |
 |---|---|
-| JavaScript / TypeScript | Available `package.json` scripts: `build` or `typecheck`, `test`, `lint` |
-| Python | `pytest` |
+| JavaScript / TypeScript | `package.json` scripts: `build` or `typecheck`, `test`, `lint`, run with the package manager the lockfile names |
+| Python | `pytest`, through `uv` or `poetry` when their lockfile is present |
 | Go | `go test ./...` |
 | Rust | `cargo test` |
-| Make | `make test` |
+| Make | `make test`, when nothing else was detected |
 
-To declare your own commands, create a policy file:
-
-```bash
-mouse init
-```
-
-This writes a `.mouse/policy.json` skeleton. Every field has a default. See [configuration](docs/config.md) for the policy format, flags, and environment variables.
-
-## Usage
-
-Read a task from a file and allow up to six hours:
-
-```bash
-mouse run --instruction-file task.md \
-  --model openrouter/moonshotai/kimi-k3 \
-  --max-wall-sec 21600
-```
-
-The step, stall, and other stop conditions still apply.
-
-Run against a specific workspace and return JSON:
-
-```bash
-mouse run "Fix the failing tests" \
-  --workspace /path/to/repo \
-  --model openrouter/moonshotai/kimi-k3 \
-  --format json
-```
+To declare your own, run `mouse init`. It writes a `.mouse/policy.json` skeleton with every default spelled out; [docs/config.md](docs/config.md) has the field reference, the flags, and the environment variables.
 
 ## Commands
 
 | Command | Purpose |
 |---|---|
-| `mouse run` | Run a task from a string or instruction file |
-| `mouse init` | Create a repository policy file |
-| `mouse config` | Generate OpenCode configuration for the local or bench profile |
-| `mouse doctor` | Inspect the engine, model, and workspace |
-| `mouse --version` | Print the installed version |
+| `mouse run` | Run a task, from a string or `--instruction-file` |
+| `mouse doctor` | Report the engine, the model's key, the git state, the detected checks, and the trace directory |
+| `mouse init` | Write a `.mouse/policy.json` skeleton |
+| `mouse config` | Print the OpenCode config Mouse sends (`local`), or write the `bench` profile's `opencode.json` |
+| `mouse --version` | `mouse/<version> opencode/<version>` |
 
 <details>
-<summary>Command reference</summary>
+<summary>Flags</summary>
 
 ```
 mouse run ["task" | --instruction-file F]
@@ -114,7 +138,7 @@ mouse doctor [--model M] [--workspace DIR] [--strict-compat]
 mouse --version
 ```
 
-Supply a task as a string or with `--instruction-file`. Set the model with `--model` or `MOUSE_MODEL`.
+Defaults come from `.mouse/policy.json` or, without one, from the built-in policy: 780 seconds of wall clock, 600 model steps, 3 non-progress rounds, a 600 second idle watchdog per turn. Flags win over the policy file. Without a terminal, `--format json` is the default and OpenCode's event stream passes through on stdout unchanged, which is what benchmark runners parse.
 
 </details>
 
@@ -122,75 +146,57 @@ Supply a task as a string or with `--instruction-file`. Set the model with `--mo
 
 | Code | Meaning |
 |---|---|
-| 0 | Completion conditions satisfied |
-| 1 | Runtime error |
+| 0 | Satisfied: the workspace changed, no check failed, the audit is clean |
+| 1 | Harness error |
 | 2 | Invalid usage |
-| 3 | Stalled or reached the wall-clock or step limit |
-| 4 | Blocked by the deletion scan |
+| 3 | Budget: stalled, wall clock, or step ceiling |
+| 4 | Blocked: a test, spec, or workflow file was deleted |
 | 130 | Interrupted |
 
 ## Permissions
 
-Mouse runs with the permissions of the user who starts it. It does not provide a sandbox. Use a container for untrusted repositories.
+Mouse runs with the permissions of the user who starts it and has no sandbox of its own. Use a container for a repository you do not trust.
 
-| How you run Mouse | Permission behavior |
+| How you run Mouse | What OpenCode enforces |
 |---|---|
-| In a terminal, without `--yolo` | OpenCode enforces the configured build agent permissions, including bash deny patterns from `.mouse/policy.json` |
-| With `--yolo` | Mouse passes `--dangerously-skip-permissions` to OpenCode |
-| Without a terminal, including CI, cron, or a pipe | Mouse automatically enables the same behavior as `--yolo` and prints a warning |
-
-Interactive permission forwarding, policy-based `--auto` approvals, `mouse serve`, and `mouse tui` are planned for Phase 2. They are not available in this release.
+| In a terminal, without `--yolo` | The build agent's permission block, including the `bash` deny patterns from `.mouse/policy.json` |
+| With `--yolo` | Nothing. Mouse passes `--dangerously-skip-permissions` to OpenCode |
+| Without a terminal (CI, cron, a pipe) | The same as `--yolo`, with one warning on stderr. `opencode run` reads no stdin, so a prompt could never be answered |
 
 [Permission policy](docs/policy.md) · [Security](SECURITY.md)
-
-## Benchmarks
-
-Mouse completed 24 of 30 tasks in a single FrontierHarness v1.0 run on September 3, 2026.
-
-| Task set | Completed |
-|---|---|
-| Terminal-Bench | 18 / 21 |
-| DeepSWE | 6 / 9 |
-| **Total** | **24 / 30** |
-
-The run used Kimi K3 through OpenRouter, pinned to Fireworks, with OpenCode 1.18.27 (the adapter installed opencode-ai@latest that day). DeepSWE ran through Harbor; FrontierHarness uses Pier.
-
-For the same model, FrontierHarness publishes scores of 20/30 for Codex and 15/30 for stock OpenCode. These are their results. Their published OpenCode engine version is 1.18.19, so the runs do not provide a controlled comparison.
-
-Three full runs at pinned versions and a same-day stock OpenCode control using the same engine version and model route are pending. The current Mouse result is one run (n=1), and does not establish a consistent lead.
-
-Public benchmark releases include aggregate results and full run directories. Internal evaluation task sets, raw trajectories, and scoring remain private.
-
-See the [evaluation methodology](docs/evals.md) and [runbook](evals/README.md) for reproduction steps and reporting rules.
 
 ## Packages
 
 | Package | Contents | Runtime dependencies |
 |---|---|---|
-| [`@mousedev/harness-core`](packages/core) | Completion loop, MEA audit primitives, agent prompt, ecosystem detection, policy parsing, workspace probe, and trace writer | None |
-| [`@mousedev/harness-opencode`](packages/opencode) | `opencode run` transport, local and bench profiles, compatibility manifest, tool-output pruning plugin, and binary discovery | Core, `@opencode-ai/sdk` |
-| [`@mousedev/harness`](packages/cli) | The `mouse` CLI, published as a single bundled file | Core, OpenCode adapter |
+| [`@mousedev/harness-core`](packages/core) | The completion loop, task-state bookkeeping, the agent prompt, check detection, policy parsing, the workspace probe, the trace writer | None |
+| [`@mousedev/harness-opencode`](packages/opencode) | The `opencode run` transport, the `local` and `bench` profiles, the compat manifest, the tool-output prune plugin, binary discovery | core, `@opencode-ai/sdk` |
+| [`@mousedev/harness`](packages/cli) | The `mouse` command, shipped as one bundled file | core, the OpenCode adapter |
 
-All three packages share a version and are released together. The examples cover using the loop from code, writing a policy file, and running through Harbor. All three example workspaces typecheck in CI.
+The three share a version and release together. [`examples/sdk-run`](examples/sdk-run) drives the loop from your own code in forty lines; [`examples/policy-file`](examples/policy-file) is a complete `.mouse/policy.json`; [`examples/harbor-run`](examples/harbor-run) runs one benchmark task the way FrontierHarness does.
 
-## Project scope
+## What Mouse is and is not
 
-This repository contains the CLI and harness packages. OpenCode is the only engine. Skills live in `.agents/skills/` inside your repository, which OpenCode already reads; Mouse has no plugin or skills marketplace.
+This repository is the harness: the CLI and the two packages under it. OpenCode is the only engine. Skills live in `.agents/skills/` inside your repository, which OpenCode already reads. There is no plugin system or marketplace, and no telemetry, install ping, or update check.
 
-The hosted sandboxes, relay, accounts, billing, push notifications, and mobile app belong to the separate closed-source Mouse product.
+The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay, and a mobile app on top of this loop. That code is separate and closed.
 
-The harness has no telemetry, install pings, or update checks.
+## Roadmap
+
+Not in 0.1, in rough order:
+
+- Interactive permission prompts routed to the terminal, and an `--auto` mode that answers them from the policy file.
+- A deletion scan that also covers co-located test files (`src/foo.test.ts`, `x_test.go`, `conftest.py`) and check configuration.
+- `mouse serve` for driving a run over a socket.
+
+Changes to the loop, the prompt, or the profiles start as an issue; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. It covers the issue-first process and review requirements. Report security issues privately using [SECURITY.md](SECURITY.md).
+Read [CONTRIBUTING.md](CONTRIBUTING.md) first. It is short, and the rules about prompt bytes and the golden snapshot are the ones that matter. Report security issues privately per [SECURITY.md](SECURITY.md). Questions go to [Discussions](https://github.com/mousedev/mouse-harness/discussions) or [SUPPORT.md](SUPPORT.md).
 
-[Documentation](docs/index.md) · [Changelog](CHANGELOG.md)
+[Documentation](docs/index.md) · [Changelog](CHANGELOG.md) · [Blog: Mouse on FrontierHarness](https://www.mouse.dev/blog/mouse-on-frontierharness)
 
 ## License
 
-MIT. See [NOTICE](NOTICE) for attribution.
-
----
-
-Mouse is built on OpenCode. It is an independent project, not affiliated with or endorsed by OpenCode or Anomaly.
+MIT. Attribution for the work Mouse builds on is in [NOTICE](NOTICE). Mouse is an independent project, not affiliated with or endorsed by OpenCode or Anomaly.
