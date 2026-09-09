@@ -1,6 +1,6 @@
 {
   "name": "@mousedev/harness-opencode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenCode engine adapter for the Mouse harness: engine config, the `opencode run` engine, compat manifest, and the tool-output prune plugin.",
   "license": "MIT",
   "repository": {

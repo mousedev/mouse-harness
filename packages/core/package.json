@@ -1,6 +1,6 @@
 {
   "name": "@mousedev/harness-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The Mouse completion loop: probe the workspace, run its checks, scan for tampering, require a structured self-audit. Engine-agnostic, zero dependencies.",
   "license": "MIT",
   "repository": {

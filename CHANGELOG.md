@@ -6,6 +6,8 @@ This file is maintained by the maintainers. Contributors do not need to edit it 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-09
+
 ### Added
 
 - `checksRun` on every `mouse.round` and on the `mouse.done` trace record: the names of the checks the probe ran, so a trace shows whether an outcome rests on passing checks or on the workspace change and the model's audit alone.
@@ -35,5 +37,6 @@ This file is maintained by the maintainers. Contributors do not need to edit it 
 - Harbor and Pier agent adapters (`evals/harbor`, `evals/pier`) and the shared `evals.fh:MouseAgent` import path, with `evals/report.py` for reading a job directory.
 - FrontierHarness runbook for the Runta workflow (`evals/frontierharness`): provisioning, smoke, trials, retry, and scoring, with `fill_trials.py` to fill trial records from the runners' results.
 
-[Unreleased]: https://github.com/mousedev/mouse-harness/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/mousedev/mouse-harness/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/mousedev/mouse-harness/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/mousedev/mouse-harness/releases/tag/v0.1.0

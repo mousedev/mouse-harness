@@ -10,7 +10,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { parseTrace } from "@mousedev/harness-core";
+import { MOUSE_VERSION, parseTrace } from "@mousedev/harness-core";
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { EXIT, exitCodeFor, main, parseRunArgs } from "../src/main.js";
 
@@ -348,6 +348,6 @@ describe("init, config, doctor, version", () => {
   it("version prints the harness line", async () => {
     const out = stdoutSpy();
     expect(await main(["--version", "--opencode-bin", "/nonexistent"])).toBe(0);
-    expect(out.mock.calls[0]?.[0]).toMatch(/^mouse\/0\.1\.0 opencode\/unavailable\n$/);
+    expect(out.mock.calls[0]?.[0]).toBe(`mouse/${MOUSE_VERSION} opencode/unavailable\n`);
   });
 });

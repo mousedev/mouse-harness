@@ -1,6 +1,6 @@
 {
   "name": "@mousedev/harness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mouse runs OpenCode in your repo and does not stop until the repo's own checks pass.",
   "license": "MIT",
   "repository": {
