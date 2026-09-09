@@ -29,3 +29,11 @@ cd ~/fh-eval && for w in 1 2 3 4; do ./detach.sh logs/worker-$w.log logs/worker-
 ```
 Expect the remaining 26 tasks to cost roughly $60-90 at the observed $2-6 per task; raise the
 Fireworks monthly limit accordingly before resuming.
+
+## 2026-09-09 12:45Z: resumed; Runta CLI hangs handled by a host watchdog
+
+Scored so far: 7/8 (meriyah failed on the task timeout). Three drivers spent ~7 h hung inside a
+`runta exec` with no client-side timeout; `~/fh-eval/logs/runta-watchdog.sh` now kills any
+`runta exec`/`runta cp` older than 15 min (their retry paths take over). `logs/finish-run.sh` runs
+up to three sequential resume passes over the full task list for trials flagged `recovery: true` or
+`infra_invalid` before scoring. Details in `~/fh-eval/runs/2026-09-08-mouse-c/NOTES.md`.
