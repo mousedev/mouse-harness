@@ -95,6 +95,21 @@ describe("parseRunArgs", () => {
       parseRunArgs(["x"], { MOUSE_MODEL: "p/m", MOUSE_MAX_WALL_SEC: "30" }, true).maxWallSec,
     ).toBe(30);
   });
+
+  it("skips permissions with --yolo or without a terminal, and warns only in the second case", () => {
+    const tty = parseRunArgs(["x", "--model", "p/m"], {}, true);
+    expect(tty.skipPermissions).toBe(false);
+    expect(tty.warnNoTerminal).toBe(false);
+    const yolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, true);
+    expect(yolo.skipPermissions).toBe(true);
+    expect(yolo.warnNoTerminal).toBe(false);
+    const headless = parseRunArgs(["x", "--model", "p/m"], {}, false);
+    expect(headless.skipPermissions).toBe(true);
+    expect(headless.warnNoTerminal).toBe(true);
+    const headlessYolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, false);
+    expect(headlessYolo.skipPermissions).toBe(true);
+    expect(headlessYolo.warnNoTerminal).toBe(false);
+  });
 });
 
 describe("mouse run", () => {
@@ -105,6 +120,7 @@ describe("mouse run", () => {
     process.env.FAKE_COUNT_FILE = countFile;
     process.env.FAKE_MODE = "solve";
     const out = stdoutSpy();
+    const err = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
     const code = await main([
       "run",
       "Write hello.txt",
@@ -152,6 +168,10 @@ describe("mouse run", () => {
     // Second call continued the same session.
     const args = readFileSync(`${countFile}.args`, "utf8").split("\n");
     expect(args[1]).toContain("--session ses_x");
+    // No terminal under the test runner: permissions are skipped, and the run says so once.
+    expect(args[0]).toContain("--dangerously-skip-permissions");
+    const warnings = err.mock.calls.map((c) => String(c[0])).filter((l) => /no terminal/.test(l));
+    expect(warnings).toHaveLength(1);
   });
 
   it("stalls and exits 3 when the model never edits", async () => {

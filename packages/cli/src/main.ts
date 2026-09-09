@@ -130,6 +130,10 @@ interface RunArgs {
   logFile: string | undefined;
   profile: Profile;
   yolo: boolean;
+  /** Pass `--dangerously-skip-permissions` to OpenCode: `--yolo`, or no terminal to answer a prompt. */
+  skipPermissions: boolean;
+  /** True when permissions are skipped without `--yolo`, so the run should say so. */
+  warnNoTerminal: boolean;
   format: "text" | "json";
   session: string | undefined;
   maxWallSec: number | undefined;
@@ -193,6 +197,10 @@ export function parseRunArgs(
     logFile: values.log ?? env.MOUSE_HARNESS_LOG,
     profile,
     yolo: values.yolo,
+    // `opencode run` reads no stdin, so a permission prompt could never be
+    // answered; without a terminal the only workable mode is to skip them.
+    skipPermissions: values.yolo || !isTTY,
+    warnNoTerminal: !values.yolo && !isTTY,
     format,
     session: values.session,
     maxWallSec: positiveInt(values["max-wall-sec"] ?? env.MOUSE_MAX_WALL_SEC),
@@ -238,12 +246,11 @@ async function runCommand(argv: string[]): Promise<number> {
     const plugin = writePrunePlugin(args.configHome, policy);
     if (plugin) say(`mouse: wrote ${plugin} (context.prune is enabled in .mouse/policy.json)`);
   }
-  if (!args.yolo && !process.stdout.isTTY) {
+  if (args.warnNoTerminal) {
     process.stderr.write(
       "mouse: no terminal to answer permission prompts; running as if --yolo was passed\n",
     );
   }
-  const skipPermissions = args.yolo || !process.stdout.isTTY;
 
   const marker = path.join(tmpdir(), `mouse-${process.pid}.marker`);
   writeFileSync(marker, "");
@@ -281,7 +288,7 @@ async function runCommand(argv: string[]): Promise<number> {
     agent: "build",
     env,
     idleTimeoutMs: budget.idleSec * 1000,
-    skipPermissions,
+    skipPermissions: args.skipPermissions,
     passthrough: (line) => {
       if (args.format === "json") process.stdout.write(`${line}\n`);
     },
