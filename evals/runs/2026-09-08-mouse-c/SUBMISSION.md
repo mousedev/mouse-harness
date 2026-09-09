@@ -10,16 +10,19 @@ Contents of this directory:
 | `report/REPORT.md`, `report/index.html`, `report/chart.svg` | Report built by FH's `build-report.mjs` / `generate-chart.mjs` (unmodified) |
 | `candidate.json`, `run.json` | Scored candidate and run record from `normalize-results.mjs`; `methodology_notes` lists every deviation |
 | `checkpoint-manifest.json` | The golden checkpoint's manifest (harness commit, topology, Harbor/Pier pins, DeepSWE ref, resources, runc workaround) |
-| `trials/<task>/` | Per-task `trial.json`, `completion.json`, `manifest.json`, restore/transport/runner logs, and the Harbor/Pier job directory (agent trajectory, `opencode.txt` event stream, `mouse-harness.jsonl`, verifier output, `model.patch`); `evidence.tar.gz` is the SHA-verified bundle copied out of the runtime |
+| `trials/<task>/` | Per-task `trial.json`, `completion.json`, `manifest.json`, restore/transport/runner logs, and the Harbor/Pier job directory (agent trajectory, `opencode.txt` event stream, `mouse-harness.jsonl`, verifier output, `model.patch`); the SHA-256 of the runtime-side evidence archive is in `transport.log` |
 | `attempts/<task>/<ts>-*/` | Every invalid attempt, retained (nothing deleted) |
 | `logs/` | Driver and worker stdout, task split lists, finisher and watchdog scripts |
 | `eval-repo-local-changes.patch` | The complete diff against frontier-harness-eval/eval e837a70 |
 | `stub-verification.txt` | README step 4 check on a fresh restore of the checkpoint: the runtime only sees `runta-secret-stub` |
 | `NOTES.md` | Incident log |
+| `REDACTIONS.md` | The three redactions applied to this shared copy |
 
-The committed copy in mousedev/mouse-harness omits job directories and evidence tarballs and
-redacts token-shaped strings (several tasks plant fake credentials); the full unmodified run is
-`fh-run-2026-09-08-mouse-c-full.tar.gz` (sha256 1bb0b46cafddafac4b94855bda60b0f51b1a2b8064509f443e1ce514757a99e6).
+Redactions applied to the shared copy are listed in `REDACTIONS.md` (a Fireworks account slug in
+412 error bodies, a local home path, and the omitted duplicate `evidence.tar.gz` archives). The
+committed copy in mousedev/mouse-harness additionally omits job directories and redacts
+token-shaped strings (several tasks plant fake credentials). The full run is
+`fh-run-2026-09-08-mouse-c-full.tar.gz`.
 
 ## Result
 
