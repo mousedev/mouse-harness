@@ -1,0 +1,42 @@
+all drivers exited at 2026-09-09T02:46:20Z
+Mouse: 4/9 passed (44.4%)
+21 trial(s) marked infra_invalid and excluded from scoring
+cost missing for 9 task(s); effective_cost_per_pass uses only known costs
+wrote runs/2026-09-08-mouse-c/candidate.json
+wrote runs/2026-09-08-mouse-c/report/chart.svg
+Mouse: 44.4% pass rate, candidate not ranked
+wrote runs/2026-09-08-mouse-c/report/REPORT.md
+wrote runs/2026-09-08-mouse-c/report/index.html
+share: gh gist create runs/2026-09-08-mouse-c/report/REPORT.md runs/2026-09-08-mouse-c/report/chart.svg --public
+--- summary ---
+datacurve/anko-typed-variable-bindings success reward=1.0 cost=2.6172825
+datacurve/arktype-json-schema-refs-dependencies failure reward=0.0 cost=0.8117553000000001
+datacurve/expr-try-catch-errors success reward=1.0 cost=5.6768082
+datacurve/fastapi-deprecation-response-headers success reward=1.0 cost=5.604587700000001
+datacurve/httpx-multipart-response-parsing success reward=1.0 cost=4.4895933
+datacurve/katex-multicolumn-array-spans failure reward=0.0 cost=0.9715571999999999
+datacurve/meriyah-explicit-resource-declarations failure reward=0.0 cost=1.0397942999999998
+datacurve/python-statemachine-state-data-scoping failure reward=0.0 cost=1.3141335
+datacurve/scc-bounded-memory-spilling infra_invalid reward=0.0 cost=-
+terminal-bench/build-cython-ext failure reward=0.0 cost=0.020199
+terminal-bench/chess-best-move infra_invalid reward=- cost=-
+terminal-bench/code-from-image infra_invalid reward=0.0 cost=-
+terminal-bench/constraints-scheduling infra_invalid reward=0.0 cost=-
+terminal-bench/db-wal-recovery infra_invalid reward=0.0 cost=-
+terminal-bench/dna-insert infra_invalid reward=- cost=-
+terminal-bench/extract-elf infra_invalid reward=0.0 cost=-
+terminal-bench/gcode-to-text infra_invalid reward=0.0 cost=-
+terminal-bench/git-leak-recovery infra_invalid reward=0.0 cost=-
+terminal-bench/kv-store-grpc infra_invalid reward=0.0 cost=-
+terminal-bench/largest-eigenval infra_invalid reward=0.0 cost=-
+terminal-bench/log-summary-date-ranges infra_invalid reward=0.0 cost=-
+terminal-bench/merge-diff-arc-agi-task infra_invalid reward=- cost=-
+terminal-bench/modernize-scientific-stack infra_invalid reward=0.0 cost=-
+terminal-bench/multi-source-data-merger infra_invalid reward=0.0 cost=-
+terminal-bench/openssl-selfsigned-cert infra_invalid reward=0.0 cost=-
+terminal-bench/polyglot-c-py infra_invalid reward=- cost=-
+terminal-bench/regex-log infra_invalid reward=- cost=-
+terminal-bench/sanitize-git-repo infra_invalid reward=0.0 cost=-
+terminal-bench/sqlite-db-truncate infra_invalid reward=0.0 cost=-
+terminal-bench/vulnerable-secret infra_invalid reward=0.0 cost=-
+{"pass_rate":0.4444444444444444,"successful":4,"completed":9,"expected":30,"effective_cost_per_pass":null,"infra_invalid":21}
