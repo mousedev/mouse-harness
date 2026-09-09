@@ -61,7 +61,7 @@ npm i -g opencode-ai@1.18.27                   # OpenCode's postinstall links it
 alias mouse="node $PWD/packages/cli/dist/mouse.mjs"
 ```
 
-From npm, once 0.1.1 is published:
+From npm, once 0.1.1 is published ([docs/releasing.md](docs/releasing.md) has the steps):
 
 ```bash
 npm i -g --ignore-scripts @mousedev/harness

@@ -20,6 +20,10 @@ Mouse runs OpenCode in your repo and does not stop until the repo's own checks p
 
 - [Evals](evals.md): where the benchmark code lives and the rules for making claims; the runbook is [evals/README.md](../evals/README.md).
 
+## Maintaining
+
+- [Releasing](releasing.md): the version bump, the tag, and the one-time manual publish a new package name needs.
+
 ## Packages
 
 - [`@mousedev/harness-core`](../packages/core/README.md)

@@ -126,10 +126,22 @@ jobs:
       # installs nowhere. pnpm 9 does not have its own `--provenance` flag; it
       # hands publishing to `npm publish`, and npm reads the flag from the
       # environment, so NPM_CONFIG_PROVENANCE=true is the reliable form.
+      # A version already on npm (the first publish of a new package name is
+      # manual, see docs/releasing.md) is skipped, so re-running the tag still
+      # smoke-tests the bundle and creates the GitHub release.
       - name: pnpm publish with provenance
         env:
           NPM_CONFIG_PROVENANCE: "true"
-        run: pnpm -r --filter './packages/*' publish --access public --no-git-checks
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          for p in core opencode cli; do
+            name="$(jq -r .name "packages/$p/package.json")"
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version is already on npm; skipping"
+            else
+              pnpm --filter "$name" publish --access public --no-git-checks
+            fi
+          done
 
   github-release:
     name: github release

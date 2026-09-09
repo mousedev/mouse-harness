@@ -8,5 +8,6 @@
   { "title": "Trace format", "path": "trace.md" },
   { "title": "OpenCode compatibility", "path": "opencode-compat.md" },
   { "title": "Evals", "path": "evals.md" },
-  { "title": "Security", "path": "security.md" }
+  { "title": "Security", "path": "security.md" },
+  { "title": "Releasing", "path": "releasing.md" }
 ]
