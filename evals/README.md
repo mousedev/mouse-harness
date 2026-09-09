@@ -62,7 +62,7 @@ PYTHONPATH=. harbor run -p evals/tasks/python-statemachine-state-data-scoping \
 
 Several tasks at once: repeat `-p` per task directory and set `-n` for concurrency.
 
-Agent options (`--ak key=value`): `max_wall_sec` (Harbor default 780, Pier default 4800), `max_steps` (600), `non_progress_rounds` (3), `version` (the OpenCode version installed in the container, default 1.18.27, the version the 2026-09-03 run used). `MOUSE_TOOL_OUTPUT_PRUNE=1` in the host environment turns on the per-result output cap plugin.
+Agent options (`--ak key=value`): `max_wall_sec` (Harbor default 780, Pier default 4800), `max_steps` (600), `non_progress_rounds` (3), `version` (the OpenCode version installed in the container, default 1.18.27, the version both published runs used). `MOUSE_TOOL_OUTPUT_PRUNE=1` in the host environment turns on the per-result output cap plugin.
 
 Control run with stock OpenCode at the pinned version:
 
@@ -79,7 +79,7 @@ PYTHONPATH=. pier run -p evals/tasks/python-statemachine-state-data-scoping \
   --model openrouter/moonshotai/kimi-k3 --jobs-dir evals/jobs -y
 ```
 
-Pier 0.3.1 takes custom agents through `--agent-import-path` and `--jobs-dir`. The Pier adapter was written against Pier's source; verify on the runtime with `pier run --help` before a full sweep. Until a full sweep has run through Pier, DeepSWE results are labelled "Harbor path".
+Pier 0.3.1 takes custom agents through `--agent-import-path` and `--jobs-dir`. The 2026-09-08 run went through this adapter for all nine DeepSWE tasks.
 
 ## Inside a trial
 
@@ -168,11 +168,11 @@ The first prints `evals.harbor.mouse_agent`, the second `evals.pier.mouse_agent`
 
 ## On a cloud VM (comparable, with caveats)
 
-Task images need 15-20 GB of Docker disk and a full run takes hours, so a throwaway VM is the practical host when Runta is not available. The 24/30 run was produced this way: a GCE `e2-standard-8` with a 200 GB disk, Docker, Node 22, and Harbor installed by a startup script, the task images downloaded on the VM, and one Harbor job per task run under `tmux` with the same `MouseAgent` and the same `--ak` options as above. The VM scripts from that run are not part of this repository; the Harbor commands in "Run one task locally" are what they executed. A VM run is comparable to the leaderboard only with the caveats stated in [docs/evals.md](../docs/evals.md): same model route, same engine version, and a same-day stock OpenCode control on the same machine.
+Task images need 15-20 GB of Docker disk and a full run takes hours, so a throwaway VM is the practical host when Runta is not available. The 2026-09-03 self-run (24/30) was produced this way: a GCE `e2-standard-8` with a 200 GB disk, Docker, Node 22, and Harbor installed by a startup script, the task images downloaded on the VM, and one Harbor job per task run under `tmux` with the same `MouseAgent` and the same `--ak` options as above. The VM scripts from that run are not part of this repository; the Harbor commands in "Run one task locally" are what they executed. A VM run is not the benchmark's method; the Runta path above is what the 2026-09-08 result used and what FrontierHarness can reproduce. Quote a VM run as a self-run.
 
 ## Cost
 
-At Kimi K3 list prices ($3/M fresh input, $0.30/M cached, $15/M output) one full 30-task run lands around $100-150. Three runs, as the claim rules require before any comparison, are roughly $300-450.
+The 2026-09-08 run cost $69.76 at Fireworks' frozen kimi-k3-2026-08-20 rates, $2.79 per pass; the DeepSWE tasks account for most of it. Budget $70-150 for a full run depending on how many long tasks run to their wall clock.
 
 ## History: deviations needed before frontier-harness-eval/eval#11
 

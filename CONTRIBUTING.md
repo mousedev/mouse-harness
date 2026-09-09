@@ -5,7 +5,7 @@ Thanks for looking at Mouse. This page is short because the rules are few and th
 ## Before you write code
 
 - Small fixes (a typo, a broken link, an obvious bug with a test) can go straight to a pull request.
-- Anything larger starts with an issue: a new flag, a new policy key, a change to the loop, a new dependency, a change to how the CLI talks to OpenCode. Say what you want to change and why; wait for a maintainer to agree on the shape before spending time on it. This avoids pull requests that cannot be merged because they move the project somewhere it is not going. [README.md](README.md) has a "What Mouse does not do" list; those are not open for reconsideration through a pull request.
+- Anything larger starts with an issue: a new flag, a new policy key, a change to the loop, a new dependency, a change to how the CLI talks to OpenCode. Say what you want to change and why; wait for a maintainer to agree on the shape before spending time on it. This avoids pull requests that cannot be merged because they move the project somewhere it is not going. The [scope section of the README](README.md#what-mouse-is-and-is-not) lists what Mouse deliberately does not do; those are not open for reconsideration through a pull request.
 - You must understand your code. If you used a coding agent to write it, that is fine; you still need to be able to explain every line in review. Pull requests whose author cannot answer questions about them are closed.
 
 ## Setup

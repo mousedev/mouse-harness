@@ -10,4 +10,4 @@ The full statement, including the reporting address and what is out of scope, is
 - Prompt injection and malicious or mistaken model output are out of scope.
 - Mouse makes no network calls of its own and has no telemetry, install ping, or update check.
 
-Report privately to security@mousedev.dev (address to be confirmed before the first public release; a GitHub security advisory on the repository is the fallback).
+Report privately to pete@mouse.dev, or open a GitHub security advisory on `mousedev/mouse-harness`.

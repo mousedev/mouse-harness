@@ -29,7 +29,7 @@ The following are not considered vulnerabilities in Mouse:
 
 ## Reporting
 
-Report security issues privately to security@mousedev.dev. This is the intended address for the project and needs to be confirmed as live before the first public release; until then, open a GitHub security advisory on `mousedev/mouse-harness` as the fallback.
+Report security issues privately to pete@mouse.dev, or open a GitHub security advisory on `mousedev/mouse-harness`. Expect an acknowledgement within three working days.
 
 Include the version (`mouse --version`), the operating system, the command you ran, and the smallest reproduction you have. Please do not open a public issue for something you believe is exploitable.
 

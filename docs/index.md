@@ -30,4 +30,4 @@ Mouse runs OpenCode in your repo and does not stop until the repo's own checks p
 
 - [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [CHANGELOG](../CHANGELOG.md), [LICENSE](../LICENSE), [NOTICE](../NOTICE), [CITATION.cff](../CITATION.cff).
 
-`docs.json` in this directory is the navigation manifest for a future docs site.
+`docs.json` in this directory is the navigation manifest, in reading order, for anything that renders these pages.

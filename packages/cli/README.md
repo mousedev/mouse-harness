@@ -38,6 +38,6 @@ Exit codes: 0 satisfied, 1 error, 2 usage, 3 budget (stalled, wall clock, steps)
 
 Environment: `MOUSE_MODEL`, `MOUSE_OPENCODE_BIN`, `MOUSE_HARNESS_LOG`, `MOUSE_MAX_WALL_SEC`, `MOUSE_HOME`, and the legacy `MOUSE_TOOL_OUTPUT_PRUNE`. Full reference in [docs/config.md](../../docs/config.md); the loop in [docs/loop.md](../../docs/loop.md); the trace in [docs/trace.md](../../docs/trace.md).
 
-Interactive permission prompts, `--auto`, `mouse serve`, and `mouse tui` are Phase 2 and are not in this release.
+Interactive permission prompts, `--auto`, `mouse serve`, and `mouse tui` are not in 0.1; see the roadmap in the [repository README](../../README.md#roadmap).
 
 MIT.

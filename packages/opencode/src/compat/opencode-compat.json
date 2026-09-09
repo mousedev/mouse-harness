@@ -3,9 +3,9 @@
   "supported": ["1.18.27", "1.14.22"],
   "tested": {
     "1.18.27": {
-      "benchmark": "FrontierHarness v1.0, Kimi K3 via OpenRouter pinned to Fireworks",
-      "result": "24/30 (18/21 Terminal-Bench, 6/9 DeepSWE), n=1, 2026-09-03, Harbor path for both suites",
-      "notes": "The version the published number comes from: the adapter installed opencode-ai@latest, which was 1.18.27 on 2026-09-03. This is the version the adapters pin."
+      "benchmark": "FrontierHarness Eval, Kimi K3 via Fireworks, under the benchmark's unmodified run-trials.sh on golden checkpoint fh-golden-mouse-v3",
+      "result": "25/30 (datacurve 8/9, terminal-bench 17/21), run 2026-09-08-mouse-c, harness commit 315e2b8, all 30 trials valid; an earlier self-run through Harbor on 2026-09-03 scored 24/30",
+      "notes": "The version both runs used: the adapter installed opencode-ai@latest, which was 1.18.27 on 2026-09-03, and the adapters have pinned it since."
     },
     "1.14.22": {
       "benchmark": "none",

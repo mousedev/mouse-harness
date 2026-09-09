@@ -110,4 +110,4 @@ env FH_TRANSPORT_ATTEMPTS=48 FH_RETRY_DELAY=5 bash skills/frontierharness-eval/s
 node scripts/normalize-results.mjs --run runs/<id> --label Mouse && node scripts/generate-chart.mjs --run runs/<id> && node scripts/build-report.mjs --run runs/<id>
 ```
 
-Contact: Pete McGrath, pete@mcgrathracing.com. Related: frontier-harness-eval/eval#12.
+Contact: Pete McGrath, pete@mouse.dev. Related: frontier-harness-eval/eval#12.

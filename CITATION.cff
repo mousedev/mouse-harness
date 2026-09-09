@@ -8,6 +8,7 @@ authors:
 version: 0.1.0
 date-released: 2026-09-07
 repository-code: "https://github.com/mousedev/mouse-harness"
+url: "https://www.mouse.dev"
 license: MIT
 abstract: >-
   Mouse runs OpenCode in a repository and does not stop until the repository's
