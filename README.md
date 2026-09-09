@@ -185,8 +185,9 @@ The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay
 
 Not in 0.1, in rough order:
 
+- A deletion scan that also covers co-located test files (`src/foo.test.ts`, `x_test.go`, `conftest.py`) and check configuration ([#1](https://github.com/mousedev/mouse-harness/issues/1)).
+- The no-terminal permission bypass keyed on stdin rather than stdout, so `mouse run | tee` from a shell still gets prompts ([#2](https://github.com/mousedev/mouse-harness/issues/2)).
 - Interactive permission prompts routed to the terminal, and an `--auto` mode that answers them from the policy file.
-- A deletion scan that also covers co-located test files (`src/foo.test.ts`, `x_test.go`, `conftest.py`) and check configuration.
 - `mouse serve` for driving a run over a socket.
 
 Changes to the loop, the prompt, or the profiles start as an issue; see [CONTRIBUTING.md](CONTRIBUTING.md).
