@@ -1,0 +1,22 @@
+# Actions are pinned to commit SHAs in the workflows; this keeps the pins
+# moving. npm updates arrive monthly, grouped, because every dependency is
+# exact-pinned (.npmrc save-exact) and core has none.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dev-dependencies:
+        dependency-type: development
+    ignore:
+      # Pinned on purpose: the config types the golden test is written against.
+      - dependency-name: "@opencode-ai/sdk"

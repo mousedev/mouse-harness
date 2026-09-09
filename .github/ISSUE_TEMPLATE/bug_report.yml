@@ -1,0 +1,30 @@
+name: Bug report
+description: Something Mouse did that it should not have, or did not do that it should.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you ran, what you expected, what you got. Paste the exact `mouse run` command.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: mouse doctor output
+      description: Run `mouse doctor --model <the model you used>` in the workspace and paste it. It lists the Mouse and OpenCode versions, the compat verdict, and the checks Mouse detected.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: trace
+    attributes:
+      label: Trace
+      description: The path is printed on the first line of a run (`~/.mouse/runs/...jsonl`). Paste the `mouse.start`, `mouse.round`, and `mouse.done` or `mouse.error` records. Remove anything private first; traces carry check output.
+      render: json
+  - type: input
+    id: os
+    attributes:
+      label: OS and Node version
+      placeholder: macOS 15.5, Node 22.17.1

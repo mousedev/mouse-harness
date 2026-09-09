@@ -1,0 +1,3 @@
+# Reviews route to the maintainer. Prompt and config bytes are cache- and
+# benchmark-sensitive (see AGENTS.md), so nothing merges without a look.
+* @getchannel

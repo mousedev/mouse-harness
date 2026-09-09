@@ -1,0 +1,25 @@
+name: Change proposal
+description: A new flag, policy key, engine behaviour, or loop change. Agree on the shape here before writing code.
+labels: [proposal]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you cannot do today, with a concrete run or repository where it bit you.
+    validations:
+      required: true
+  - type: textarea
+    id: shape
+    attributes:
+      label: Proposed shape
+      description: Flag names, policy keys, trace records, or loop behaviour. Say whether it touches `prompt.ts`, the continue prompts, or the config profiles; those are frozen for cache and benchmark reasons (see AGENTS.md) and need a before/after eval note.
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This is not one of the things the README lists as out of scope (other engines, a plugin marketplace, telemetry, hosted features).
+          required: true
