@@ -10,6 +10,8 @@ export interface LocateOptions {
   flag?: string;
   env?: NodeJS.ProcessEnv;
   cwd?: string;
+  /** Defaults to `process.platform`; tests pass `win32` to exercise PATHEXT. */
+  platform?: NodeJS.Platform;
 }
 
 export function locateOpencode(o: LocateOptions = {}): string | null {
@@ -17,10 +19,10 @@ export function locateOpencode(o: LocateOptions = {}): string | null {
   if (o.flag) {
     // A path must exist; a bare name is looked up on PATH like any other.
     if (o.flag.includes(path.sep)) return existsSync(o.flag) ? o.flag : null;
-    return whichNamed(o.flag, env) ?? o.flag;
+    return whichNamed(o.flag, env, o.platform) ?? o.flag;
   }
   if (env.MOUSE_OPENCODE_BIN?.trim()) return env.MOUSE_OPENCODE_BIN.trim();
-  const onPath = whichOpencode(env);
+  const onPath = whichNamed("opencode", env, o.platform);
   if (onPath) return onPath;
   let dir = path.resolve(o.cwd ?? process.cwd());
   for (;;) {
@@ -32,15 +34,25 @@ export function locateOpencode(o: LocateOptions = {}): string | null {
   }
 }
 
-function whichOpencode(env: NodeJS.ProcessEnv): string | null {
-  return whichNamed("opencode", env);
-}
-
-function whichNamed(name: string, env: NodeJS.ProcessEnv): string | null {
+/**
+ * PATH lookup. On Windows a bare name resolves through PATHEXT (`opencode.cmd`
+ * is what npm installs there); elsewhere the name is taken as-is.
+ */
+function whichNamed(
+  name: string,
+  env: NodeJS.ProcessEnv,
+  platform = process.platform,
+): string | null {
+  const suffixes =
+    platform === "win32" && !path.extname(name)
+      ? ["", ...(env.PATHEXT ?? ".EXE;.CMD;.BAT").toLowerCase().split(";").filter(Boolean)]
+      : [""];
   for (const dir of (env.PATH ?? "").split(path.delimiter)) {
     if (!dir) continue;
-    const candidate = path.join(dir, name);
-    if (existsSync(candidate)) return candidate;
+    for (const ext of suffixes) {
+      const candidate = path.join(dir, name + ext);
+      if (existsSync(candidate)) return candidate;
+    }
   }
   return null;
 }
