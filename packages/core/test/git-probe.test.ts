@@ -4,13 +4,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { localWorkspace } from "../src/exec.js";
-import {
-  changedPaths,
-  deletedVerificationFiles,
-  dirtyVsBase,
-  fingerprint,
-  headSha,
-} from "../src/git.js";
+import { deletedVerificationFiles, fingerprint, headSha } from "../src/git.js";
 import { makeProbe } from "../src/probe.js";
 
 let dir: string;
@@ -40,16 +34,13 @@ beforeAll(() => {
 afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
 describe("git helpers over a local workspace", () => {
-  it("reads HEAD, detects edits, and lists changed paths", async () => {
+  it("reads HEAD and changes the fingerprint on any edit", async () => {
     const ws = localWorkspace({ root: dir });
     const base = await headSha(ws);
     expect(base).toMatch(/^[0-9a-f]{40}$/);
-    expect(await dirtyVsBase(ws, base)).toBe(false);
     const before = await fingerprint(ws, base);
     writeFileSync(path.join(dir, "new.txt"), "hi");
-    expect(await dirtyVsBase(ws, base)).toBe(true);
     expect(await fingerprint(ws, base)).not.toBe(before);
-    expect(await changedPaths(ws, base)).toEqual(["new.txt"]);
   });
 
   it("flags deleted verification files only", async () => {

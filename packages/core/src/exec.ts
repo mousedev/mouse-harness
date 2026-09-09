@@ -10,15 +10,10 @@ export interface LocalWorkspaceOptions {
   env?: NodeJS.ProcessEnv;
 }
 
-export interface LocalWorkspace extends Workspace {
-  /** Run a program without shell interpolation. */
-  execFile(file: string, argv: string[], opts?: ExecOptions): Promise<ExecResult>;
-}
-
 /** Exit code reported when a command is killed for exceeding its timeout. */
 export const LOCAL_EXEC_TIMEOUT_CODE = 124;
 
-export function localWorkspace(opts: LocalWorkspaceOptions): LocalWorkspace {
+export function localWorkspace(opts: LocalWorkspaceOptions): Workspace {
   const root = opts.root.replace(/\/+$/, "") || "/";
   const resolveCwd = (cwd?: string) => (cwd && existsSync(cwd) ? cwd : root);
 
@@ -62,6 +57,5 @@ export function localWorkspace(opts: LocalWorkspaceOptions): LocalWorkspace {
   return {
     root,
     exec: (cmd, execOpts) => run("bash", ["-lc", cmd], execOpts),
-    execFile: (file, argv, execOpts) => run(file, argv, execOpts),
   };
 }

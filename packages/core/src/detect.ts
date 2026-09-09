@@ -107,18 +107,6 @@ export function checksFromEcosystem(m: EcosystemManifest): DetectedCheck[] {
   return out;
 }
 
-export async function detectPackageManager(ws: Workspace): Promise<PackageManager> {
-  const r = shellPath(ws.root);
-  const res = await ws
-    .exec(
-      `test -f ${r}/pnpm-lock.yaml && echo pnpm || (test -f ${r}/yarn.lock && echo yarn || echo npm)`,
-      { cwd: ws.root, timeoutMs: 10_000 },
-    )
-    .catch(() => ({ stdout: "npm" }));
-  const pm = res.stdout.trim();
-  return pm === "pnpm" || pm === "yarn" ? pm : "npm";
-}
-
 const MANIFEST_FILES = [
   "pyproject.toml",
   "pytest.ini",

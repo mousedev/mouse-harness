@@ -19,11 +19,11 @@ import {
 |---|---|
 | `loop.ts` | `runCompletionLoop(input)`, `buildContinuePrompt(kind, ctx)`, `parseAuditBlock(text)`, `MIN_ROUND_MS`, types `CompletionProbe`, `CompletionBudget`, `CompletionOutcome`, `ContinueKind`, `CompletionRound`, `CompletionResult` |
 | `engine.ts` | `Engine`, `PromptResult`, `PromptOptions`, `TokenTotals` |
-| `workspace.ts`, `exec.ts` | `Workspace`, `localWorkspace({ root })`, `shellPath` |
+| `workspace.ts`, `exec.ts` | `Workspace`, `localWorkspace({ root })`, `shellPath`, `LOCAL_EXEC_TIMEOUT_CODE` |
 | `probe.ts` | `makeProbe({ workspace, runStartSha, marker, signal, checks?, checkTimeoutMs? })` |
 | `policy.ts` | `DEFAULT_POLICY`, `parsePolicy`, `loadPolicy(ws)`, `parseChecks`, `parsePermissions`, `permissionRulesForTool` |
 | `detect.ts` | `detectEcosystem(ws)`, `checksFromEcosystem`, `checksFromPackageJson`, `pytestCommand`, `detectEcosystemCommand` |
-| `git.ts` | `headSha`, `changedPaths`, `dirtyVsBase`, `fingerprint`, `deletedVerificationFiles`, `VERIFICATION_PATH` |
+| `git.ts` | `headSha`, `fingerprint`, `deletedVerificationFiles`, `VERIFICATION_PATH` |
 | `mea.ts` | `initTaskState`, `applyAudit`, `auditFromSandboxProbe`, types `TaskState`, `AuditReport` |
 | `prompt.ts` | `buildAgentPrompt(mode, { profile })`, `AGENT_PROMPT_MAX_CHARS`, types `Mode`, `Profile` |
 | `trace.ts`, `paths.ts` | `openTrace(file)`, `parseTrace(text)`, `TRACE_VERSION`, `mouseHome`, `runsDir`, `traceFile`, `workspaceSlug` |
