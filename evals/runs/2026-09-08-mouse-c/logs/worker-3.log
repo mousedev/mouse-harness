@@ -1,0 +1,64 @@
+
+=== [datacurve/katex-multicolumn-array-spans] restoring fh-golden-mouse-v3
+datacurve/katex-multicolumn-array-spans: runner or evidence collection pending; re-run the same command to resume (runtime: fh-dafe4392a7d7eb1d)
+=== [datacurve/katex-multicolumn-array-spans] failure in 1073s (exit 0)
+
+=== [terminal-bench/build-cython-ext] restoring fh-golden-mouse-v3
+terminal-bench/build-cython-ext: runner or evidence collection pending; re-run the same command to resume (runtime: fh-04bd2787bc5c3337)
+=== [terminal-bench/build-cython-ext] failure in 271s (exit 0)
+
+=== [terminal-bench/db-wal-recovery] restoring fh-golden-mouse-v3
+terminal-bench/db-wal-recovery: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-db-wal-recovery)
+=== [terminal-bench/db-wal-recovery] infra_invalid in 364s (exit 0)
+
+=== [terminal-bench/git-leak-recovery] restoring fh-golden-mouse-v3
+terminal-bench/git-leak-recovery: runner or evidence collection pending; re-run the same command to resume (runtime: fh-9bf8317be8691e48)
+=== [terminal-bench/git-leak-recovery] infra_invalid in 325s (exit 0)
+
+=== [terminal-bench/merge-diff-arc-agi-task] restoring fh-golden-mouse-v3
+terminal-bench/merge-diff-arc-agi-task: runner or evidence collection pending; re-run the same command to resume (runtime: fh-44c77300a695d046)
+=== [terminal-bench/merge-diff-arc-agi-task] infra_invalid in 298s (exit 0)
+
+=== [terminal-bench/polyglot-c-py] restoring fh-golden-mouse-v3
+terminal-bench/polyglot-c-py: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py)
+=== [terminal-bench/polyglot-c-py] infra_invalid in 329s (exit 0)
+
+=== [terminal-bench/vulnerable-secret] restoring fh-golden-mouse-v3
+terminal-bench/vulnerable-secret: runner or evidence collection pending; re-run the same command to resume (runtime: fh-40424b451b5e243c)
+=== [terminal-bench/vulnerable-secret] infra_invalid in 269s (exit 0)
+
+0/7 passed. Evidence in runs/2026-09-08-mouse-c/trials/
+Next: node skills/frontierharness-eval/scripts/normalize-results.mjs --run runs/2026-09-08-mouse-c --label "mouse"
+=== resume 2026-09-09T03:22:40Z
+
+=== [datacurve/katex-multicolumn-array-spans] restoring fh-golden-mouse-v3
+datacurve/katex-multicolumn-array-spans: runner or evidence collection pending; re-run the same command to resume (runtime: fh-dafe4392a7d7eb1d)
+datacurve/katex-multicolumn-array-spans: evidence transfer incomplete; runtime retained for recovery (runtime: fh-dafe4392a7d7eb1d)
+
+=== [terminal-bench/build-cython-ext] restoring fh-golden-mouse-v3
+terminal-bench/build-cython-ext: runner or evidence collection pending; re-run the same command to resume (runtime: fh-04bd2787bc5c3337)
+=== [terminal-bench/build-cython-ext] success in 711s (exit 0)
+
+=== [terminal-bench/db-wal-recovery] restoring fh-golden-mouse-v3
+Terminated: 15
+terminal-bench/db-wal-recovery: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-db-wal-recovery)
+=== [terminal-bench/db-wal-recovery] success in 351s (exit 0)
+
+=== [terminal-bench/git-leak-recovery] restoring fh-golden-mouse-v3
+terminal-bench/git-leak-recovery: runner or evidence collection pending; re-run the same command to resume (runtime: fh-9bf8317be8691e48)
+=== [terminal-bench/git-leak-recovery] success in 312s (exit 0)
+
+=== [terminal-bench/merge-diff-arc-agi-task] restoring fh-golden-mouse-v3
+terminal-bench/merge-diff-arc-agi-task: runner or evidence collection pending; re-run the same command to resume (runtime: fh-44c77300a695d046)
+=== [terminal-bench/merge-diff-arc-agi-task] success in 519s (exit 0)
+
+=== [terminal-bench/polyglot-c-py] restoring fh-golden-mouse-v3
+terminal-bench/polyglot-c-py: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-polyglot-c-py)
+=== [terminal-bench/polyglot-c-py] infra_invalid in 355s (exit 0)
+
+=== [terminal-bench/vulnerable-secret] restoring fh-golden-mouse-v3
+terminal-bench/vulnerable-secret: runner or evidence collection pending; re-run the same command to resume (runtime: fh-40424b451b5e243c)
+=== [terminal-bench/vulnerable-secret] success in 241s (exit 0)
+
+5/7 passed. Evidence in runs/2026-09-08-mouse-c/trials/
+Next: node skills/frontierharness-eval/scripts/normalize-results.mjs --run runs/2026-09-08-mouse-c --label "mouse"

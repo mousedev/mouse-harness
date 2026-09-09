@@ -1,10 +1,25 @@
-# Mouse on FrontierHarness Eval: Runta run 2026-09-08-mouse-c
+# Mouse 0.1.0 on FrontierHarness Eval: Runta run 2026-09-08-mouse-c
 
 Submitted for reproduction and verification per "Evaluate your own harness" in
-frontier-harness-eval/eval. Report, configuration, and logs are in this directory; the full
-evidence bundle (every trial's Harbor/Pier job directory, agent logs, verifier output, and the
-retained attempts) is the tarball `fh-run-2026-09-08-mouse-c-full.tar.gz` (69 MB, sha256
-prefix 6ca54503ce0cd921).
+frontier-harness-eval/eval.
+
+Contents of this directory:
+
+| File | What it is |
+| --- | --- |
+| `report/REPORT.md`, `report/index.html`, `report/chart.svg` | Report built by FH's `build-report.mjs` / `generate-chart.mjs` (unmodified) |
+| `candidate.json`, `run.json` | Scored candidate and run record from `normalize-results.mjs`; `methodology_notes` lists every deviation |
+| `checkpoint-manifest.json` | The golden checkpoint's manifest (harness commit, topology, Harbor/Pier pins, DeepSWE ref, resources, runc workaround) |
+| `trials/<task>/` | Per-task `trial.json`, `completion.json`, `manifest.json`, restore/transport/runner logs, and the Harbor/Pier job directory (agent trajectory, `opencode.txt` event stream, `mouse-harness.jsonl`, verifier output, `model.patch`); `evidence.tar.gz` is the SHA-verified bundle copied out of the runtime |
+| `attempts/<task>/<ts>-*/` | Every invalid attempt, retained (nothing deleted) |
+| `logs/` | Driver and worker stdout, task split lists, finisher and watchdog scripts |
+| `eval-repo-local-changes.patch` | The complete diff against frontier-harness-eval/eval e837a70 |
+| `stub-verification.txt` | README step 4 check on a fresh restore of the checkpoint: the runtime only sees `runta-secret-stub` |
+| `NOTES.md` | Incident log |
+
+The committed copy in mousedev/mouse-harness omits job directories and evidence tarballs and
+redacts token-shaped strings (several tasks plant fake credentials); the full unmodified run is
+`fh-run-2026-09-08-mouse-c-full.tar.gz` (sha256 1bb0b46cafddafac4b94855bda60b0f51b1a2b8064509f443e1ce514757a99e6).
 
 ## Result
 
@@ -16,14 +31,26 @@ prefix 6ca54503ce0cd921).
 | Median cache hit rate | 90.6% (25/25 successes measured) |
 | Mean turns | 57.5 |
 | Median time per successful task | 6m 24s |
-| Termination anomalies | 4 (harness exited non-zero or hit Harbor's agent timeout; verifier still ran and the trial is scored as its verdict) |
+| Termination anomalies | 4, see below; each is scored on its verifier verdict per the accounting rules |
 
-By suite: datacurve 8/9, terminal-bench 17/21. Comparability is `methodology_comparable: false`
+By suite: datacurve 8/9, terminal-bench 17/21. Three tasks passed that no published baseline
+configuration passed (scc-bounded-memory-spilling, kv-store-grpc, largest-eigenval); the report
+flags these as observed results from an unranked run.
+
+Termination anomalies (`completed_with_agent_exception`):
+
+| Task | What happened | Scored as |
+| --- | --- | --- |
+| datacurve/python-statemachine-state-data-scoping | Mouse stopped on its own 4800 s wall budget (exit 3 = budget) after 216 steps; Pier treats non-zero exit as an agent exception; verifier passed | success |
+| datacurve/meriyah-explicit-resource-declarations | Same budget stop, then Pier's 5400 s task timeout (exit 124); verifier failed | failure |
+| terminal-bench/dna-insert | Mouse stopped on its 780 s wall budget (exit 3) after 23 steps; verifier failed | failure |
+| terminal-bench/largest-eigenval | Harbor's 900 s agent timeout fired (Mouse's 780 s budget did not stop the final tool call in time); verifier passed | success | Comparability is `methodology_comparable: false`
 per the current policy (new runs record their egress allowlist; a matched control is FH's call).
 
 ## Configuration
 
-- Harness: Mouse, https://github.com/mousedev/mouse-harness at commit 315e2b8 (public, MIT).
+- Harness: Mouse 0.1.0, https://github.com/mousedev/mouse-harness at commit 315e2b8 (public, MIT).
+  Topology `container-cli` (the default; recorded in the checkpoint manifest).
   Runs OpenCode 1.18.27 under Mouse's completion loop; bench profile; `--yolo --format json`.
   Harbor agent `mouse` (`evals/harbor/mouse_agent.py`), Pier agent `mouse`
   (`evals/pier/mouse_agent.py`), both registered by `install-mouse.sh` (the
@@ -74,8 +101,7 @@ per the current policy (new runs record their egress allowlist; a matched contro
 ```
 git clone https://github.com/mousedev/mouse-harness && git -C mouse-harness checkout 315e2b8
 # in frontier-harness-eval/eval at e837a70, with eval-repo-local-changes.patch applied:
-REPO=https://github.com/mousedev/mouse-harness COMMIT=315e2b8 CHECKPOINT=fh-golden-mouse-v3 \
-  bash mouse-harness/evals/frontierharness/run-runta.sh provision   # wraps provision-golden-checkpoint.sh --install-script install-mouse.sh, 4 vCPU / 8192 MiB / 50 GiB
+
 env FH_TRANSPORT_ATTEMPTS=48 FH_RETRY_DELAY=5 bash skills/frontierharness-eval/scripts/run-trials.sh \
   --checkpoint fh-golden-mouse-v3 --harness mouse --provider fireworks --run-id <id> --out runs
 node scripts/normalize-results.mjs --run runs/<id> --label Mouse && node scripts/generate-chart.mjs --run runs/<id> && node scripts/build-report.mjs --run runs/<id>

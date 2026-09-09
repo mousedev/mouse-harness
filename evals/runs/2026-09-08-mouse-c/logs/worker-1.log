@@ -1,0 +1,59 @@
+[datacurve/httpx-multipart-response-parsing] resuming fh-290823bbe407f7e4
+datacurve/httpx-multipart-response-parsing: runner or evidence collection pending; re-run the same command to resume (runtime: fh-290823bbe407f7e4)
+=== [datacurve/httpx-multipart-response-parsing] success in 2878s (exit 0)
+
+=== [datacurve/python-statemachine-state-data-scoping] restoring fh-golden-mouse-v3
+datacurve/python-statemachine-state-data-scoping: runner or evidence collection pending; re-run the same command to resume (runtime: fh-707aa0305008088b)
+=== [datacurve/python-statemachine-state-data-scoping] failure in 1198s (exit 0)
+
+=== [terminal-bench/code-from-image] restoring fh-golden-mouse-v3
+terminal-bench/code-from-image: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-code-from-image)
+=== [terminal-bench/code-from-image] infra_invalid in 318s (exit 0)
+
+=== [terminal-bench/extract-elf] restoring fh-golden-mouse-v3
+terminal-bench/extract-elf: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-extract-elf)
+=== [terminal-bench/extract-elf] infra_invalid in 194s (exit 0)
+
+=== [terminal-bench/largest-eigenval] restoring fh-golden-mouse-v3
+terminal-bench/largest-eigenval: runner or evidence collection pending; re-run the same command to resume (runtime: fh-9bfa1f98409b39e7)
+=== [terminal-bench/largest-eigenval] infra_invalid in 362s (exit 0)
+
+=== [terminal-bench/multi-source-data-merger] restoring fh-golden-mouse-v3
+terminal-bench/multi-source-data-merger: runner or evidence collection pending; re-run the same command to resume (runtime: fh-794c2641416c76f9)
+=== [terminal-bench/multi-source-data-merger] infra_invalid in 351s (exit 0)
+
+=== [terminal-bench/sanitize-git-repo] restoring fh-golden-mouse-v3
+terminal-bench/sanitize-git-repo: runner or evidence collection pending; re-run the same command to resume (runtime: fh-49d2ea343708df34)
+=== [terminal-bench/sanitize-git-repo] infra_invalid in 299s (exit 0)
+
+1/7 passed. Evidence in runs/2026-09-08-mouse-c/trials/
+Next: node skills/frontierharness-eval/scripts/normalize-results.mjs --run runs/2026-09-08-mouse-c --label "mouse"
+=== resume 2026-09-09T03:22:34Z
+[datacurve/httpx-multipart-response-parsing] keeping first valid attempt
+
+=== [datacurve/python-statemachine-state-data-scoping] restoring fh-golden-mouse-v3
+datacurve/python-statemachine-state-data-scoping: runner or evidence collection pending; re-run the same command to resume (runtime: fh-707aa0305008088b)
+=== [datacurve/python-statemachine-state-data-scoping] success in 5339s (exit 0)
+
+=== [terminal-bench/code-from-image] restoring fh-golden-mouse-v3
+terminal-bench/code-from-image: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-code-from-image)
+terminal-bench/code-from-image: completion could not be confirmed; runtime retained for recovery (runtime: fh-2026-09-08-mouse-c-terminal-bench-code-from-image)
+
+=== [terminal-bench/extract-elf] restoring fh-golden-mouse-v3
+terminal-bench/extract-elf: runner or evidence collection pending; re-run the same command to resume (runtime: fh-2026-09-08-mouse-c-terminal-bench-extract-elf)
+=== [terminal-bench/extract-elf] failure in 793s (exit 0)
+
+=== [terminal-bench/largest-eigenval] restoring fh-golden-mouse-v3
+terminal-bench/largest-eigenval: runner or evidence collection pending; re-run the same command to resume (runtime: fh-9bfa1f98409b39e7)
+=== [terminal-bench/largest-eigenval] success in 1012s (exit 0)
+
+=== [terminal-bench/multi-source-data-merger] restoring fh-golden-mouse-v3
+terminal-bench/multi-source-data-merger: runner or evidence collection pending; re-run the same command to resume (runtime: fh-794c2641416c76f9)
+=== [terminal-bench/multi-source-data-merger] success in 255s (exit 0)
+
+=== [terminal-bench/sanitize-git-repo] restoring fh-golden-mouse-v3
+terminal-bench/sanitize-git-repo: runner or evidence collection pending; re-run the same command to resume (runtime: fh-49d2ea343708df34)
+=== [terminal-bench/sanitize-git-repo] success in 398s (exit 0)
+
+5/7 passed. Evidence in runs/2026-09-08-mouse-c/trials/
+Next: node skills/frontierharness-eval/scripts/normalize-results.mjs --run runs/2026-09-08-mouse-c --label "mouse"

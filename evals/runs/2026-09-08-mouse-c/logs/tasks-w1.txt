@@ -1,0 +1,7 @@
+datacurve/httpx-multipart-response-parsing
+datacurve/python-statemachine-state-data-scoping
+terminal-bench/code-from-image
+terminal-bench/extract-elf
+terminal-bench/largest-eigenval
+terminal-bench/multi-source-data-merger
+terminal-bench/sanitize-git-repo

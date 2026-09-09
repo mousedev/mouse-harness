@@ -1,6 +1,6 @@
 {
   "name": "mouse",
-  "label": "Mouse",
+  "label": "Mouse 0.1.0",
   "model": "fireworks_ai/accounts/fireworks/models/kimi-k3",
   "provider": "fireworks",
   "egress_policy": {
@@ -37,7 +37,13 @@
   "full_coverage": true,
   "comparable": false,
   "methodology_notes": [
-    "The runtime allowlist permits agents and verifiers to download packages and benchmark sources, subject to runner-level isolation. The published baselines did not record their applied egress policy; a matched control run with the same policy and environment is required before claiming comparability."
+    "The runtime allowlist permits agents and verifiers to download packages and benchmark sources, subject to runner-level isolation. The published baselines did not record their applied egress policy; a matched control run with the same policy and environment is required before claiming comparability.",
+    "Harness: Mouse 0.1.0 (mousedev/mouse-harness 315e2b8), a container-CLI agent registered in Harbor and Pier by install-mouse.sh; runs OpenCode 1.18.27 under Mouse's completion loop with max-wall 780 s (Terminal-Bench) / 4800 s (DeepSWE), max-steps 600, non-progress-rounds 3.",
+    "Provider: Kimi K3 via Fireworks (api.fireworks.ai) whose list price equals the frozen kimi-k3-2026-08-20 table; costs are table-priced from harness usage logs, not provider billing.",
+    "Eval scripts: frontier-harness-eval/eval e837a70 with two local changes (eval-repo-local-changes.patch): six extra allowlist hosts (nodejs.org, *.nodejs.org, docker.io, *.docker.io, *.docker.com, deb.nodesource.com) needed by Harbor's nvm-based OpenCode install and Pier's agent image build, and the usage_details.py registry entry \"mouse\": (\"opencode.txt\", _opencode) so first-call cache reads and turns are recovered from Mouse's tee of OpenCode's JSON event stream.",
+    "One shared golden checkpoint (fh-golden-mouse-v3) with the task image pulled after each restore; the published cells used per-task checkpoints.",
+    "Concurrency: the first four tasks ran under one sequential run-trials.sh; the remaining tasks under four concurrent copies of the unmodified script on disjoint --tasks lists (16 of 32 tenant vCPUs), each trial still a fresh 4 vCPU / 8192 MiB / 50 GiB restore.",
+    "Incidents: Fireworks suspended the account (HTTP 412, spending limit) at 2026-09-09T02:05Z; five mid-run attempts recorded as failure show the 412 in their agent logs and were retained under attempts/ and re-run as fresh restores, sixteen later infra_invalid attempts were retried by the driver. Three drivers hung 6.5-7.5 h inside a runta exec with no client timeout; the CLI processes were killed from the host and the trials recovered through the script's own retain/resume path. See NOTES.md."
   ],
   "completed": 30,
   "valid_coverage": 1,

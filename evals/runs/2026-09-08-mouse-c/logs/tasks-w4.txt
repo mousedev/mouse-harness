@@ -1,0 +1,6 @@
+datacurve/meriyah-explicit-resource-declarations
+terminal-bench/chess-best-move
+terminal-bench/dna-insert
+terminal-bench/kv-store-grpc
+terminal-bench/modernize-scientific-stack
+terminal-bench/regex-log

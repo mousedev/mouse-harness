@@ -1,0 +1,7 @@
+datacurve/katex-multicolumn-array-spans
+terminal-bench/build-cython-ext
+terminal-bench/db-wal-recovery
+terminal-bench/git-leak-recovery
+terminal-bench/merge-diff-arc-agi-task
+terminal-bench/polyglot-c-py
+terminal-bench/vulnerable-secret

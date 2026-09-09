@@ -1,6 +1,6 @@
-# Mouse on FrontierHarness Eval
+# Mouse 0.1.0 on FrontierHarness Eval
 
-![Pass rate versus median cost per task, Mouse against the FrontierHarness Eval baselines](chart.svg)
+![Pass rate versus median cost per task, Mouse 0.1.0 against the FrontierHarness Eval baselines](chart.svg)
 
 ## Result
 
@@ -32,7 +32,7 @@
 | 10 | Exo Harness | 53.3% | $1.05 | 70.3% | 6m 17s |
 | 11 | Hermes | 50.0% | $2.90 | 85.9% | 6m 58s |
 | 12 | OpenCode | 50.0% | $3.24 | 78.4% | 6m 27s |
-| — | **Mouse** | 83.3% | $2.79 | 90.6% | 6m 24s |
+| — | **Mouse 0.1.0** | 83.3% | $2.79 | 90.6% | 6m 24s |
 
 ## Reproducibility
 
