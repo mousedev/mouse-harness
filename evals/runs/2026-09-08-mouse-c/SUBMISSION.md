@@ -22,7 +22,7 @@ Redactions applied to the shared copy are listed in `REDACTIONS.md` (a Fireworks
 412 error bodies, a local home path, and the omitted duplicate `evidence.tar.gz` archives). The
 committed copy in mousedev/mouse-harness additionally omits job directories and redacts
 token-shaped strings (several tasks plant fake credentials). The full run is
-`fh-run-2026-09-08-mouse-c-full.tar.gz`.
+`fh-run-2026-09-08-mouse-c-full.tar.gz` (SHA-256 5e8117e2e7977c9b031bfac7ecfc9ef1a581fb8064388e1c55e2829f970d1708).
 
 ## Result
 
