@@ -42,8 +42,8 @@ SOFTWARE.
 LongHorizon-Harness
 arXiv:2608.01964
 
-The Manage, Execute, Audit primitives in `packages/core/src/mea.ts` (task
-state kept outside the executor, advanced only by environment-verified
-evidence, with a bounded subtask contract per round) follow the design
-described in the LongHorizon-Harness paper. The implementation is Mouse's own;
+The task-state bookkeeping in `packages/core/src/mea.ts` (requirement records
+kept outside the model and advanced only on environment-verified evidence)
+follows the Manage, Execute, Audit design described in the LongHorizon-Harness
+paper. The implementation is Mouse's own;
 the paper is cited as the source of the approach.
