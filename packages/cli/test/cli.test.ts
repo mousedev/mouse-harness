@@ -247,6 +247,8 @@ describe("mouse run", () => {
     vi.spyOn(process.stderr, "write").mockImplementation(() => true);
     expect(await main(["run"])).toBe(EXIT.usage);
     expect(await main(["bogus"])).toBe(EXIT.usage);
+    expect(await main(["run", "x", "--model", "p/m", "--no-such-flag"])).toBe(EXIT.usage);
+    expect(await main(["run", "x", "--model", "p/m", "--max-steps", "5abc"])).toBe(EXIT.usage);
     expect(
       await main([
         "run",
@@ -296,6 +298,29 @@ describe("init, config, doctor, version", () => {
       ]),
     ).toBe(0);
     expect(existsSync(path.join(outDir, "opencode.json"))).toBe(true);
+  });
+
+  it("refuses to overwrite an opencode.json it cannot parse", async () => {
+    const err = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+    stdoutSpy();
+    const outDir = path.join(dir, "cfg-broken");
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(path.join(outDir, "opencode.json"), "{ not json");
+    expect(
+      await main([
+        "config",
+        "--profile",
+        "bench",
+        "--model",
+        "p/m",
+        "--out",
+        outDir,
+        "--workspace",
+        dir,
+      ]),
+    ).toBe(EXIT.error);
+    expect(readFileSync(path.join(outDir, "opencode.json"), "utf8")).toBe("{ not json");
+    expect(err.mock.calls.map((c) => String(c[0])).join("")).toMatch(/not valid JSON/);
   });
 
   it("doctor reports opencode, checks, and the trace directory", async () => {

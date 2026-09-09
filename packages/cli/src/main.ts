@@ -14,9 +14,10 @@
  * `--format json` OpenCode's event stream is passed through on stdout
  * unchanged, which is what benchmark runners parse.
  */
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import {
   buildAgentPrompt,
@@ -66,8 +67,14 @@ export function exitCodeFor(outcome: CompletionOutcome): number {
       return EXIT.blocked;
     case "aborted":
       return EXIT.aborted;
-    default:
+    case "stalled":
+    case "wall_clock":
+    case "step_budget":
       return EXIT.budget;
+    default: {
+      const unhandled: never = outcome;
+      throw new Error(`unhandled outcome ${String(unhandled)}`);
+    }
   }
 }
 
@@ -94,10 +101,19 @@ export function writeBenchConfig(
   mkdirSync(configHome, { recursive: true });
   const file = path.join(configHome, "opencode.json");
   let existing: Record<string, unknown> = {};
+  let raw: string | null = null;
   try {
-    existing = JSON.parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+    raw = readFileSync(file, "utf8");
   } catch {
-    existing = {};
+    raw = null; // no file yet; start from an empty config
+  }
+  if (raw !== null) {
+    try {
+      existing = JSON.parse(raw) as Record<string, unknown>;
+    } catch (e) {
+      // Overwriting would destroy whatever the user or a runner put there.
+      throw new Error(`${file} is not valid JSON (${(e as Error).message}); fix or move it first`);
+    }
   }
   const config = mergeConfig(
     existing,
@@ -145,9 +161,8 @@ interface RunArgs {
 
 function positiveInt(v: string | undefined): number | undefined {
   if (v === undefined) return undefined;
-  const n = Number.parseInt(v, 10);
-  if (!Number.isFinite(n) || n <= 0) fail(`expected a positive integer, got ${v}`);
-  return n;
+  if (!/^\d+$/.test(v) || Number(v) <= 0) fail(`expected a positive integer, got ${v}`);
+  return Number(v);
 }
 
 export function parseRunArgs(
@@ -369,6 +384,7 @@ async function runCommand(argv: string[]): Promise<number> {
   } finally {
     process.off("SIGTERM", onSignal);
     process.off("SIGINT", onSignal);
+    rmSync(marker, { force: true });
   }
   return exitCode;
 }
@@ -554,20 +570,35 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<numb
         return EXIT.usage;
     }
   } catch (e) {
-    if (e instanceof UsageError || (e instanceof TypeError && /option|argument/i.test(e.message))) {
+    if (e instanceof UsageError || isParseArgsError(e)) {
       process.stderr.write(`mouse: ${e.message}\n`);
       return EXIT.usage;
+    }
+    if (e instanceof Error) {
+      process.stderr.write(`mouse: ${e.message}\n`);
+      return EXIT.error;
     }
     throw e;
   }
 }
 
-const invokedDirectly =
-  typeof process.argv[1] === "string" &&
-  (process.argv[1].endsWith("mouse.mjs") ||
-    process.argv[1].endsWith("/mouse") ||
-    process.argv[1].endsWith("cli/src/main.ts"));
-if (invokedDirectly) {
+/** `node:util` parseArgs rejects bad argv with a coded TypeError. */
+function isParseArgsError(e: unknown): e is Error {
+  return e instanceof Error && String((e as { code?: unknown }).code).startsWith("ERR_PARSE_ARGS_");
+}
+
+/** True when this module is the script Node was started with (the bundle, its bin link, or the source). */
+function invokedDirectly(): boolean {
+  const entry = process.argv[1];
+  if (typeof entry !== "string") return false;
+  try {
+    return realpathSync(entry) === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+}
+
+if (invokedDirectly()) {
   main().then(
     (code) => process.exit(code),
     (e) => {
