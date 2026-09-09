@@ -8,8 +8,8 @@ describe("buildAgentPrompt", () => {
     expect(p!.length).toBeLessThanOrEqual(AGENT_PROMPT_MAX_CHARS);
   });
 
-  // The two sentences that separate the 20-pass harnesses from the 15-pass
-  // one: keep going, and run the tests before saying so.
+  // The prompt asks for two things the loop then verifies: keep working until
+  // the task is done, and run the tests before saying so.
   it("carries persistence and verification, not diff minimality", () => {
     const p = buildAgentPrompt("build")!;
     expect(p).toMatch(/Persist until the task is fully handled/);
