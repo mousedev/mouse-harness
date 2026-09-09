@@ -28,6 +28,7 @@ import {
 | `prompt.ts` | `buildAgentPrompt(mode, { profile })`, `AGENT_PROMPT_MAX_CHARS`, types `Mode`, `Profile` |
 | `trace.ts`, `paths.ts` | `openTrace(file)`, `parseTrace(text)`, `TRACE_VERSION`, `mouseHome`, `runsDir`, `traceFile`, `workspaceSlug` |
 | `events.ts` | `LoopEvent` |
+| `version.ts` | `MOUSE_VERSION` |
 | `failures.ts` | `classifyInferenceFailure(message, raw?)` |
 
 A complete example that drives the loop from your own code is [`examples/sdk-run`](../../examples/sdk-run/src/run.ts). The loop's behaviour, step by step, is in [docs/loop.md](../../docs/loop.md); the policy file in [docs/config.md](../../docs/config.md).

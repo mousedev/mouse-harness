@@ -11,7 +11,7 @@ import {
   buildOpencodeConfig, mergeConfig, MODE_PERMISSIONS, DISABLED_TOOLS,
   OpencodeRunEngine, locateOpencode, opencodeVersion,
   loadCompatManifest, checkCompat, parseOpencodeVersion,
-  prunePluginSource, PRUNE_PLUGIN_FILENAME, MOUSE_VERSION, versionLine,
+  prunePluginSource, PRUNE_PLUGIN_FILENAME, versionLine,
 } from "@mousedev/harness-opencode";
 ```
 

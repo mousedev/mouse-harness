@@ -11,4 +11,5 @@ export * from "./policy.js";
 export * from "./probe.js";
 export * from "./prompt.js";
 export * from "./trace.js";
+export * from "./version.js";
 export * from "./workspace.js";

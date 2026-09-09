@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PACKAGES = ["core", "opencode", "cli"].map((p) => `packages/${p}/package.json`);
-const VERSION_TS = "packages/opencode/src/version.ts";
+const VERSION_TS = "packages/core/src/version.ts";
 const CHANGELOG = "CHANGELOG.md";
 const SEMVER = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
 

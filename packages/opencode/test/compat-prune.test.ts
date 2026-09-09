@@ -1,8 +1,8 @@
-import { DEFAULT_POLICY } from "@mousedev/harness-core";
+import { DEFAULT_POLICY, MOUSE_VERSION } from "@mousedev/harness-core";
 import { describe, expect, it } from "vitest";
 import { checkCompat, loadCompatManifest, parseOpencodeVersion } from "../src/compat.js";
 import { prunePluginSource } from "../src/plugins/prune.js";
-import { MOUSE_VERSION, versionLine } from "../src/version.js";
+import { versionLine } from "../src/version.js";
 
 describe("compat", () => {
   it("ships a manifest whose supported versions are tested", () => {
