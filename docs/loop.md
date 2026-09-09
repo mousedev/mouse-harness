@@ -51,6 +51,10 @@ Because the audit footer is only part of the continue prompts, a run that finish
 
 A harness error (OpenCode missing, a turn that produced no steps after three attempts) exits 1 and writes a `mouse.error` record.
 
+### When a repository has no checks
+
+`satisfied` requires zero failing checks, and a repository with no detectable or declared checks has zero failing checks by definition. In that case the outcome rests on two facts: the workspace changed, and the model's `MOUSE_AUDIT` block listed no `todo` items. The loop cannot verify more than it was given. `mouse doctor` reports `checks: none detected` for such a repository, and every `mouse.round` and `mouse.done` record carries `checksRun` so a trace shows which checks, if any, backed the outcome. Declare checks in `.mouse/policy.json` to close the gap.
+
 ## The engine's part
 
 `OpencodeRunEngine` (`packages/opencode/src/run-engine.ts`) spawns one `opencode run` process per turn and continues the session with `--session <id>` after the first. It counts `step_finish` events, sums tokens and cost, and keeps the last `text` parts as the assistant text. A turn that prints nothing for `idleTimeoutSec` (default 600) is killed; a turn that dies with a transient provider error, or exits non-zero, before its first step is retried on the same session with backoff (2, 4, 8 seconds, capped at 30), up to three attempts. A turn that did real work is accepted even if the process exited non-zero. Each attempt is a `mouse.attempt` trace record.

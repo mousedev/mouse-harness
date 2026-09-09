@@ -338,6 +338,7 @@ async function runCommand(argv: string[]): Promise<number> {
       type: "mouse.done",
       outcome: result.outcome,
       rounds: result.rounds.length,
+      checksRun: result.rounds.at(-1)?.checksRun ?? [],
       totalSteps: result.totalSteps,
       tokens: engine.tokens,
       elapsedMs: Date.now() - startedAt,

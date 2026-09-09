@@ -130,6 +130,8 @@ describe("mouse run", () => {
     expect(types.at(-1)).toBe("mouse.done");
     const done = records.at(-1)!;
     expect(done.outcome).toBe("satisfied");
+    // The outcome names the check that backed it.
+    expect(done.checksRun).toEqual(["test"]);
     expect((done.tokens as { cost: number }).cost).toBeCloseTo(1.0);
     // The check ran and passed once the file existed.
     expect(

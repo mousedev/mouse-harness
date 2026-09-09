@@ -59,6 +59,8 @@ export type ContinueKind = "fix" | "nochange" | "audit";
 export interface CompletionRound {
   round: number;
   kind: ContinueKind;
+  /** Names of every check the probe ran this round; empty when the workspace was unchanged or the repo declares none. */
+  checksRun: string[];
   checksFailed: string[];
   changed: boolean;
   /** Parsed from the model's MOUSE_AUDIT block before this round, if any. */
@@ -108,8 +110,11 @@ export interface RunCompletionLoopInput {
 
 /** A round needs at least this long to be worth starting. */
 export const MIN_ROUND_MS = 60_000;
+/** The `escalate` callback is consulted once this many consecutive rounds made no progress. */
+export const ESCALATE_AFTER_NON_PROGRESS_ROUNDS = 2;
 const INSTRUCTION_MAX_CHARS = 6_000;
-const EXCERPT_MAX_CHARS = 1_500;
+/** Check output kept for the model and the trace; the tail is what carries the failure. */
+export const EXCERPT_MAX_CHARS = 1_500;
 
 export const AUDIT_OPEN = "MOUSE_AUDIT";
 export const AUDIT_CLOSE = "END_MOUSE_AUDIT";
@@ -266,7 +271,7 @@ export async function runCompletionLoop(input: RunCompletionLoopInput): Promise<
     if (budget.maxWallMs - elapsed < (budget.minRoundMs ?? MIN_ROUND_MS))
       return finish("wall_clock");
 
-    if (nonProgress >= 2 && input.escalate) {
+    if (nonProgress >= ESCALATE_AFTER_NON_PROGRESS_ROUNDS && input.escalate) {
       const next = await input.escalate(nonProgress);
       if (next) model = next;
     }
@@ -290,6 +295,7 @@ export async function runCompletionLoop(input: RunCompletionLoopInput): Promise<
     const record: CompletionRound = {
       round,
       kind,
+      checksRun: checks.map((c) => c.name),
       checksFailed: failed.map((c) => c.name),
       changed,
       audit: modelAudit,

@@ -39,6 +39,8 @@ export type TraceRecord =
       type: "mouse.done";
       outcome: CompletionOutcome;
       rounds: number;
+      /** Names of the checks the final round ran; empty means the outcome rests on the workspace change and the model's audit alone. */
+      checksRun: string[];
       totalSteps: number;
       tokens: TokenTotals;
       elapsedMs: number;

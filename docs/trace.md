@@ -22,8 +22,8 @@ Every record carries `ts` (epoch milliseconds, added at write time) and `type`. 
 | `mouse.attempt` | by the engine, per `opencode run` process | `attempt` (1-based within the turn), `steps`, `exitCode` (`null` if killed), `timedOut`, `transientError`, `error` (first 500 characters of an OpenCode `error` event, or `null`), `sessionId` |
 | `mouse.turn` | after the first turn | `steps` (engine total), `tokens`, `sessionId` |
 | `mouse.event` | per loop event | `event`: `{type:"check_status", name, conclusion:"success"|"failure", detail?, retryable?}` or `{type:"notice", message, level?}` |
-| `mouse.round` | after each continue turn | the `CompletionRound`: `round`, `kind` (`fix`, `nochange`, `audit`), `checksFailed` (names), `changed`, `audit` (the parsed model block before this round, or `null`), `progressed`, `stepsAfter`, `elapsedMs`, `model` |
-| `mouse.done` | when the loop returns | `outcome`, `rounds` (count), `totalSteps`, `tokens`, `elapsedMs`, `sessionId` |
+| `mouse.round` | after each continue turn | the `CompletionRound`: `round`, `kind` (`fix`, `nochange`, `audit`), `checksRun` (names of every check the probe ran; empty when nothing changed or the repo declares none), `checksFailed` (names), `changed`, `audit` (the parsed model block before this round, or `null`), `progressed`, `stepsAfter`, `elapsedMs`, `model` |
+| `mouse.done` | when the loop returns | `outcome`, `rounds` (count), `checksRun` (the final round's check names; an empty list with `outcome: satisfied` means the run rests on the workspace change and the model's audit alone), `totalSteps`, `tokens`, `elapsedMs`, `sessionId` |
 | `mouse.error` | when the harness itself fails | `error`, `steps`, `elapsedMs` |
 
 `tokens` is `{input, output, cacheRead, cacheWrite, cost}` summed from OpenCode's `step_finish` events; `cost` is USD as reported by OpenCode and 0 when it does not price the model.
@@ -38,10 +38,10 @@ A trace ends with exactly one of `mouse.done` or `mouse.error`. The benchmark ad
 {"ts":1788000031001,"type":"mouse.turn","steps":41,"tokens":{"input":120000,"output":9000,"cacheRead":80000,"cacheWrite":0,"cost":0.61},"sessionId":"ses_01"}
 {"ts":1788000040000,"type":"mouse.event","event":{"type":"check_status","name":"test","conclusion":"failure","detail":"FAIL test/cli.test.ts ...","retryable":true}}
 {"ts":1788000100000,"type":"mouse.attempt","attempt":1,"steps":17,"exitCode":0,"timedOut":false,"transientError":false,"error":null,"sessionId":"ses_01"}
-{"ts":1788000100001,"type":"mouse.round","round":1,"kind":"fix","checksFailed":["test"],"changed":true,"audit":null,"progressed":true,"stepsAfter":58,"elapsedMs":100001,"model":"anthropic/claude-sonnet-5"}
+{"ts":1788000100001,"type":"mouse.round","round":1,"kind":"fix","checksRun":["test"],"checksFailed":["test"],"changed":true,"audit":null,"progressed":true,"stepsAfter":58,"elapsedMs":100001,"model":"anthropic/claude-sonnet-5"}
 {"ts":1788000110000,"type":"mouse.event","event":{"type":"check_status","name":"test","conclusion":"success"}}
-{"ts":1788000130000,"type":"mouse.round","round":2,"kind":"audit","checksFailed":[],"changed":true,"audit":null,"progressed":false,"stepsAfter":61,"elapsedMs":130001,"model":"anthropic/claude-sonnet-5"}
-{"ts":1788000140000,"type":"mouse.done","outcome":"satisfied","rounds":2,"totalSteps":61,"tokens":{"input":150000,"output":11000,"cacheRead":110000,"cacheWrite":0,"cost":0.87},"elapsedMs":140001,"sessionId":"ses_01"}
+{"ts":1788000130000,"type":"mouse.round","round":2,"kind":"audit","checksRun":["test"],"checksFailed":[],"changed":true,"audit":null,"progressed":false,"stepsAfter":61,"elapsedMs":130001,"model":"anthropic/claude-sonnet-5"}
+{"ts":1788000140000,"type":"mouse.done","outcome":"satisfied","rounds":2,"checksRun":["test"],"totalSteps":61,"tokens":{"input":150000,"output":11000,"cacheRead":110000,"cacheWrite":0,"cost":0.87},"elapsedMs":140001,"sessionId":"ses_01"}
 ```
 
 ## Reading traces
@@ -50,4 +50,4 @@ A trace ends with exactly one of `mouse.done` or `mouse.error`. The benchmark ad
 
 ## Not in this release
 
-The plan reserves a `mouse.permission` record for interactive permission decisions. It is Phase 2 and no code writes it yet.
+A `mouse.permission` record for interactive permission decisions is reserved for a later release. No code writes it yet.

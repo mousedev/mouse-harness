@@ -55,6 +55,13 @@ interface RunAttempt {
 
 const DEFAULT_IDLE_MS = 600_000;
 const DEFAULT_ATTEMPTS = 3;
+const RETRY_BASE_MS = 2_000;
+const RETRY_MAX_MS = 30_000;
+
+/** Backoff between empty-turn retries: 2 s, 4 s, 8 s, capped at 30 s. */
+function retryDelayMs(attempt: number): number {
+  return Math.min(RETRY_MAX_MS, RETRY_BASE_MS * 2 ** (attempt - 1));
+}
 
 function num(v: unknown): number {
   return typeof v === "number" && Number.isFinite(v) ? v : 0;
@@ -115,7 +122,7 @@ export class OpencodeRunEngine implements Engine {
           `opencode run produced no steps after ${max} attempts${r.errorMessage ? `: ${r.errorMessage}` : ""}`,
         );
       }
-      await new Promise((res) => setTimeout(res, Math.min(30_000, 2_000 * 2 ** (attempt - 1))));
+      await new Promise((res) => setTimeout(res, retryDelayMs(attempt)));
     }
     return { steps, text: this.lastText };
   }

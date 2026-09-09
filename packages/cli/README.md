@@ -34,7 +34,7 @@ mouse --version
 | `doctor` | Report the Mouse version, the `opencode` binary and version, the compat verdict, the provider key for `--model`, the git state, the detected or declared checks, and the trace directory. Exits 1 if `opencode` is missing; `--strict-compat` also exits 1 on an untested version. |
 | `--version` | `mouse/<version> opencode/<version or unavailable>`. |
 
-Exit codes: 0 satisfied, 1 error, 2 usage, 3 budget (stalled, wall clock, steps), 4 blocked, 130 aborted.
+Exit codes: 0 satisfied, 1 error, 2 usage, 3 budget (stalled, wall clock, steps), 4 blocked, 130 aborted. In a repository with no detectable or declared checks, exit 0 means the workspace changed and the model reported every requirement done; the trace's `checksRun` field records that no check backed it.
 
 Environment: `MOUSE_MODEL`, `MOUSE_OPENCODE_BIN`, `MOUSE_HARNESS_LOG`, `MOUSE_MAX_WALL_SEC`, `MOUSE_HOME`, and the legacy `MOUSE_TOOL_OUTPUT_PRUNE`. Full reference in [docs/config.md](../../docs/config.md); the loop in [docs/loop.md](../../docs/loop.md); the trace in [docs/trace.md](../../docs/trace.md).
 
