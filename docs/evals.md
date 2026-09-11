@@ -5,7 +5,7 @@ The benchmark code lives under `evals/`; [evals/README.md](../evals/README.md) i
 - `evals/harbor/`: the Harbor agent (`MouseAgent`, a subclass of Harbor's OpenCode adapter) plus model-route normalisation and trace parsing. Terminal-Bench tasks run through it.
 - `evals/pier/`: the same agent on Pier's base classes, for DeepSWE tasks with `allow_internet = false`.
 - `evals/fh/`: the import shim `evals.fh:MouseAgent` that resolves to whichever runner is importing it.
-- `evals/frontierharness/`: the Runta runbook (`run-runta.sh`), `fill_trials.py`, and the task lists.
+- `evals/frontierharness/`: the Runta runbook (`run-runta.sh`), `fill_trials.py`, `chart.mjs` (the README chart, Mouse plotted against the published baselines), and the task lists.
 - `evals/report.py`: summarise a Harbor job directory.
 - `install-mouse.sh` at the repository root: the FrontierHarness `--install-script`.
 

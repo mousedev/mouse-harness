@@ -7,7 +7,7 @@ Contents of this directory:
 
 | File | What it is |
 | --- | --- |
-| `report/REPORT.md`, `report/index.html`, `report/chart.svg` | Report built by FH's `build-report.mjs` / `generate-chart.mjs` (unmodified) |
+| `report/REPORT.md`, `report/index.html`, `report/chart.svg` | Report built by FH's `build-report.mjs` / `generate-chart.mjs` (unmodified). In the mousedev/mouse-harness copy, `chart.svg` and the chart inlined in `index.html` were regenerated on 2026-09-11 by `evals/frontierharness/chart.mjs`, which plots Mouse (FH's script leaves a `comparable: false` candidate off the plot) and labels the x axis as cost per pass; FH's original is in git history |
 | `candidate.json`, `run.json` | Scored candidate and run record from `normalize-results.mjs`; `methodology_notes` lists every deviation |
 | `checkpoint-manifest.json` | The golden checkpoint's manifest (harness commit, topology, Harbor/Pier pins, DeepSWE ref, resources, runc workaround) |
 | `trials/<task>/` | Per-task `trial.json`, `completion.json`, `manifest.json`, restore/transport/runner logs, and the Harbor/Pier job directory (agent trajectory, `opencode.txt` event stream, `mouse-harness.jsonl`, verifier output, `model.patch`); the SHA-256 of the runtime-side evidence archive is in `transport.log` |

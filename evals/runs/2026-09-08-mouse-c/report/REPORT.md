@@ -1,6 +1,6 @@
 # Mouse 0.1.0 on FrontierHarness Eval
 
-![Pass rate versus median cost per task, Mouse 0.1.0 against the FrontierHarness Eval baselines](chart.svg)
+![Pass rate versus cost per pass, Mouse 0.1.0 against the FrontierHarness Eval baselines](chart.svg)
 
 ## Result
 
