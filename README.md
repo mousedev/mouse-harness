@@ -8,6 +8,7 @@
 <p align="center">
   An open source harness for long-running coding agents.<br>
   Mouse is built on OpenCode.
+  www.mouse.dev
 </p>
 
 <p align="center">
