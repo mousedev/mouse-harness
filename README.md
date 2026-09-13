@@ -167,9 +167,9 @@ The three share a version and release together. [`examples/sdk-run`](examples/sd
 
 ## What Mouse is and is not
 
-This repository is the harness: the CLI and the two packages under it. OpenCode is the only engine. Skills live in `.agents/skills/` inside your repository, which OpenCode already reads. There is no plugin system or marketplace, and no telemetry, install ping, or update check.
+This repository is just for the harness. Skills live in `.agents/skills/` inside your repository. There is no plugin system or marketplace, and no telemetry, install ping, or update check.
 
-The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay, and a mobile app on top of this loop. That code is separate and closed.
+The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay, and a mobile app on top of this loop. That code is separate and closed source.
 
 ## Roadmap
 
