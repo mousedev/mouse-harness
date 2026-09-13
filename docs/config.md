@@ -106,7 +106,7 @@ Each of `bash`, `write`, `edit` is either a single action (`allow`, `ask`, `deny
 | `--model`, `-m` | `MOUSE_MODEL` | Required. `provider/model` as OpenCode names it. |
 | `--workspace DIR` | current directory | The checkout to work in. |
 | `--profile local\|bench` | `local` | How OpenCode is configured. `local` sends the config through `OPENCODE_CONFIG_CONTENT` and writes nothing under the config home. `bench` writes a full `opencode.json` into the config home, deep-merged over what is there (prompt, compaction, cache keys, `small_model` set to the run model, OpenRouter pinned to Fireworks, autoupdate off, share disabled). Bench is frozen: a byte change there is a benchmark change. |
-| `--yolo` | off | Pass `--dangerously-skip-permissions` to OpenCode. Implied, with a warning, when stdout is not a terminal. |
+| `--yolo` | off | Pass `--dangerously-skip-permissions` to OpenCode. Implied, with a warning, when stdin is not a terminal (nobody could answer a prompt). Piping stdout alone does not imply it. |
 | `--format text\|json` | `text` with a terminal, else `json` | `text` prints Mouse's summary lines and the final reply. `json` passes OpenCode's event stream through on stdout unchanged and prints nothing of Mouse's own. |
 | `--log FILE` | `MOUSE_HARNESS_LOG`, else the default trace path | Where the JSONL trace goes. |
 | `--session ID` | new session | Continue an existing OpenCode session. |

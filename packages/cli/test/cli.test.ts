@@ -14,6 +14,9 @@ import { MOUSE_VERSION, parseTrace } from "@mousedev/harness-core";
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { EXIT, exitCodeFor, main, parseRunArgs } from "../src/main.js";
 
+const TTY = { stdin: true, stdout: true };
+const HEADLESS = { stdin: false, stdout: false };
+
 /**
  * A stand-in `opencode` that behaves like a model solving a task: on its
  * first call it writes the file the task asks for and answers with a text
@@ -81,32 +84,43 @@ describe("exit codes", () => {
 
 describe("parseRunArgs", () => {
   it("takes the task as positional text or a file, requires a model", () => {
-    const a = parseRunArgs(["Fix", "the", "bug", "--model", "p/m"], {}, true);
+    const a = parseRunArgs(["Fix", "the", "bug", "--model", "p/m"], {}, TTY);
     expect(a.instruction).toBe("Fix the bug");
     expect(a.profile).toBe("local");
     expect(a.format).toBe("text");
-    expect(parseRunArgs(["x", "--model", "p/m"], {}, false).format).toBe("json");
-    expect(() => parseRunArgs(["x"], {}, true)).toThrow(/--model/);
-    expect(() => parseRunArgs(["--model", "p/m"], {}, true)).toThrow(/task is required/);
-    expect(() => parseRunArgs(["x", "--model", "p/m", "--profile", "prod"], {}, true)).toThrow(
+    expect(parseRunArgs(["x", "--model", "p/m"], {}, HEADLESS).format).toBe("json");
+    expect(() => parseRunArgs(["x"], {}, TTY)).toThrow(/--model/);
+    expect(() => parseRunArgs(["--model", "p/m"], {}, TTY)).toThrow(/task is required/);
+    expect(() => parseRunArgs(["x", "--model", "p/m", "--profile", "prod"], {}, TTY)).toThrow(
       /--profile/,
     );
     expect(
-      parseRunArgs(["x"], { MOUSE_MODEL: "p/m", MOUSE_MAX_WALL_SEC: "30" }, true).maxWallSec,
+      parseRunArgs(["x"], { MOUSE_MODEL: "p/m", MOUSE_MAX_WALL_SEC: "30" }, TTY).maxWallSec,
     ).toBe(30);
   });
 
-  it("skips permissions with --yolo or without a terminal, and warns only in the second case", () => {
-    const tty = parseRunArgs(["x", "--model", "p/m"], {}, true);
+  it("decides the default --format on stdout and permissions on stdin", () => {
+    const piped = parseRunArgs(["x", "--model", "p/m"], {}, { stdin: true, stdout: false });
+    expect(piped.format).toBe("json");
+    expect(piped.skipPermissions).toBe(false);
+    expect(piped.warnNoTerminal).toBe(false);
+    const fed = parseRunArgs(["x", "--model", "p/m"], {}, { stdin: false, stdout: true });
+    expect(fed.format).toBe("text");
+    expect(fed.skipPermissions).toBe(true);
+    expect(fed.warnNoTerminal).toBe(true);
+  });
+
+  it("skips permissions with --yolo or without a terminal on stdin, and warns only in the second case", () => {
+    const tty = parseRunArgs(["x", "--model", "p/m"], {}, TTY);
     expect(tty.skipPermissions).toBe(false);
     expect(tty.warnNoTerminal).toBe(false);
-    const yolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, true);
+    const yolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, TTY);
     expect(yolo.skipPermissions).toBe(true);
     expect(yolo.warnNoTerminal).toBe(false);
-    const headless = parseRunArgs(["x", "--model", "p/m"], {}, false);
+    const headless = parseRunArgs(["x", "--model", "p/m"], {}, HEADLESS);
     expect(headless.skipPermissions).toBe(true);
     expect(headless.warnNoTerminal).toBe(true);
-    const headlessYolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, false);
+    const headlessYolo = parseRunArgs(["x", "--model", "p/m", "--yolo"], {}, HEADLESS);
     expect(headlessYolo.skipPermissions).toBe(true);
     expect(headlessYolo.warnNoTerminal).toBe(false);
   });

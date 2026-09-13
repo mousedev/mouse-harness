@@ -49,7 +49,7 @@ Long tasks can be passed as a file: `mouse run --instruction-file task.md --mode
 
 ## Unattended runs
 
-Without a terminal (CI, cron, a pipe) `--format json` is the default: OpenCode's JSON event stream is passed through on stdout unchanged and Mouse's own lines go to the trace file. Mouse also behaves as if `--yolo` was passed and prints a one-line warning on stderr, since nobody can answer a permission prompt. Pass `--yolo` explicitly to silence the warning.
+Without a terminal on stdout (CI, cron, a pipe) `--format json` is the default: OpenCode's JSON event stream is passed through on stdout unchanged and Mouse's own lines go to the trace file. Without a terminal on stdin, Mouse also behaves as if `--yolo` was passed and prints a one-line warning on stderr, since nobody can answer a permission prompt. Pass `--yolo` explicitly to silence the warning. Piping only the output (`mouse run ... | tee log.txt`) keeps the prompts.
 
 ```bash
 mouse run --instruction-file task.md --model openrouter/moonshotai/kimi-k3 --yolo --max-wall-sec 3600

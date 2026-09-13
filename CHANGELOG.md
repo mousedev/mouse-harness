@@ -6,6 +6,11 @@ This file is maintained by the maintainers. Contributors do not need to edit it 
 
 ## [Unreleased]
 
+### Changed
+
+- The tamper scan also flags deleted co-located test files (`foo.test.ts`, `x_test.go`, `test_x.py`, `conftest.py`), test-runner configuration (`vitest.config.*`, `jest.config.*`, `playwright.config.*`), and the manifests checks are detected from (`pytest.ini`, `tox.ini`, `setup.cfg`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `Makefile`). This can only add `blocked` outcomes; prompt and config bytes are unchanged ([#1](https://github.com/mousedev/mouse-harness/issues/1)).
+- `mouse run` implies `--yolo` when stdin is not a terminal, not when stdout is not. `mouse run ... | tee log.txt` from a shell keeps OpenCode's permission prompts; `--format` still defaults from stdout. `parseRunArgs` takes `{ stdin, stdout }` in place of one boolean ([#2](https://github.com/mousedev/mouse-harness/issues/2)).
+
 ## [0.1.1] - 2026-09-09
 
 ### Added

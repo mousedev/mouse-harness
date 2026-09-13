@@ -146,7 +146,7 @@ interface RunArgs {
   logFile: string | undefined;
   profile: Profile;
   yolo: boolean;
-  /** Pass `--dangerously-skip-permissions` to OpenCode: `--yolo`, or no terminal to answer a prompt. */
+  /** Pass `--dangerously-skip-permissions` to OpenCode: `--yolo`, or no terminal on stdin to answer a prompt. */
   skipPermissions: boolean;
   /** True when permissions are skipped without `--yolo`, so the run should say so. */
   warnNoTerminal: boolean;
@@ -165,10 +165,16 @@ function positiveInt(v: string | undefined): number | undefined {
   return Number(v);
 }
 
+/** Which standard streams are terminals. stdin decides permissions; stdout decides the output format. */
+export interface Terminals {
+  stdin: boolean;
+  stdout: boolean;
+}
+
 export function parseRunArgs(
   argv: string[],
   env = process.env,
-  isTTY = Boolean(process.stdout.isTTY),
+  tty: Terminals = { stdin: Boolean(process.stdin.isTTY), stdout: Boolean(process.stdout.isTTY) },
 ): RunArgs {
   const { values, positionals } = parseArgs({
     args: argv,
@@ -202,7 +208,7 @@ export function parseRunArgs(
   const profile = (values.profile ?? "local") as Profile;
   if (profile !== "local" && profile !== "bench")
     fail(`--profile must be local or bench, got ${profile}`);
-  const format = (values.format ?? (isTTY ? "text" : "json")) as "text" | "json";
+  const format = (values.format ?? (tty.stdout ? "text" : "json")) as "text" | "json";
   if (format !== "text" && format !== "json") fail(`--format must be text or json, got ${format}`);
   return {
     instruction,
@@ -213,9 +219,11 @@ export function parseRunArgs(
     profile,
     yolo: values.yolo,
     // `opencode run` reads no stdin, so a permission prompt could never be
-    // answered; without a terminal the only workable mode is to skip them.
-    skipPermissions: values.yolo || !isTTY,
-    warnNoTerminal: !values.yolo && !isTTY,
+    // answered; without a terminal on stdin the only workable mode is to skip
+    // them. stdout is deliberately not consulted: `mouse run ... | tee` from a
+    // shell still has a person at the keyboard.
+    skipPermissions: values.yolo || !tty.stdin,
+    warnNoTerminal: !values.yolo && !tty.stdin,
     format,
     session: values.session,
     maxWallSec: positiveInt(values["max-wall-sec"] ?? env.MOUSE_MAX_WALL_SEC),

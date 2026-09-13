@@ -148,7 +148,7 @@ Mouse runs with the permissions of the user who starts it and has no sandbox of 
 |---|---|
 | In a terminal, without `--yolo` | The build agent's permission block, including the `bash` deny patterns from `.mouse/policy.json` |
 | With `--yolo` | Nothing. Mouse passes `--dangerously-skip-permissions` to OpenCode |
-| Without a terminal (CI, cron, a pipe) | The same as `--yolo`, with one warning on stderr. `opencode run` reads no stdin, so a prompt could never be answered |
+| Without a terminal on stdin (CI, cron, `< /dev/null`) | The same as `--yolo`, with one warning on stderr. `opencode run` reads no stdin, so a prompt could never be answered. Piping only stdout (`mouse run ... \| tee`) keeps the prompts |
 
 [Permission policy](docs/policy.md) · [Security](SECURITY.md)
 
@@ -172,7 +172,6 @@ The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay
 
 Not in 0.1, in rough order:
 
-- The no-terminal permission bypass keyed on stdin rather than stdout, so `mouse run | tee` from a shell still gets prompts ([#2](https://github.com/mousedev/mouse-harness/issues/2)).
 - Interactive permission prompts routed to the terminal, and an `--auto` mode that answers them from the policy file.
 - `mouse serve` for driving a run over a socket.
 

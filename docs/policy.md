@@ -53,7 +53,7 @@ Every agent also has `webfetch: deny` and `doom_loop: allow` (hosts run their ow
 ## `--yolo` and the terminal
 
 - `--yolo` passes `--dangerously-skip-permissions` to OpenCode. Treat it as unrestricted shell for the model. Whether OpenCode still honours the deny patterns under that flag is OpenCode's behaviour, not Mouse's; do not rely on it.
-- Without a terminal on stdout, `mouse run` implies `--yolo` and prints one warning to stderr.
+- Without a terminal on stdin, `mouse run` implies `--yolo` and prints one warning to stderr. Only stdin counts: `mouse run ... | tee log.txt` from a shell keeps the prompts, since a person is still at the keyboard. stdout decides the default `--format` and nothing else.
 - With a terminal and without `--yolo`, OpenCode runs with the `build` agent's permission block as configured above.
 
 ## Not in this release
