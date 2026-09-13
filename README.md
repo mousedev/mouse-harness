@@ -69,7 +69,7 @@ mouse run "Add rate limiting to /api/upload and cover it with tests" --model ope
 
 ## How it works
 
-Mouse stays in the same session and runs a completion loop after every model turn, this provides a deterministic verification loop that significantly improves the agents ability to correctly complete task, and produce working solid code.
+Mouse runs a completion loop after every model turn, which enforces a set of rules and verification that significantly improves the agents ability to correctly complete task. For this reason it generates the highest pass rate on difficult and long running tasks. 
 
 1. **Inspect the changes.** The workspace is fingerprinted with `git status` and a diff against the starting commit. If nothing changed, the model is told so and asked to continue.
 2. **Run the checks.** When files changed, the repository's checks run. Failing output goes back to the model with the instruction to fix the failure and leave the tests alone.
