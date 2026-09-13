@@ -23,7 +23,7 @@ The loop then iterates. Round `n` does the following, in order.
 1. **Budget gates.** If the abort signal fired: `aborted`. If elapsed time since the run started is at or above `maxWallMs`: `wall_clock`. If the engine's step count is at or above `maxTotalSteps`: `step_budget`. The first turn counts against both.
 2. **Fingerprint.** `changed` is true when the fingerprint differs from the initial one. In a git repository the fingerprint is `git status --porcelain` plus `git diff --shortstat <start-sha>`; outside one it is the sorted list of files newer than the marker (excluding `.git/` and `node_modules/`, capped at 2000 entries).
 3. **Checks and tamper scan, only if `changed`.** An unchanged workspace skips both. Each check runs in the workspace with the policy's `verify.timeoutSec` (default 900 seconds); a timeout is recorded as exit code `null`. The last 1500 characters of combined output are kept as the excerpt. Every check produces a `check_status` event.
-4. **Blocked.** If the tamper scan lists any file, the loop emits a `notice` naming up to five of them and returns `blocked`. The scan is `git diff --diff-filter=D --name-only <start-sha>` filtered to paths matching `(^|/)(tests?|spec|__tests__)(/|$)` or `.github/workflows/`. It detects deletions only, and only in a git repository with a known start commit.
+4. **Blocked.** If the tamper scan lists any file, the loop emits a `notice` naming up to five of them and returns `blocked`. The scan is `git diff --diff-filter=D --name-only <start-sha>` filtered to verification paths: anything under `tests/`, `test/`, `spec/`, `__tests__/`, or `.github/workflows/`; co-located test files (`*.test.ts`, `*.spec.js` and the other JS/TS extensions, `*_test.go`, `test_*.py`, `conftest.py`); test-runner configuration (`vitest.config.*`, `jest.config.*`, `playwright.config.*`); and the manifests the checks are detected from (`pytest.ini`, `tox.ini`, `setup.cfg`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `Makefile`). The exact pattern is `VERIFICATION_PATH` in `packages/core/src/git.ts`. It detects deletions only, and only in a git repository with a known start commit.
 5. **Deterministic audit.** `auditFromSandboxProbe` turns the probe evidence (changed, head SHA, check results, tampering) into an `AuditReport` and `applyAudit` folds it into the `TaskState`. This is the MEA bookkeeping: requirement records advance only on environment evidence, never on what the model said. The state is returned with the result and its requirement list appears in every continue prompt.
 6. **Satisfied test.** The last assistant text of the most recent turn is parsed for a `MOUSE_AUDIT` block ([audit-protocol.md](audit-protocol.md)). The loop returns `satisfied` when all three hold: the workspace changed, zero checks failed, and a block is present with zero `todo` items.
 7. **Pick the round kind.**
@@ -46,7 +46,7 @@ Because the audit footer is only part of the continue prompts, a run that finish
 | `stalled` | `nonProgressRounds` consecutive rounds changed nothing | 3 |
 | `wall_clock` | `maxWallSec` reached, or under 60 seconds left | 3 |
 | `step_budget` | `maxSteps` model steps reached | 3 |
-| `blocked` | a test, spec, or workflow file was deleted | 4 |
+| `blocked` | a test, spec, workflow, or check-configuration file was deleted | 4 |
 | `aborted` | SIGINT or SIGTERM | 130 |
 
 A harness error (OpenCode missing, a turn that produced no steps after three attempts) exits 1 and writes a `mouse.error` record.

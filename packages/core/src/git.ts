@@ -27,10 +27,26 @@ export async function fingerprint(ws: Workspace, baseSha: string | null): Promis
   return `${p.stdout}\n${diff.stdout}`;
 }
 
-/** Paths whose deletion would let a run grade its own homework. */
-export const VERIFICATION_PATH = /(^|\/)(tests?|spec|__tests__)(\/|$)|\.github\/workflows\//;
+/**
+ * Paths whose deletion would let a run grade its own homework: test
+ * directories and workflows, co-located test files (`foo.test.ts`,
+ * `x_test.go`, `test_x.py`, `conftest.py`), and the configuration the
+ * checks are detected from (see `detect.ts`) or run by.
+ */
+export const VERIFICATION_PATH = new RegExp(
+  [
+    /(^|\/)(tests?|spec|__tests__)(\/|$)/.source,
+    /\.github\/workflows\//.source,
+    /\.(test|spec)\.[cm]?[jt]sx?$/.source,
+    /_test\.go$/.source,
+    /(^|\/)test_[^/]*\.py$/.source,
+    /(^|\/)conftest\.py$/.source,
+    /(^|\/)(vitest|jest|playwright)\.config\.[cm]?[jt]s$/.source,
+    /(^|\/)(pytest\.ini|tox\.ini|setup\.cfg|pyproject\.toml|go\.mod|Cargo\.toml|Makefile)$/.source,
+  ].join("|"),
+);
 
-/** Test, spec, and workflow files deleted since `baseSha`. */
+/** Test, spec, workflow, and check-configuration files deleted since `baseSha`. */
 export async function deletedVerificationFiles(
   ws: Workspace,
   baseSha: string | null,

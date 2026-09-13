@@ -1,10 +1,10 @@
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { localWorkspace } from "../src/exec.js";
-import { deletedVerificationFiles, fingerprint, headSha } from "../src/git.js";
+import { deletedVerificationFiles, fingerprint, headSha, VERIFICATION_PATH } from "../src/git.js";
 import { makeProbe } from "../src/probe.js";
 
 let dir: string;
@@ -28,6 +28,10 @@ beforeAll(() => {
     JSON.stringify({ scripts: { test: "exit 0", lint: "exit 3" } }),
   );
   writeFileSync(path.join(dir, "tests.txt"), "keep");
+  mkdirSync(path.join(dir, "src"));
+  mkdirSync(path.join(dir, "tests"));
+  writeFileSync(path.join(dir, "src/foo.test.ts"), "");
+  writeFileSync(path.join(dir, "tests/a.txt"), "");
   git("add", ".");
   git("commit", "-q", "-m", "init");
 });
@@ -50,6 +54,53 @@ describe("git helpers over a local workspace", () => {
     rmSync(path.join(dir, "tests.txt"));
     expect(await deletedVerificationFiles(ws, base)).toEqual([]);
     git("checkout", "--", "tests.txt");
+    rmSync(path.join(dir, "src/foo.test.ts"));
+    rmSync(path.join(dir, "tests/a.txt"));
+    expect(await deletedVerificationFiles(ws, base)).toEqual(["src/foo.test.ts", "tests/a.txt"]);
+    git("checkout", "--", "src/foo.test.ts", "tests/a.txt");
+  });
+
+  it("matches co-located tests and check configuration, not their neighbours", () => {
+    const flagged = [
+      "tests/a.py",
+      "test/a.js",
+      "spec/a.rb",
+      "pkg/__tests__/a.tsx",
+      ".github/workflows/ci.yml",
+      "src/foo.test.ts",
+      "src/foo.spec.mjs",
+      "lib/a.test.cjs",
+      "pkg/x/x_test.go",
+      "app/test_models.py",
+      "conftest.py",
+      "app/conftest.py",
+      "vitest.config.ts",
+      "packages/core/vitest.config.mts",
+      "jest.config.js",
+      "playwright.config.ts",
+      "pytest.ini",
+      "tox.ini",
+      "setup.cfg",
+      "pyproject.toml",
+      "go.mod",
+      "Cargo.toml",
+      "Makefile",
+    ];
+    const clean = [
+      "tests.txt",
+      "src/testing.ts",
+      "src/contest.py",
+      "src/latest_go.go",
+      "src/foo.ts",
+      "src/spectrum.ts",
+      "docs/test-plan.md",
+      "package.json",
+      "Makefile.in",
+      "src/vitest.config.helper.ts",
+      "attest.py",
+    ];
+    for (const p of flagged) expect(VERIFICATION_PATH.test(p), p).toBe(true);
+    for (const p of clean) expect(VERIFICATION_PATH.test(p), p).toBe(false);
   });
 
   it("answers null and empty outside a repo", async () => {

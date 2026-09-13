@@ -43,7 +43,7 @@ round 2 (audit): no change, 61 steps total
 outcome: satisfied after 2 round(s), 61 steps, 214s, $0.87
 ```
 
-The exit code encodes the outcome: 0 satisfied, 3 budget (stalled, wall clock, or step ceiling), 4 blocked (a test, spec, or workflow file was deleted), 130 aborted, 1 error, 2 usage.
+The exit code encodes the outcome: 0 satisfied, 3 budget (stalled, wall clock, or step ceiling), 4 blocked (a test, spec, workflow, or check-configuration file was deleted), 130 aborted, 1 error, 2 usage.
 
 Long tasks can be passed as a file: `mouse run --instruction-file task.md --model ...`. `MOUSE_MODEL` in the environment replaces `--model`.
 

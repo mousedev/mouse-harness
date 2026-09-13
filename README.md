@@ -73,7 +73,7 @@ Mouse runs a completion loop after every model turn, which enforces a set of rul
 
 1. **Inspect the changes.** The workspace is fingerprinted with `git status` and a diff against the starting commit. If nothing changed, the model is told so and asked to continue.
 2. **Run the checks.** When files changed, the repository's checks run. Failing output goes back to the model with the instruction to fix the failure and leave the tests alone.
-3. **Scan for deleted tests.** Deleting a test, spec, or workflow file that existed at the starting commit ends the run as `blocked`. The loop enforces this in code, not in the prompt.
+3. **Scan for deleted tests.** Deleting a test, spec, or workflow file that existed at the starting commit ends the run as `blocked`. Co-located tests (`foo.test.ts`, `x_test.go`, `conftest.py`) and check configuration (`vitest.config.ts`, `pytest.ini`, `Makefile`) count too. The loop enforces this in code, not in the prompt.
 4. **Audit the requirements.** Once the checks pass, the model is asked to go back over the original task and end its reply with a `MOUSE_AUDIT` block, one line per requirement, each marked `done` with the evidence or `todo`. Any `todo` sends it round again.
 
 A run is `satisfied` when the workspace changed, no checks have failed, and the audit has no more `todo` items. It stops early when progress stalls for a configurable number of rounds or step budget runs our. You can also hit Ctrl-C. Every stop reason has its own exit code, which is documented.
@@ -137,7 +137,7 @@ Defaults come from `.mouse/policy.json` or, without one, from the built-in polic
 | 1 | Harness error |
 | 2 | Invalid usage |
 | 3 | Budget: stalled, wall clock, or step ceiling |
-| 4 | Blocked: a test, spec, or workflow file was deleted |
+| 4 | Blocked: a test, spec, workflow, or check-configuration file was deleted |
 | 130 | Interrupted |
 
 ## Permissions
@@ -172,7 +172,6 @@ The hosted product at [mouse.dev](https://www.mouse.dev) adds sandboxes, a relay
 
 Not in 0.1, in rough order:
 
-- A deletion scan that also covers co-located test files (`src/foo.test.ts`, `x_test.go`, `conftest.py`) and check configuration ([#1](https://github.com/mousedev/mouse-harness/issues/1)).
 - The no-terminal permission bypass keyed on stdin rather than stdout, so `mouse run | tee` from a shell still gets prompts ([#2](https://github.com/mousedev/mouse-harness/issues/2)).
 - Interactive permission prompts routed to the terminal, and an `--auto` mode that answers them from the policy file.
 - `mouse serve` for driving a run over a socket.
