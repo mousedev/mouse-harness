@@ -35,8 +35,7 @@ Mouse passed 25 of the 30 tasks on [FrontierHarness Eval](https://frontierharnes
 | Pi | 60.0% (18/30) | $2.43 | 79.4% | 7m 33s |
 | OpenCode | 50.0% (15/30) | $3.24 | 78.4% | 6m 27s |
 
-The other rows are FrontierHarness's published numbers. All thirteen used the same model, Kimi K3, so the differences come from the harness. Cost per pass is the figure the leaderboard labels "median cost per task": total spend divided by passes.
-
+FrontierHarness's published numbers. The benchmark uses the same model, Kimi K3, so the evaluation comes from the harness's ability to complete tasks.
 
 ## Install
 
