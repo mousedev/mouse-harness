@@ -69,7 +69,7 @@ mouse run "Add rate limiting to /api/upload and cover it with tests" --model ope
 
 ## How it works
 
-Mouse runs on opencode then stays in the same session and runs a completion loop after every turn, this provides a deterministic verification loop that significantly improves the agents ability to correctly complete task, and produce working solid code.
+Mouse stays in the same session and runs a completion loop after every model turn, this provides a deterministic verification loop that significantly improves the agents ability to correctly complete task, and produce working solid code.
 
 1. **Inspect the changes.** The workspace is fingerprinted with `git status` and a diff against the starting commit. If nothing changed, the model is told so and asked to continue.
 2. **Run the checks.** When files changed, the repository's checks run. Failing output goes back to the model with the instruction to fix the failure and leave the tests alone.
