@@ -7,7 +7,7 @@
 
 <p align="center">
   An open source harness for long-running coding agents.<br>
-  Mouse runs OpenCode in your repository and keeps going until the repository's own checks pass.
+  Mouse is built on OpenCode.
 </p>
 
 <p align="center">
