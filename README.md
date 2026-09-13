@@ -76,12 +76,9 @@ Mouse runs a completion loop after every model turn, which enforces a set of rul
 3. **Scan for deleted tests.** Deleting a test, spec, or workflow file that existed at the starting commit ends the run as `blocked`. The loop enforces this in code, not in the prompt.
 4. **Audit the requirements.** Once the checks pass, the model is asked to go back over the original task and end its reply with a `MOUSE_AUDIT` block, one line per requirement, each marked `done` with the evidence or `todo`. Any `todo` sends it round again.
 
-A run is `satisfied` when the workspace changed, no check failed, and the audit has no `todo` items. It stops early when progress stalls for a configurable number of rounds, when the wall clock or step budget runs out, when the deletion scan trips, or on Ctrl-C. Every stop reason has its own exit code.
+A run is `satisfied` when the workspace changed, no checks have failed, and the audit has no more `todo` items. It stops early when progress stalls for a configurable number of rounds or step budget runs our. You can also hit Ctrl-C. Every stop reason has its own exit code, which is documented.
 
-Two things worth knowing:
-
-- The loop believes checks, not the model. The `MOUSE_AUDIT` block is the model's declaration that it has nothing left; it is only honoured once the checks agree. In a repository with no detectable checks, `satisfied` rests on the workspace change and that declaration alone, and the trace records it (`checksRun: []`). Declare checks in `.mouse/policy.json` to close the gap.
-- The prompt and the continue prompts are frozen bytes. They are pinned by a golden test that refuses to update to make a refactor pass, because a changed byte invalidates every user's provider cache and changes the benchmark. The same bytes serve the `local` and `bench` profiles.
+Mouse is designed to enforce certain behaviors from the agent, which prevents an agent from cheating or hallucinating on a task or goal. The Test scan is specifically useful for long running agents that try to hide their failed tests or work. Because Mouse stays in the same session, the majority of the re-work is cached, and cheap. 
 
 Each run writes a JSONL trace under `~/.mouse/runs/`, outside the repository. Nothing is written into your repository, and with the default `local` profile nothing is written under `~/.config/opencode` either.
 
