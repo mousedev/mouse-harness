@@ -69,7 +69,7 @@ mouse run "Add rate limiting to /api/upload and cover it with tests" --model ope
 
 ## How it works
 
-An engine's own loop ends the moment the model's finish reason is not a tool call. On a long task the model says "done" after a plausible first pass, and that single fact costs the run. Mouse sends your task to OpenCode's build agent, then stays in the same session and runs a completion loop after every turn:
+Mouse runs on opencode then stays in the same session and runs a completion loop after every turn, this provides a deterministic verification loop that significantly improves the agents ability to correctly complete task, and produce working solid code.
 
 1. **Inspect the changes.** The workspace is fingerprinted with `git status` and a diff against the starting commit. If nothing changed, the model is told so and asked to continue.
 2. **Run the checks.** When files changed, the repository's checks run. Failing output goes back to the model with the instruction to fix the failure and leave the tests alone.
@@ -78,7 +78,7 @@ An engine's own loop ends the moment the model's finish reason is not a tool cal
 
 A run is `satisfied` when the workspace changed, no check failed, and the audit has no `todo` items. It stops early when progress stalls for a configurable number of rounds, when the wall clock or step budget runs out, when the deletion scan trips, or on Ctrl-C. Every stop reason has its own exit code.
 
-Two things worth knowing before you trust the number above:
+Two things worth knowing:
 
 - The loop believes checks, not the model. The `MOUSE_AUDIT` block is the model's declaration that it has nothing left; it is only honoured once the checks agree. In a repository with no detectable checks, `satisfied` rests on the workspace change and that declaration alone, and the trace records it (`checksRun: []`). Declare checks in `.mouse/policy.json` to close the gap.
 - The prompt and the continue prompts are frozen bytes. They are pinned by a golden test that refuses to update to make a refactor pass, because a changed byte invalidates every user's provider cache and changes the benchmark. The same bytes serve the `local` and `bench` profiles.
