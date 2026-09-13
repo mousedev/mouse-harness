@@ -21,7 +21,7 @@
 
 ## FrontierHarness Eval
 
-Mouse passed 25 of the 30 tasks on [FrontierHarness Eval](https://frontierharness.org/) with Kimi K3, run under the benchmark's own scripts on 2026-09-08.
+Mouse passed 25 of the 30 tasks on [FrontierHarness Eval](https://frontierharness.org/) with Kimi K3 on 2026-09-08.
 
 ![Pass rate against cost per pass for Mouse and the twelve published FrontierHarness configurations](evals/runs/2026-09-08-mouse-c/report/chart.svg)
 
