@@ -36,16 +36,6 @@ Mouse passed 25 of the 30 tasks on [FrontierHarness Eval](https://frontierharnes
 
 The other rows are FrontierHarness's published numbers. All thirteen used the same model, Kimi K3, so the differences come from the harness. Cost per pass is the figure the leaderboard labels "median cost per task": total spend divided by passes.
 
-How the Mouse run was made:
-
-- FrontierHarness's own `run-trials.sh`, unmodified, at eval commit `e837a70`, on a golden checkpoint with a fresh restore for every task. Terminal-Bench through Harbor 0.22.0, DeepSWE through Pier 0.3.1.
-- Harness commit [`315e2b8`](https://github.com/mousedev/mouse-harness/tree/315e2b8) on OpenCode 1.18.27. Kimi K3 served by Fireworks, the same provider as the baselines.
-- All 30 trials valid, no infrastructure failures counted as passes or failures. Three of the passes (`scc-bounded-memory-spilling`, `kv-store-grpc`, `largest-eigenval`) are tasks none of the twelve published configurations solved.
-- Total spend $69.76.
-
-Mouse is not on the leaderboard yet. FrontierHarness adds a harness after reproducing the result in their environment, and the run has been submitted for that in [frontier-harness-eval/eval#12](https://github.com/frontier-harness-eval/eval/issues/12). The complete run, with every trajectory, verifier verdict, retained failed attempt, and the exact command lines, is in [`evals/runs/2026-09-08-mouse-c/`](evals/runs/2026-09-08-mouse-c/); [SUBMISSION.md](evals/runs/2026-09-08-mouse-c/SUBMISSION.md) lists every deviation from the pristine scripts. An earlier self-run on 2026-09-03 scored 24/30 through Harbor alone; it is kept under [`evals/runs/2026-09-03-k3-openrouter/`](evals/runs/2026-09-03-k3-openrouter/).
-
-The rules this project follows when quoting a number are in [docs/evals.md](docs/evals.md). The runbook for reproducing a run is [evals/README.md](evals/README.md).
 
 ## Install
 
